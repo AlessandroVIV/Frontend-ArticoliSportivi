@@ -19,7 +19,7 @@
             placeholder=" "
             autocomplete="off"
           />
-          <label for="username">Nome Utente</label>
+          <label for="username">Username</label>
         </div>
 
         <!-- Password -->
@@ -38,15 +38,23 @@
 
         <p class="error-msg">{{ msg }}</p>
 
-        <div class="button-group">
+        <!-- Login button -->
+        <button
+          type="submit"
+          [disabled]="!signinForm.valid"
+          class="btn primary w-100"
+        >
+          Login
+        </button>
+
+        <!-- Registrazione link -->
+        <div class="register-box">
+          <p>Non hai un account?</p>
           <button
-            type="submit"
-            [disabled]="!signinForm.valid"
-            class="btn primary"
+            type="button"
+            class="btn secondary w-100"
+            routerLink="/registrazione"
           >
-            Login
-          </button>
-          <button type="button" class="btn secondary" routerLink="/registrazione">
             Registrati
           </button>
         </div>
