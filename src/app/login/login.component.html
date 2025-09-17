@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Login</h1>
+    <form #signinForm="ngForm" (ngSubmit)="onSubmit(signinForm)">
+        <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" name="username" ngModel required>
+        </mat-form-field>
+    
+        
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="text" name="password" ngModel required>
+        </mat-form-field>
+        
+        <p>{{msg}}</p>
+
+        <div class="button-group">
+            <button class="btn btn-primary me-2" type="submit" [disabled]="!signinForm.valid">Invia</button>
+            <button type="button" class="btn btn-secondary" routerLink="/register" >Registrazione</button>
+
+        </div>
+
+ 
+    </form>
+</div>
