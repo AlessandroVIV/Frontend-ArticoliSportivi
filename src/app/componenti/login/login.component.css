@@ -1,0 +1,161 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container */
+.main-content {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+.login-card {
+  background: #121c18;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-header .logo {
+  width: 70px;
+  margin-bottom: 10px;
+}
+
+.login-header h2 {
+  color: #4caf50;
+  font-weight: 700;
+}
+
+.login-header p {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+/* Floating Labels */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #1b2622;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -.75px; 
+  left: 10px;
+  font-size: 0.75rem;
+  color: #4caf50;
+  background: #121c18;
+  padding: 0 4px;       
+}
+
+
+/* Focus border */
+.form-group input:focus {
+  border: 1px solid #4caf50;
+}
+
+/* Error message */
+.error-msg {
+  color: #ff5252;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  min-height: 18px;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn.primary {
+  background: #4caf50;
+  color: #fff;
+}
+
+.btn.primary:disabled {
+  background: #2a2a2a; 
+  color: #888;         
+  box-shadow: none;     
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn.primary:not(:disabled):hover {
+  background: #43a047;
+  transform: translateY(-2px);
+}
+
+
+.btn.secondary {
+  background: #2e3b36;
+  color: #ddd;
+}
+
+.btn.secondary:hover {
+  background: #374843;
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+  transform: none;
+}

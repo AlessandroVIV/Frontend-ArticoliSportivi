@@ -1,8 +1,11 @@
-<a routerLink="" style="margin-right: 10px;">Home</a>
-<a routerLink="articoli" style="margin-right: 10px;">Articoli</a>
+<nav class="navbar">
+  <a routerLink="" class="nav-link">Home</a>
+  <a routerLink="articoli" class="nav-link">Articoli</a>
 
-<a *ngIf="!auth.isAutentificated()" routerLink="login" style="margin-right: 10px;">Login</a>
+  <a *ngIf="!auth.isAutentificated()" routerLink="login" class="nav-link">Login</a>
+  <a *ngIf="auth.isAutentificated()" (click)="logout()" class="nav-link">Logout</a>
+</nav>
 
-<a *ngIf="auth.isAutentificated()" (click)="logout()" style="margin-right: 10px;">Logout</a>
-
-<router-outlet></router-outlet>
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,56 @@
+<div class="main-content">
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <img src="/images/iconaSito.png" alt="Sport Logo" class="logo" />
+        <h2>CodeRunner Shop</h2>
+        <p>Accedi al tuo account</p>
+      </div>
+
+      <form #signinForm="ngForm" (ngSubmit)="onSubmit(signinForm)">
+        <!-- Username -->
+        <div class="form-group">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            ngModel
+            required
+            placeholder=" "
+            autocomplete="off"
+          />
+          <label for="username">Nome Utente</label>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            ngModel
+            required
+            placeholder=" "
+            autocomplete="off"
+          />
+          <label for="password">Password</label>
+        </div>
+
+        <p class="error-msg">{{ msg }}</p>
+
+        <div class="button-group">
+          <button
+            type="submit"
+            [disabled]="!signinForm.valid"
+            class="btn primary"
+          >
+            Login
+          </button>
+          <button type="button" class="btn secondary" routerLink="/register">
+            Registrati
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
