@@ -6,10 +6,11 @@ import { BackendService } from '../../services/backend.service';
   selector: 'app-dettagli-articolo',
   standalone: false,
   templateUrl: './dettagli-articolo.component.html',
-  styleUrl: './dettagli-articolo.component.css'
+  styleUrl: './dettagli-articolo.component.css',
 })
 export class DettagliArticoloComponent {
-articolo: any;
+  
+  articolo: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,7 +19,7 @@ articolo: any;
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.backendService.getArticoliById(id).subscribe(data => {
+    this.backendService.getArticoloById(id).subscribe((data) => {
       this.articolo = data;
     });
   }
