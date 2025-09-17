@@ -11,6 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NotfoundComponent } from './componenti/notfound/notfound.component';
 import { LoginComponent } from './componenti/login/login.component';
+import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
+import { AdminComponent } from './componenti/admin/admin.component';
+import {MatTableModule} from '@angular/material/table';
+import { DettagliArticoloComponent } from './componenti/dettagli-articolo/dettagli-articolo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { LoginComponent } from './componenti/login/login.component';
     HomeComponent,
     ArticoliComponent,
     LoginComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    RegistrazioneComponent,
+    AdminComponent,
+    DettagliArticoloComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,8 @@ import { LoginComponent } from './componenti/login/login.component';
     HttpClientModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

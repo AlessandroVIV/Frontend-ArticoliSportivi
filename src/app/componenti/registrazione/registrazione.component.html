@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Registrazione</h1>
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+
+         <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" name="nome" ngModel required>
+        </mat-form-field>
+
+         <mat-form-field>
+            <mat-label>Cognome</mat-label>
+            <input matInput type="text" name="cognome" ngModel required>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" ngModel required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" name="username" ngModel required>
+        </mat-form-field>
+
+    
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" ngModel required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" name="confirm" ngModel required>
+        </mat-form-field>
+
+        <p *ngIf="!rc">{{msg}}</p>
+
+        <div>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Registra</button>
+        </div>
+
+    </form>
+</div>

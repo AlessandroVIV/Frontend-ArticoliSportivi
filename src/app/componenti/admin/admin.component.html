@@ -1,0 +1,46 @@
+
+<table style="width: 80%; border-collapse: collapse; margin: 20px auto;" border="1">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Prezzo</th>
+      <th>Descrizione</th>
+      <th>Marca</th>
+      <th>Immagine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let articolo of articoli">
+      <td>{{ articolo.nomeArticolo }}</td>
+      <td>{{ articolo.prezzo | currency:'EUR' }}</td>
+      <td>{{ articolo.descrizione }}</td>
+      <td>{{ articolo.marca }}</td>
+      <td>
+        <img [src]="articolo.urlImmagine" alt="immagine articolo" width="80">
+      </td>
+    </tr>
+
+    <p>articoli works!</p>
+
+<div style="width: 30%">
+  <div *ngFor="let articolo of articoli">
+
+    <!-- 👇 link verso la pagina dettaglio -->
+<a [routerLink]="['/dettagliArticolo', articolo.id]">
+          {{ articolo.nomeArticolo }} - {{ articolo.prezzo }}€
+      <br>
+      {{ articolo.descrizione }}
+      <br>
+      {{ articolo.marca }}
+      <br>
+      <img [src]="articolo.urlImmagine" alt="{{ articolo.nomeArticolo }}">
+    </a>
+
+    <hr>
+  </div>
+</div>
+  </tbody>
+</table>
+
+
+

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -9,6 +9,9 @@ export class BackendService {
 
   constructor(private http : HttpClient) { }
 
+ getArticoloById(id: number) {
+  return this.http.get(this.url + 'articolo' + id); // concatena l'id direttamente all'URL
+}
   getArticoli() {
      return this.http.get(this.url + 'articolo/listAll');
   }
