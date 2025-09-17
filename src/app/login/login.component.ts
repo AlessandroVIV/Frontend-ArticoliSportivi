@@ -23,13 +23,14 @@ export class LoginComponent {
     this.auth.resetAll();
 
     const payload = {
-      username: signin.form.value.username,
+      user: signin.form.value.username,
       password: signin.form.value.password
     };
+
     console.log("Payload inviato:", payload);
 
     this.utente.signin({
-      username: signin.form.value.username,
+      user: signin.form.value.username,
       password: signin.form.value.password
     }).subscribe((resp: any) => {
       console.log(resp);

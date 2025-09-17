@@ -1,4 +1,8 @@
 <a routerLink="" style="margin-right: 10px;">Home</a>
 <a routerLink="articoli" style="margin-right: 10px;">Articoli</a>
-<a routerLink="contact" style="margin-right: 10px;">Contact</a>
+
+<a *ngIf="!auth.isAutentificated()" routerLink="login" style="margin-right: 10px;">Login</a>
+
+<a *ngIf="auth.isAutentificated()" (click)="logout()" style="margin-right: 10px;">Logout</a>
+
 <router-outlet></router-outlet>

@@ -15,10 +15,16 @@ export class ArticoliComponent {
 
   ngOnInit(): void {
     console.log('ngOnInit');
+    
+
     this.service.getArticoli().subscribe((resp) => {
+      
       this.response = resp;
       this.articoli = this.response.dati;
+      console.log(this.articoli);
     });
+
+    
   }
 }
 

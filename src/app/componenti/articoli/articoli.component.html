@@ -2,7 +2,10 @@
 <div style="width: 30%;" >
     <div *ngFor="let articolo of articoli">
       <a>
-        {{articolo.nomeArticolo}} {{articolo.prezzo}} {{articolo.descrizione}}
+        {{articolo.nomeArticolo}} {{articolo.prezzo}} {{articolo.descrizione}} {{articolo.marca}}
       </a>
+
+      <img [src]="articolo.urlImmagine" alt="">
+
     </div>
   </div>
