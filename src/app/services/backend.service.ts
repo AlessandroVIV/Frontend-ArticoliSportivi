@@ -19,4 +19,13 @@ export class BackendService {
   getArticoli() {
     return this.http.get(this.url + 'articolo/listAll');
   }
+
+  updateArticoloScarpa(body:{}){
+    console.log(body);
+    return this.http.put(this.url + 'articolo/updateScarpa', body);
+  }
+
+  removeArticolo(body:{}){
+    return this.http.post(this.url + 'articolo/deleteArticolo', body);
+  }
 }

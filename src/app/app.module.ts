@@ -15,6 +15,13 @@ import { RegistrazioneComponent } from './componenti/registrazione/registrazione
 import { AdminComponent } from './componenti/admin/admin.component';
 import {MatTableModule} from '@angular/material/table';
 import { DettagliArticoloComponent } from './componenti/dettagli-articolo/dettagli-articolo.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import { DeleteArticoloComponent } from './dialogs/delete-articolo/delete-articolo.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +32,8 @@ import { DettagliArticoloComponent } from './componenti/dettagli-articolo/dettag
     NotfoundComponent,
     RegistrazioneComponent,
     AdminComponent,
-    DettagliArticoloComponent
+    DettagliArticoloComponent,
+    DeleteArticoloComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,13 @@ import { DettagliArticoloComponent } from './componenti/dettagli-articolo/dettag
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatSelectModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
