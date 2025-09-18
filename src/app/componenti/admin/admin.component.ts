@@ -8,7 +8,7 @@ import { BackendService } from '../../services/backend.service';
   styleUrl: './admin.component.css',
 })
 export class AdminComponent {
-  dataSource: any;
+
 
   articoli: any;
   response: any;

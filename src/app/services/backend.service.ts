@@ -11,9 +11,7 @@ export class BackendService {
   constructor(private http: HttpClient) {}
 
   getArticoloById(id: number) {
-    return this.http.get(this.url + 'articolo/getArticolo', {
-      params: { id },
-    });
+    return this.http.get(this.url + 'articolo/getArticolo', {params: { id },});
   }
 
   getArticoli() {
@@ -25,7 +23,9 @@ export class BackendService {
     return this.http.put(this.url + 'articolo/updateScarpa', body);
   }
 
-  removeArticolo(body:{}){
-    return this.http.post(this.url + 'articolo/deleteArticolo', body);
+  removeArticolo(id: number) {
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.delete(this.url + 'articolo/deleteArticolo', { params });
   }
+
 }
