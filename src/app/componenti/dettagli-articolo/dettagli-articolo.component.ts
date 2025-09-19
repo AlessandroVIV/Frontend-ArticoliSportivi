@@ -27,6 +27,8 @@ export class DettagliArticoloComponent {
     marca: new FormControl(),
     genere: new FormControl(),
     categoria: new FormControl(),
+    tagliaScarpe: new FormControl(), // 👈 aggiunto
+    tagliaIndumento: new FormControl(), // 👈 aggiu
   });
 
   constructor(
@@ -62,16 +64,16 @@ export class DettagliArticoloComponent {
       .subscribe((data: any) => (this.categorie = data.dati));
   }
 
-  onSubmit() {
+  onSubmitScarpa() {
     const updateBody: any = {
       id: this.id,
       nome: this.updateForm.value.nome,
       descrizione: this.updateForm.value.descrizione,
       prezzo: this.updateForm.value.prezzo,
-      genere: this.updateForm.value.genere, 
-      marca: this.updateForm.value.marca, 
-      categoria: this.updateForm.value.categoria, 
-      tagliaScarpe: this.articolo.tagliaScarpe,
+      genere: this.updateForm.value.genere,
+      marca: this.updateForm.value.marca,
+      categoria: this.updateForm.value.categoria,
+      tagliaScarpe: this.updateForm.value.tagliaScarpe,
       urlImmagine: this.articolo.urlImmagine,
     };
 
@@ -79,6 +81,34 @@ export class DettagliArticoloComponent {
 
     this.backendService
       .updateArticoloScarpa(updateBody)
+      .subscribe((resp: any) => {
+        if (resp.rc) {
+          this.routing
+            .navigate(['/admin'])
+            .then(() => window.location.reload());
+        } else {
+          this.msg = resp.msg;
+        }
+      });
+  }
+
+  onSubmitIndumento() {
+    const updateBody: any = {
+      id: this.id,
+      nome: this.updateForm.value.nome,
+      descrizione: this.updateForm.value.descrizione,
+      prezzo: this.updateForm.value.prezzo,
+      genere: this.updateForm.value.genere,
+      marca: this.updateForm.value.marca,
+      categoria: this.updateForm.value.categoria,
+      tagliaIndumento: this.articolo.tagliaIndumento,
+      urlImmagine: this.articolo.urlImmagine,
+    };
+
+    console.log('UpdateBody inviato:', updateBody);
+
+    this.backendService
+      .updateArticoloIndumento(updateBody)
       .subscribe((resp: any) => {
         if (resp.rc) {
           this.routing

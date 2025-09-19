@@ -23,6 +23,11 @@ export class BackendService {
     return this.http.put(this.url + 'articolo/updateScarpa', body);
   }
 
+   updateArticoloIndumento(body: {}) {
+    console.log(body);
+    return this.http.put(this.url + 'articolo/updateIndumento', body);
+  }
+
   removeArticolo(id: number) {
     const params = new HttpParams().set('id', id.toString());
     return this.http.delete(this.url + 'articolo/deleteArticolo', { params });
