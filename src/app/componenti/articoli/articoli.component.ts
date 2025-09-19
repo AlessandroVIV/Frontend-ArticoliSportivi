@@ -22,4 +22,5 @@ export class ArticoliComponent {
       console.log(this.articoli);
     });
   }
+  
 }

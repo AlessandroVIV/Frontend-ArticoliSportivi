@@ -8,7 +8,7 @@
       </div>
 
       <form #signinForm="ngForm" (ngSubmit)="onSubmit(signinForm)">
-        <!-- Username -->
+
         <div class="form-group">
           <input
             type="text"
@@ -22,7 +22,6 @@
           <label for="username">Username</label>
         </div>
 
-        <!-- Password -->
         <div class="form-group">
           <input
             type="password"
@@ -38,7 +37,6 @@
 
         <p class="error-msg">{{ msg }}</p>
 
-        <!-- Login button -->
         <button
           type="submit"
           [disabled]="!signinForm.valid"
@@ -47,7 +45,6 @@
           Login
         </button>
 
-        <!-- Registrazione link -->
         <div class="register-box">
           <p>Non hai un account?</p>
           <button

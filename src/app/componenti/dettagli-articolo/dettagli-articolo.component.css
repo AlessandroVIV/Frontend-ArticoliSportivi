@@ -1,0 +1,18 @@
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* spaziatura tra i campi */
+  margin-bottom: 20px;
+}
+
+.form-column {
+  flex: 1; /* i campi si adattano allo spazio */
+  min-width: 200px; /* larghezza minima per non schiacciare troppo */
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}

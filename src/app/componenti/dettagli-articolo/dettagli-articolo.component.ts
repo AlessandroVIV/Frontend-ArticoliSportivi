@@ -12,7 +12,10 @@ import { DeleteArticoloComponent } from '../../dialogs/delete-articolo/delete-ar
   styleUrl: './dettagli-articolo.component.css',
 })
 export class DettagliArticoloComponent {
-  id!: number; // Declare but don't initialize
+  generi: any[] = [];
+  marche: any[] = [];
+  categorie: any[] = [];
+  id!: number;
   readonly dialog = inject(MatDialog);
   articolo: any;
   msg = '';
@@ -39,48 +42,48 @@ export class DettagliArticoloComponent {
       this.articolo = data;
 
       this.updateForm.patchValue({
-        nome: this.articolo.nome,
+        nome: this.articolo.nomeArticolo,
         descrizione: this.articolo.descrizione,
         prezzo: this.articolo.prezzo,
-        marca: this.articolo.marca?.nome,
-        genere: this.articolo.genere?.nome,
-        categoria: this.articolo.categoria?.nome,
+        marca: this.articolo.marca?.id,
+        genere: this.articolo.genere?.id,
+        categoria: this.articolo.categoria?.id,
       });
     });
+
+    this.backendService
+      .getAllGeneri()
+      .subscribe((data: any) => (this.generi = data.dati));
+    this.backendService
+      .getAllMarche()
+      .subscribe((data: any) => (this.marche = data.dati));
+    this.backendService
+      .getAllCategorie()
+      .subscribe((data: any) => (this.categorie = data.dati));
   }
 
   onSubmit() {
     const updateBody: any = {
-      id: Number(this.route.snapshot.paramMap.get('id')),
+      id: this.id,
+      nome: this.updateForm.value.nome,
+      descrizione: this.updateForm.value.descrizione,
+      prezzo: this.updateForm.value.prezzo,
+      genere: this.updateForm.value.genere, 
+      marca: this.updateForm.value.marca, 
+      categoria: this.updateForm.value.categoria, 
+      tagliaScarpe: this.articolo.tagliaScarpe,
+      urlImmagine: this.articolo.urlImmagine,
     };
 
-    if (this.updateForm.controls['descrizione'].touched)
-      updateBody.descrizione = this.updateForm.value.descrizione;
-
-    if (this.updateForm.controls['marca'].touched)
-      updateBody.marca = this.updateForm.value.marca;
-
-    if (this.updateForm.controls['nome'].touched)
-      updateBody.nome = this.updateForm.value.nome;
-
-    if (this.updateForm.controls['prezzo'].touched)
-      updateBody.prezzo = this.updateForm.value.prezzo;
-
-    if (this.updateForm.controls['genere'].touched)
-      updateBody.genere = this.updateForm.value.genere;
-
-    if (this.updateForm.controls['categoria'].touched)
-      updateBody.categoria = this.updateForm.value.categoria;
-
-    console.log(updateBody);
+    console.log('UpdateBody inviato:', updateBody);
 
     this.backendService
       .updateArticoloScarpa(updateBody)
       .subscribe((resp: any) => {
         if (resp.rc) {
-          this.routing.navigate(['/admin']).then(() => {
-            window.location.reload();
-          });
+          this.routing
+            .navigate(['/admin'])
+            .then(() => window.location.reload());
         } else {
           this.msg = resp.msg;
         }

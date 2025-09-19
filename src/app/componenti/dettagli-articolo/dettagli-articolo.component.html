@@ -5,7 +5,7 @@
   <h1>{{ articolo.descrizione }}</h1>
   <h1>{{ articolo.prezzo }}</h1>
   <h1>{{ articolo.genere.nome }}</h1>
-  <h1>{{ articolo.marca.nome}}</h1>
+  <h1>{{ articolo.marca.nome }}</h1>
   <h1>{{ articolo.categoria.nome }}</h1>
   <h1>{{ articolo.tagliaScarpe }}</h1>
   <h1>{{ articolo.tagliaIndumento }}</h1>
@@ -22,43 +22,45 @@
       <div class="form-container">
         <mat-form-field class="form-column">
           <mat-label>Nome</mat-label>
-          <input matInput type="text" formControlName="nome">
+          <input matInput type="text" formControlName="nome" />
         </mat-form-field>
 
         <mat-form-field class="form-column">
           <mat-label>Descrizione</mat-label>
-          <input matInput type="text" formControlName="descrizione">
+          <input matInput type="text" formControlName="descrizione" />
         </mat-form-field>
       </div>
 
       <div class="form-container">
         <mat-form-field class="form-column">
           <mat-label>Prezzo</mat-label>
-          <input matInput type="number" formControlName="prezzo">
+          <input matInput type="number" formControlName="prezzo" />
         </mat-form-field>
 
         <mat-form-field class="form-column">
           <mat-label>Genere</mat-label>
           <mat-select formControlName="genere">
-            <mat-option value="uomo">Uomo</mat-option>
-            <mat-option value="donna">Donna</mat-option>
-            <mat-option value="altro">Altro</mat-option>
+            <mat-option *ngFor="let g of generi" [value]="g.nome">
+              {{ g.nome }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field class="form-column">
           <mat-label>Marca</mat-label>
           <mat-select formControlName="marca">
-            <mat-option value="nike">Nike</mat-option>
-            <mat-option value="adidas">Adidas</mat-option>
+            <mat-option *ngFor="let m of marche" [value]="m.nome">
+              {{ m.nome }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field class="form-column">
           <mat-label>Categoria</mat-label>
           <mat-select formControlName="categoria">
-            <mat-option value="sportiva">Sportiva</mat-option>
-            <mat-option value="running">Running</mat-option>
+            <mat-option *ngFor="let c of categorie" [value]="c.nome">
+              {{ c.nome }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -67,9 +69,30 @@
     </mat-card-content>
 
     <mat-card-footer class="button-group">
-      <button mat-raised-button color="primary" type="button" (click)="onAnnul()">Annulla</button>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!updateForm.valid">Aggiorna</button>
-      <button mat-raised-button style="background-color: red;" type="button" (click)="onDelete()">Elimina</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onAnnul()"
+      >
+        Annulla
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!updateForm.valid"
+      >
+        Aggiorna
+      </button>
+      <button
+        mat-raised-button
+        style="background-color: red"
+        type="button"
+        (click)="onDelete()"
+      >
+        Elimina
+      </button>
     </mat-card-footer>
   </form>
 </mat-card>

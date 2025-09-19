@@ -11,14 +11,14 @@ export class BackendService {
   constructor(private http: HttpClient) {}
 
   getArticoloById(id: number) {
-    return this.http.get(this.url + 'articolo/getArticolo', {params: { id },});
+    return this.http.get(this.url + 'articolo/getArticolo', { params: { id } });
   }
 
   getArticoli() {
     return this.http.get(this.url + 'articolo/listAll');
   }
 
-  updateArticoloScarpa(body:{}){
+  updateArticoloScarpa(body: {}) {
     console.log(body);
     return this.http.put(this.url + 'articolo/updateScarpa', body);
   }
@@ -28,4 +28,16 @@ export class BackendService {
     return this.http.delete(this.url + 'articolo/deleteArticolo', { params });
   }
 
+  getAllCategorie() {
+    return this.http.get(this.url + 'categoria/listAll');
+  }
+
+  getAllMarche() {
+    return this.http.get(this.url + 'marca/listAll');
+  }
+
+  getAllGeneri() {
+    return this.http.get(this.url + 'genere/listAll');
+  }
 }
+
