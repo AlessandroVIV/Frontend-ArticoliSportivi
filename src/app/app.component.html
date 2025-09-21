@@ -4,7 +4,7 @@
 
   <a *ngIf="!auth.isAutentificated()" routerLink="login" class="nav-link">Login</a>
   <a *ngIf="auth.isAutentificated()" (click)="logout()" class="nav-link">Logout</a>
-  <a routerLink="/admin" *ngIf="auth.isRoleAdmin()">Admin</a>
+  <a routerLink="/admin" *ngIf="auth.isRoleAdmin()" class="nav-link">Admin</a>
 </nav>
 
 <main class="main-content">

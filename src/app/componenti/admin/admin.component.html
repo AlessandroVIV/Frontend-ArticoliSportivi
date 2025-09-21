@@ -1,29 +1,22 @@
-<table
-  style="width: 80%; border-collapse: collapse; margin: 20px auto"
-  border="1"
->
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Prezzo</th>
-      <th>Descrizione</th>
-      <th>Marca</th>
-      <th>Immagine</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let articolo of articoli">
-      <a [routerLink]="['/dettagliArticolo', articolo.id]">
-        <td>{{ articolo.nomeArticolo }}</td>
-        <td>{{ articolo.prezzo | currency : "EUR" }}</td>
-        <td>{{ articolo.descrizione }}</td>
-        <td>{{ articolo.marca }}</td>
-        <td>
-          <img [src]="articolo.urlImmagine" alt="immagine articolo" width="80" />
-        </td>
-      </a>
-    </tr>
+<div class="admin-lista-articoli">
+  <div class="admin-articolo-card" *ngFor="let articolo of articoli">
+    <a [routerLink]="['/dettagliArticolo', articolo.id]">
+      <!-- Immagine -->
+      <div class="img-container">
+        <img [src]="articolo.urlImmagine" alt="{{ articolo.nomeArticolo }}" />
+      </div>
 
-    <p>articoli works!</p>
-  </tbody>
-</table>
+      <!-- Info -->
+      <div class="admin-articolo-info">
+        <h3>{{ articolo.nomeArticolo }}</h3>
+        <p class="descrizione">{{ articolo.descrizione }}</p>
+        <p><strong>Marca:</strong> {{ articolo.marca }}</p>
+        <p><strong>Categoria:</strong> {{ articolo.categoria }}</p>
+        <p><strong>Genere:</strong> {{ articolo.genere }}</p>
+        <p *ngIf="articolo.tagliaScarpe"><strong>Taglia Scarpe:</strong> {{ articolo.tagliaScarpe }}</p>
+        <p *ngIf="articolo.tagliaIndumento"><strong>Taglia Indumento:</strong> {{ articolo.tagliaIndumento }}</p>
+        <p class="prezzo">{{ articolo.prezzo | currency: 'EUR' }}</p>
+      </div>
+    </a>
+  </div>
+</div>

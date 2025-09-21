@@ -1,182 +1,107 @@
-<p>dettagli-articolo works!</p>
+<div class="articolo-container" *ngIf="articolo">
 
-<div *ngIf="articolo">
-  <h1>{{ articolo.nome }}</h1>
-  <h1>{{ articolo.descrizione }}</h1>
-  <h1>{{ articolo.prezzo }}</h1>
-  <h1>{{ articolo.genere.nome }}</h1>
-  <h1>{{ articolo.marca.nome }}</h1>
-  <h1>{{ articolo.categoria.nome }}</h1>
-  <h1>{{ articolo.tagliaScarpe }}</h1>
-  <h1>{{ articolo.tagliaIndumento }}</h1>
-  <h1>{{ articolo.urlImmagine }}</h1>
+  <div class="articolo-img">
+    <img [src]="articolo.urlImmagine" alt="{{ articolo.nome }}" />
+  </div>
+
+  <div class="articolo-form">
+    <h2>Gestione Articolo</h2>
+
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <!-- Nome -->
+        <div class="form-field">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" formControlName="nome" />
+        </div>
+
+        <!-- Prezzo -->
+        <div class="form-field">
+          <label for="prezzo">Prezzo</label>
+          <input id="prezzo" type="number" formControlName="prezzo" />
+        </div>
+
+        <!-- Descrizione -->
+        <div class="form-field full-width">
+          <label for="descrizione">Descrizione</label>
+          <textarea
+            id="descrizione"
+            rows="3"
+            formControlName="descrizione"
+          ></textarea>
+        </div>
+
+        <!-- Genere -->
+        <div class="form-field">
+          <label for="genere">Genere</label>
+          <select id="genere" formControlName="genere">
+            <option *ngFor="let g of generi" [value]="g.nome">
+              {{ g.nome }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Marca -->
+        <div class="form-field">
+          <label for="marca">Marca</label>
+          <select id="marca" formControlName="marca">
+            <option *ngFor="let m of marche" [value]="m.nome">
+              {{ m.nome }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Categoria -->
+        <div class="form-field">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" formControlName="categoria">
+            <option *ngFor="let c of categorie" [value]="c.nome">
+              {{ c.nome }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Taglia Scarpa -->
+        <div class="form-field" *ngIf="articolo?.tagliaScarpe !== null">
+          <label for="tagliaScarpe">Taglia Scarpa</label>
+          <input
+            id="tagliaScarpe"
+            type="number"
+            formControlName="tagliaScarpe"
+          />
+        </div>
+
+        <!-- Taglia Indumento -->
+        <div class="form-field" *ngIf="articolo?.tagliaIndumento !== null">
+          <label for="tagliaIndumento">Taglia Indumento</label>
+          <select id="tagliaIndumento" formControlName="tagliaIndumento">
+            <option *ngFor="let t of taglieIndumento" [value]="t.nome">
+              {{ t.nome }}
+            </option>
+          </select>
+        </div>
+
+        <!-- URL Immagine -->
+        <div class="form-field full-width">
+          <label for="urlImmagine">URL Immagine</label>
+          <input id="urlImmagine" type="text" formControlName="urlImmagine" />
+        </div>
+      </div>
+
+      <p class="msg">{{ msg }}</p>
+
+      <!-- Bottoni -->
+      <div class="button-group">
+        <button type="button" class="btn grey" (click)="onAnnul()">
+          Indietro
+        </button>
+        <button type="submit" class="btn blue" [disabled]="!updateForm.valid">
+          Aggiorna
+        </button>
+        <button type="button" class="btn red" (click)="onDelete()">
+          Elimina
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
-
-<mat-card class="example-card" appearance="outlined">
-  <mat-card-header>
-    <mat-card-title>Dettaglio articolo</mat-card-title>
-  </mat-card-header>
-
-  <form [formGroup]="updateForm" (ngSubmit)="onSubmitScarpa()" *ngIf="articolo">
-    <mat-card-content>
-      <div class="form-container">
-        <mat-form-field class="form-column">
-          <mat-label>Nome</mat-label>
-          <input matInput type="text" formControlName="nome" />
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Descrizione</mat-label>
-          <input matInput type="text" formControlName="descrizione" />
-        </mat-form-field>
-      </div>
-
-      <div class="form-container">
-        <mat-form-field class="form-column">
-          <mat-label>Prezzo</mat-label>
-          <input matInput type="number" formControlName="prezzo" />
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Genere</mat-label>
-          <mat-select formControlName="genere">
-            <mat-option *ngFor="let g of generi" [value]="g.nome">
-              {{ g.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Marca</mat-label>
-          <mat-select formControlName="marca">
-            <mat-option *ngFor="let m of marche" [value]="m.nome">
-              {{ m.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Categoria</mat-label>
-          <mat-select formControlName="categoria">
-            <mat-option *ngFor="let c of categorie" [value]="c.nome">
-              {{ c.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-         <mat-form-field class="form-column">
-          <mat-label>Taglia Scarpa</mat-label>
-          <input matInput type="number" formControlName="tagliaScarpe"/>
-        </mat-form-field>
-
-      </div>
-
-      <p>{{ msg }}</p>
-    </mat-card-content>
-
-    <mat-card-footer class="button-group">
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onAnnul()"
-      >
-        Annulla
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!updateForm.valid"
-      >
-        Aggiorna
-      </button>
-      <button
-        mat-raised-button
-        style="background-color: red"
-        type="button"
-        (click)="onDelete()"
-      >
-        Elimina
-      </button>
-    </mat-card-footer>
-  </form>
-   <form [formGroup]="updateForm" (ngSubmit)="onSubmitIndumento()" *ngIf="articolo">
-    <mat-card-content>
-      <div class="form-container">
-        <mat-form-field class="form-column">
-          <mat-label>Nome</mat-label>
-          <input matInput type="text" formControlName="nome" />
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Descrizione</mat-label>
-          <input matInput type="text" formControlName="descrizione" />
-        </mat-form-field>
-      </div>
-
-      <div class="form-container">
-        <mat-form-field class="form-column">
-          <mat-label>Prezzo</mat-label>
-          <input matInput type="number" formControlName="prezzo" />
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Genere</mat-label>
-          <mat-select formControlName="genere">
-            <mat-option *ngFor="let g of generi" [value]="g.nome">
-              {{ g.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Marca</mat-label>
-          <mat-select formControlName="marca">
-            <mat-option *ngFor="let m of marche" [value]="m.nome">
-              {{ m.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-column">
-          <mat-label>Categoria</mat-label>
-          <mat-select formControlName="categoria">
-            <mat-option *ngFor="let c of categorie" [value]="c.nome">
-              {{ c.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <p>{{ msg }}</p>
-    </mat-card-content>
-
-    <mat-card-footer class="button-group">
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onAnnul()"
-      >
-        Annulla
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!updateForm.valid"
-      >
-        Aggiorna
-      </button>
-      <button
-        mat-raised-button
-        style="background-color: red"
-        type="button"
-        (click)="onDelete()"
-      >
-        Elimina
-      </button>
-    </mat-card-footer>
-  </form>
-</mat-card>

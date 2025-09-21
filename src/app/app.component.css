@@ -6,6 +6,10 @@
   padding: 0 20px;
 }
 
+.navbar a{
+  cursor: pointer;
+}
+
 .navbar .nav-link {
   color: white;
   text-decoration: none;

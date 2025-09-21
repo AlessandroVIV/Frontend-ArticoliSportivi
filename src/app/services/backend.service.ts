@@ -18,14 +18,9 @@ export class BackendService {
     return this.http.get(this.url + 'articolo/listAll');
   }
 
-  updateArticoloScarpa(body: {}) {
+  updateArticolo(body: {}) {
     console.log(body);
-    return this.http.put(this.url + 'articolo/updateScarpa', body);
-  }
-
-   updateArticoloIndumento(body: {}) {
-    console.log(body);
-    return this.http.put(this.url + 'articolo/updateIndumento', body);
+    return this.http.put(this.url + 'articolo/updateArticolo', body);
   }
 
   removeArticolo(id: number) {
@@ -43,6 +38,10 @@ export class BackendService {
 
   getAllGeneri() {
     return this.http.get(this.url + 'genere/listAll');
+  }
+
+  getAllTaglieIndumento() {
+    return this.http.get(this.url + 'taglia/listAll');
   }
 }
 

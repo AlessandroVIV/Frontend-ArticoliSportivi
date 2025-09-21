@@ -15,6 +15,7 @@ export class DettagliArticoloComponent {
   generi: any[] = [];
   marche: any[] = [];
   categorie: any[] = [];
+  taglieIndumento: any[] = [];
   id!: number;
   readonly dialog = inject(MatDialog);
   articolo: any;
@@ -27,8 +28,9 @@ export class DettagliArticoloComponent {
     marca: new FormControl(),
     genere: new FormControl(),
     categoria: new FormControl(),
-    tagliaScarpe: new FormControl(), // 👈 aggiunto
-    tagliaIndumento: new FormControl(), // 👈 aggiu
+    tagliaScarpe: new FormControl(),
+    tagliaIndumento: new FormControl(),
+    urlImmagine: new FormControl(),
   });
 
   constructor(
@@ -39,17 +41,21 @@ export class DettagliArticoloComponent {
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = id;
+
     this.backendService.getArticoloById(id).subscribe((data) => {
       this.articolo = data;
 
       this.updateForm.patchValue({
-        nome: this.articolo.nomeArticolo,
+        nome: this.articolo.nome,
         descrizione: this.articolo.descrizione,
         prezzo: this.articolo.prezzo,
-        marca: this.articolo.marca?.id,
-        genere: this.articolo.genere?.id,
-        categoria: this.articolo.categoria?.id,
+        marca: this.articolo.marca?.nome,
+        genere: this.articolo.genere?.nome,
+        categoria: this.articolo.categoria?.nome,
+        tagliaScarpe: this.articolo.tagliaScarpe,
+        tagliaIndumento: this.articolo.tagliaIndumento,
+        urlImmagine: this.articolo.urlImmagine
       });
     });
 
@@ -62,63 +68,42 @@ export class DettagliArticoloComponent {
     this.backendService
       .getAllCategorie()
       .subscribe((data: any) => (this.categorie = data.dati));
-  }
-
-  onSubmitScarpa() {
-    const updateBody: any = {
-      id: this.id,
-      nome: this.updateForm.value.nome,
-      descrizione: this.updateForm.value.descrizione,
-      prezzo: this.updateForm.value.prezzo,
-      genere: this.updateForm.value.genere,
-      marca: this.updateForm.value.marca,
-      categoria: this.updateForm.value.categoria,
-      tagliaScarpe: this.updateForm.value.tagliaScarpe,
-      urlImmagine: this.articolo.urlImmagine,
-    };
-
-    console.log('UpdateBody inviato:', updateBody);
-
     this.backendService
-      .updateArticoloScarpa(updateBody)
-      .subscribe((resp: any) => {
-        if (resp.rc) {
-          this.routing
-            .navigate(['/admin'])
-            .then(() => window.location.reload());
-        } else {
-          this.msg = resp.msg;
-        }
-      });
+      .getAllTaglieIndumento()
+      .subscribe((data: any) => (this.taglieIndumento = data.dati));
   }
 
-  onSubmitIndumento() {
-    const updateBody: any = {
-      id: this.id,
-      nome: this.updateForm.value.nome,
-      descrizione: this.updateForm.value.descrizione,
-      prezzo: this.updateForm.value.prezzo,
-      genere: this.updateForm.value.genere,
-      marca: this.updateForm.value.marca,
-      categoria: this.updateForm.value.categoria,
-      tagliaIndumento: this.articolo.tagliaIndumento,
-      urlImmagine: this.articolo.urlImmagine,
-    };
+  onSubmit() {
+  const updateBody: any = {
+    id: this.id,
+    nome: this.updateForm.value.nome,
+    descrizione: this.updateForm.value.descrizione,
+    prezzo: this.updateForm.value.prezzo,
+    genere: this.updateForm.value.genere,
+    marca: this.updateForm.value.marca,
+    categoria: this.updateForm.value.categoria,
+    urlImmagine: this.articolo.urlImmagine,
+  };
 
-    console.log('UpdateBody inviato:', updateBody);
-
-    this.backendService
-      .updateArticoloIndumento(updateBody)
-      .subscribe((resp: any) => {
-        if (resp.rc) {
-          this.routing
-            .navigate(['/admin'])
-            .then(() => window.location.reload());
-        } else {
-          this.msg = resp.msg;
-        }
-      });
+  if (this.articolo?.tagliaScarpe !== null) {
+    updateBody.tagliaScarpe = this.updateForm.value.tagliaScarpe;
   }
+
+  if (this.articolo?.tagliaIndumento !== null) {
+    updateBody.tagliaIndumento = this.updateForm.value.tagliaIndumento;
+  }
+
+  console.log('UpdateBody inviato:', updateBody);
+
+  this.backendService.updateArticolo(updateBody).subscribe((resp: any) => {
+    if (resp.rc) {
+      this.routing.navigate(['/admin']).then(() => window.location.reload());
+    } else {
+      this.msg = resp.msg;
+    }
+  });
+}
+
 
   onDelete() {
     console.log('onDelete');
