@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'articoli', component: ArticoliComponent },
-  { path: 'dettagliArticolo/:id', component: DettagliArticoloComponent },  
+  { path: 'dettagliArticolo/:id', component: DettagliArticoloComponent, canActivate: [adminGuard] },  
   { path: 'login', component: LoginComponent, canActivate: [registerGuard] },
   { path: 'registrazione', component: RegistrazioneComponent, canActivate: [registerGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },

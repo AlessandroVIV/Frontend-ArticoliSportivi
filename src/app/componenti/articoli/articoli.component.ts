@@ -8,19 +8,56 @@ import { BackendService } from '../../services/backend.service';
   styleUrl: './articoli.component.css',
 })
 export class ArticoliComponent {
-  articoli: any;
   response: any;
 
-  constructor(private service: BackendService) {}
+  // Lista completa degli articoli
+  articoli: any[] = [];
+
+  // Lista filtrata che userai nel template
+  articoliFiltrati: any[] = [];
+
+  // Variabili per i filtri
+  filtroNome: string = '';
+  filtroMarca: string = '';
+  filtroGenere: string = '';
+
+  // Liste per menu a tendina
+  marcheDisponibili: string[] = [];
+  generiDisponibili: string[] = [];
+
+  constructor(private service: BackendService) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit');
+    this.service.getArticoli().subscribe((resp: any) => {
+      this.articoli = resp.dati;
+      this.articoliFiltrati = [...this.articoli];
 
-    this.service.getArticoli().subscribe((resp) => {
-      this.response = resp;
-      this.articoli = this.response.dati;
-      console.log(this.articoli);
+      this.marcheDisponibili = [...new Set(this.articoli.map((a) => a.marca))];
+      this.generiDisponibili = [...new Set(this.articoli.map((a) => a.genere))];
     });
   }
-  
+
+  filtraArticoli(): void {
+    console.log('Filtra cliccato', this.filtroNome, this.filtroMarca, this.filtroGenere);
+    this.articoliFiltrati = this.articoli.filter((articolo) => {
+      console.log('Articolo genere:', articolo.genere);
+      const matchNome = this.filtroNome
+        ? articolo.nomeArticolo.toLowerCase().includes(this.filtroNome.toLowerCase())
+        : true;
+      const matchMarca = this.filtroMarca ? articolo.marca === this.filtroMarca : true;
+      const matchGenere = this.filtroGenere ? articolo.genere === this.filtroGenere : true;
+
+      return matchNome && matchMarca && matchGenere;
+    });
+  }
+
+  resetFiltri(): void {
+  this.filtroNome = '';
+  this.filtroMarca = '';
+  this.filtroGenere = '';
+
+  // Ripristina la lista completa
+  this.articoliFiltrati = [...this.articoli];
+}
+
 }

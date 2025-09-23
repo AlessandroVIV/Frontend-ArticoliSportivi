@@ -1,11 +1,56 @@
-<p>articoli works!</p>
-<div style="width: 30%">
-  <div *ngFor="let articolo of articoli">
-    <a>
-      {{ articolo.nomeArticolo }} {{ articolo.prezzo }}
-      {{ articolo.descrizione }} {{ articolo.marca }}
-    </a>
+<h1 class="titolo-articoli">Articoli disponibili</h1>
 
-    <img [src]="articolo.urlImmagine" alt="" />
+<form class="filtro-articoli" (ngSubmit)="filtraArticoli()">
+  <!-- Nome -->
+  <input
+    type="text"
+    placeholder="Nome articolo"
+    [(ngModel)]="filtroNome"
+    name="nome"
+  />
+
+  <!-- Marca -->
+  <select [(ngModel)]="filtroMarca" name="marca">
+    <option value="">Tutte le marche</option>
+    <option *ngFor="let marca of marcheDisponibili" [value]="marca">
+      {{ marca }}
+    </option>
+  </select>
+
+  <!-- Genere -->
+  <select [(ngModel)]="filtroGenere" name="genere">
+    <option value="">Tutti i generi</option>
+    <option *ngFor="let genere of generiDisponibili" [value]="genere">
+      {{ genere }}
+    </option>
+  </select>
+
+  <button type="submit">Filtra</button>
+  <button type="button" (click)="resetFiltri()">Reset</button>
+</form>
+
+
+
+<div class="lista-articoli">
+  <div class="articolo-card" *ngFor="let articolo of articoliFiltrati">
+    <a [routerLink]="['/dettagliArticolo', articolo.id]">
+      <!-- Immagine -->
+      <div class="img-container">
+        <img [src]="articolo.urlImmagine" alt="{{ articolo.nomeArticolo }}" />
+      </div>
+
+      <!-- Info -->
+      <div class="articolo-info">
+        <h3>{{ articolo.nomeArticolo }}</h3>
+        <p class="descrizione">{{ articolo.descrizione }}</p>
+        <p><strong>Marca:</strong> {{ articolo.marca }}</p>
+        <p><strong>Categoria:</strong> {{ articolo.categoria }}</p>
+        <p><strong>Genere:</strong> {{ articolo.genere }}</p>
+        <p *ngIf="articolo.tagliaScarpe"><strong>Taglia Scarpe:</strong> {{ articolo.tagliaScarpe }}</p>
+        <p *ngIf="articolo.tagliaIndumento"><strong>Taglia Indumento:</strong> {{ articolo.tagliaIndumento }}</p>
+        <p class="prezzo">{{ articolo.prezzo | currency:'EUR' }}</p>
+      </div>
+    </a>
   </div>
 </div>
+

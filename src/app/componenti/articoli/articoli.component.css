@@ -1,4 +1,138 @@
-img{
-    width: 300px;
-    height: 300px;
+.titolo-articoli {
+  text-align: center;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 30px 0 20px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
+
+.titolo-articoli {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.lista-articoli {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  padding: 25px;
+}
+
+.articolo-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.articolo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.articolo-card a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Immagine */
+.img-container {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8f8;
+  padding: 10px;
+}
+
+.img-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Info */
+.articolo-info {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.articolo-info h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.articolo-info p {
+  margin: 5px 0;
+  color: #444;
+  font-size: 1.2rem;
+}
+
+.articolo-info .prezzo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d7263d;
+  margin-top: 10px;
+}
+
+/*--------- STILE PER IL FORM DI FILTRAGGIO ---------*/
+.filtro-articoli {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;       /* va a capo su schermi piccoli */
+  justify-content: center; /* centra orizzontalmente */
+  margin: 20px 0;        /* spazio sopra e sotto */
+  align-items: center;
+}
+
+.filtro-articoli input,
+.filtro-articoli select {
+  padding: 6px 10px;
+  font-size: 1.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filtro-articoli button {
+  padding: 6px 12px;
+  font-size: 1.2rem;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-articoli button:hover {
+  background-color: #a31b2a;
+}
+
+.filtro-articoli button[type="button"] {
+  padding: 6px 12px;
+  font-size: 1.2rem;
+  background-color: #0a24e8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filtro-articoli button[type="button"]:hover {
+  background-color: #555;
+}
+/* ------------------------------------------------- */

@@ -45,11 +45,11 @@ export class LoginComponent {
       })
       .subscribe((resp: any) => {
         console.log(resp);
-        if (resp.logged) {
-          console.log('utente logged.. role:' + resp.role);
+        if (resp.dati.logged) {
+          console.log('utente logged.. role:' + resp.dati.role);
           this.auth.setAuthentificated();
           this.msg = '';
-          if (resp.role == 'ADMIN') {
+          if (resp.dati.role == 'ADMIN') {
             this.auth.setAdmin();
           }
           this.router.navigate(['home']);
