@@ -1,6 +1,7 @@
 body {
   padding: 20px !important;
   overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
 }
 
 .articolo-container {
@@ -29,69 +30,121 @@ body {
   padding: 20px;
 }
 
+/* Form aggiornato */
 .articolo-form {
   flex: 1 1 55%;
-  max-width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
 .articolo-form h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2.4rem;
   font-weight: bold;
+  color: #333;
 }
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
+  font-size: 1.5rem;
 }
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
 .form-field label {
-  font-weight: bold;
   margin-bottom: 6px;
+  font-weight: 600;
+  color: #555;
 }
+
 .form-field input,
 .form-field select,
 .form-field textarea {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-}
-.form-field.full-width {
-  grid-column: span 2;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
 }
 
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}
+
+/* Messaggi */
+.articolo-form .msg {
+  margin: 10px 0;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+/* Pulsanti */
 .button-group {
   display: flex;
-  gap: 15px;
-  margin-top: 25px;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
-.btn {
+
+.button-group .btn {
   padding: 10px 20px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
   color: white;
 }
-.btn.grey {
-  background: #888;
+
+.button-group .btn.grey {
+  background-color: #e0e0e0;
+  color: #333;
 }
-.btn.blue {
-  background: #1f3c88;
+
+.button-group .btn.grey:hover {
+  background-color: #d5d5d5;
 }
-.btn.red {
-  background: #d7263d;
+
+.button-group .btn.blue {
+  background-color: #4a90e2;
 }
-.btn:hover {
+
+.button-group .btn.blue:hover {
+  background-color: #357ab8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.button-group .btn.red {
+  background-color: #d7263d;
+}
+
+.button-group .btn.red:hover {
   opacity: 0.9;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .articolo-container {
     flex-direction: column;
