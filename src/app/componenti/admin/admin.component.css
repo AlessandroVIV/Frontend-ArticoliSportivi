@@ -1,24 +1,38 @@
+.titolo-articoli {
+  text-align: center;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 30px 0 20px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Lista articoli admin */
 .admin-lista-articoli {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
-  padding: 20px;
+  padding: 25px;
 }
 
+/* Card articoli admin */
 .admin-articolo-card {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 260px; /* larghezza card */
-  text-align: left;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-articolo-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
 .admin-articolo-card a {
@@ -32,7 +46,7 @@
 /* Immagine */
 .img-container {
   width: 100%;
-  height: 220px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,30 +56,188 @@
 
 .img-container img {
   max-width: 100%;
-  max-height: 200px;
+  max-height: 100%;
   object-fit: contain;
 }
 
-/* Info */
+/* Info articoli */
 .admin-articolo-info {
-  padding: 15px;
+  padding: 20px;
+  flex-grow: 1;
 }
 
 .admin-articolo-info h3 {
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .admin-articolo-info p {
-  margin: 3px 0;
+  margin: 5px 0;
   color: #444;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }
 
 .admin-articolo-info .prezzo {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #d7263d;
-  margin-top: 8px;
+  margin-top: 10px;
 }
+
+
+/* Assicurati che il contenitore principale abbia posizione relativa */
+.admin-page {
+  position: relative;
+}
+
+/* Contenitore dei bottoni in alto a destra */
+.button-container {
+  position: absolute;  /* posizione assoluta rispetto a .admin-page */
+  top: 10%;           /* distanza dal bordo superiore */
+  right: 3%;         /* distanza dal bordo destro */
+  display: flex;
+  gap: 10px;           /* spazio tra i pulsanti */
+  z-index: 100;        /* assicurati che siano sopra gli altri elementi */
+}
+
+/* Stile dei pulsanti */
+.button-container .btn {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Bottone grigio */
+.button-container .btn.grey {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.button-container .btn.grey:hover {
+  background-color: #d5d5d5;
+}
+
+/* Bottone blu */
+.button-container .btn.blue {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.button-container .btn.blue:hover {
+  background-color: #357ab8;
+}
+
+/* Contenitore generale del form */
+.articolo-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Titolo del form */
+.articolo-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Griglia del form */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Campo a tutta larghezza */
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Label dei campi */
+.form-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Input, select, textarea */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}
+
+/* Messaggi */
+.articolo-form .msg {
+  margin: 10px 0;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+/* Gruppo dei pulsanti */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Stile pulsanti */
+.button-group .btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+/* Bottone grigio (Indietro) */
+.button-group .btn.grey {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.button-group .btn.grey:hover {
+  background-color: #d5d5d5;
+}
+
+/* Bottone blu (Crea) */
+.button-group .btn.blue {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.button-group .btn.blue:hover {
+  background-color: #357ab8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+

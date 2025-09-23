@@ -1,3 +1,4 @@
+<h1 class="titolo-articoli">Gestisci articoli</h1>
 <!-- LISTA ARTICOLI -->
 <div class="admin-lista-articoli" *ngIf="!showCreateForm">
   <div class="admin-articolo-card" *ngFor="let articolo of articoli">
@@ -26,22 +27,23 @@
 </div>
 
 <!-- Bottoni per aprire i form -->
-<button type="button" class="btn grey" 
-        (click)="showCreateForm = true; createType = TYPE_INDUMENTO"
-        *ngIf="!showCreateForm">
-  + Crea Indumento
-</button>
+<div class="button-container" *ngIf="!showCreateForm">
+  <button type="button" class="btn grey" 
+          (click)="showCreateForm = true; createType = TYPE_INDUMENTO">
+    + Crea Indumento
+  </button>
 
-<button type="button" class="btn grey" 
-        (click)="showCreateForm = true; createType = TYPE_SCARPA"
-        *ngIf="!showCreateForm">
-  + Crea Scarpa
-</button>
+  <button type="button" class="btn grey" 
+          (click)="showCreateForm = true; createType = TYPE_SCARPA">
+    + Crea Scarpa
+  </button>
+</div>
+
 
 
 <!-- FORM INDUMENTO -->
 <div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_INDUMENTO">
-  <h2>Gestione Indumento</h2>
+  <h2>Creazione Indumento</h2>
 
   <form [formGroup]="createFormIndumento" (ngSubmit)="onSubmitIndumento()">
     <div class="form-grid">
@@ -106,7 +108,7 @@
 
 <!-- FORM SCARPA -->
 <div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_SCARPA">
-  <h2>Gestione Scarpa</h2>
+  <h2>Creazione Scarpa</h2>
 
   <form [formGroup]="createFormScarpa" (ngSubmit)="onSubmitScarpa()">
     <div class="form-grid">
