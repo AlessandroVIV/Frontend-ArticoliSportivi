@@ -9,12 +9,14 @@ import { AdminComponent } from './componenti/admin/admin.component';
 import { DettagliArticoloComponent } from './componenti/dettagli-articolo/dettagli-articolo.component';
 import { registerGuard } from './auth/auth.guard';
 import { adminGuard } from './auth/admin-guard.guard';
+import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-utente/dettagli-articolo-utente.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'articoli', component: ArticoliComponent },
+  { path: 'dettagli-articolo-utente/:id', component: DettagliArticoloUtenteComponent },
   { path: 'dettagliArticolo/:id', component: DettagliArticoloComponent, canActivate: [adminGuard] },  
   { path: 'login', component: LoginComponent, canActivate: [registerGuard] },
   { path: 'registrazione', component: RegistrazioneComponent, canActivate: [registerGuard] },

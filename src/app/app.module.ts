@@ -22,6 +22,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { DeleteArticoloComponent } from './dialogs/delete-articolo/delete-articolo.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-utente/dettagli-articolo-utente.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegistrazioneComponent,
     AdminComponent,
     DettagliArticoloComponent,
-    DeleteArticoloComponent
+    DeleteArticoloComponent,
+    DettagliArticoloUtenteComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +50,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule
+    MatButtonModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BackendService {
-  
   url = 'http://localhost:9090/rest/';
 
   constructor(private http: HttpClient) {}
@@ -51,5 +50,9 @@ export class BackendService {
   createArticoloScarpa(body: any) {
     return this.http.post(this.url + 'articolo/createScarpa', body);
   }
-}
 
+  aggiungiAlCarrello(utenteId: number, articoloId: number) {
+    const body = { articoloId, quantita: 1 }; // default 1, invisibile in UI
+    return this.http.post(`${this.url}carrello/${utenteId}/items`, body);
+  }
+}

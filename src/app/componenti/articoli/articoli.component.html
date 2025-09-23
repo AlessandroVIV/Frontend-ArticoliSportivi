@@ -29,11 +29,9 @@
   <button type="button" (click)="resetFiltri()">Reset</button>
 </form>
 
-
-
 <div class="lista-articoli">
   <div class="articolo-card" *ngFor="let articolo of articoliFiltrati">
-    <a [routerLink]="['/dettagliArticolo', articolo.id]">
+    <a [routerLink]="['/dettagli-articolo-utente', articolo.id]">
       <!-- Immagine -->
       <div class="img-container">
         <img [src]="articolo.urlImmagine" alt="{{ articolo.nomeArticolo }}" />
