@@ -6,22 +6,41 @@
   padding: 0 20px;
 }
 
-.navbar a{
+.navbar a {
   cursor: pointer;
 }
 
 .navbar .nav-link {
+  position: relative;
   color: white;
   text-decoration: none;
-  margin-right: 15px;
-  font-size: 2rem;
+  margin-right: 20px;
+  font-size: 1.6rem;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
 }
 
 .navbar .nav-link:hover {
   color: #4caf50;
 }
 
-.logout, .login {
+.navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+.logout,
+.login {
   margin-left: auto;
-  margin-right: 0; /* opzionale */
+  margin-right: 0;
 }

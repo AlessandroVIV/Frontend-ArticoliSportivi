@@ -52,7 +52,7 @@ export class BackendService {
   }
 
   aggiungiAlCarrello(utenteId: number, articoloId: number) {
-    const body = { articoloId, quantita: 1 }; // default 1, invisibile in UI
+    const body = { articoloId, quantita: 1 }; 
     return this.http.post(`${this.url}carrello/${utenteId}/items`, body);
   }
 }

@@ -42,19 +42,19 @@
 
 
 <!-- FORM INDUMENTO -->
-<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_INDUMENTO">
+<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_INDUMENTO" autocomplete="off">
   <h2>Creazione Indumento</h2>
 
   <form [formGroup]="createFormIndumento" (ngSubmit)="onSubmitIndumento()">
     <div class="form-grid">
       <div class="form-field">
         <label for="nome">Nome</label>
-        <input id="nome" type="text" formControlName="nomeArticolo" />
+        <input id="nome" type="text" formControlName="nomeArticolo" autocomplete="off"/>
       </div>
 
       <div class="form-field">
         <label for="prezzo">Prezzo</label>
-        <input id="prezzo" type="number" formControlName="prezzo" />
+        <input id="prezzo" type="number" formControlName="prezzo" autocomplete="off"/>
       </div>
 
       <div class="form-field full-width">
@@ -93,7 +93,7 @@
 
       <div class="form-field full-width">
         <label for="urlImmagine">URL Immagine</label>
-        <input id="urlImmagine" type="text" formControlName="urlImmagine" />
+        <input id="urlImmagine" type="text" formControlName="urlImmagine" autocomplete="off"/>
       </div>
     </div>
 
@@ -107,19 +107,19 @@
 </div>
 
 <!-- FORM SCARPA -->
-<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_SCARPA">
+<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_SCARPA" autocomplete="off">
   <h2>Creazione Scarpa</h2>
 
   <form [formGroup]="createFormScarpa" (ngSubmit)="onSubmitScarpa()">
     <div class="form-grid">
       <div class="form-field">
         <label for="nome">Nome</label>
-        <input id="nome" type="text" formControlName="nome" />
+        <input id="nome" type="text" formControlName="nome" autocomplete="off"/>
       </div>
 
       <div class="form-field">
         <label for="prezzo">Prezzo</label>
-        <input id="prezzo" type="number" formControlName="prezzo" />
+        <input id="prezzo" type="number" formControlName="prezzo" autocomplete="off"/>
       </div>
 
       <div class="form-field full-width">
@@ -151,12 +151,12 @@
       <!-- Taglia Scarpe -->
       <div class="form-field">
         <label for="tagliaScarpe">Taglia Scarpa</label>
-        <input id="tagliaScarpe" type="number" formControlName="tagliaScarpe" />
+        <input id="tagliaScarpe" type="number" formControlName="tagliaScarpe" autocomplete="off"/>
       </div>
 
       <div class="form-field full-width">
         <label for="urlImmagine">URL Immagine</label>
-        <input id="urlImmagine" type="text" formControlName="urlImmagine" />
+        <input id="urlImmagine" type="text" formControlName="urlImmagine" autocomplete="off"/>
       </div>
     </div>
 

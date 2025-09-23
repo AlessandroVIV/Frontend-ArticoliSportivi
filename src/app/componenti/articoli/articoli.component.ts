@@ -25,9 +25,11 @@ export class ArticoliComponent {
   marcheDisponibili: string[] = [];
   generiDisponibili: string[] = [];
 
-  constructor(private service: BackendService) { }
+  constructor(private service: BackendService) {}
 
   ngOnInit(): void {
+    document.body.classList.add('sfondo-articoli');
+
     this.service.getArticoli().subscribe((resp: any) => {
       this.articoli = resp.dati;
       this.articoliFiltrati = [...this.articoli];
@@ -38,26 +40,40 @@ export class ArticoliComponent {
   }
 
   filtraArticoli(): void {
-    console.log('Filtra cliccato', this.filtroNome, this.filtroMarca, this.filtroGenere);
+    console.log(
+      'Filtra cliccato',
+      this.filtroNome,
+      this.filtroMarca,
+      this.filtroGenere
+    );
     this.articoliFiltrati = this.articoli.filter((articolo) => {
       console.log('Articolo genere:', articolo.genere);
       const matchNome = this.filtroNome
-        ? articolo.nomeArticolo.toLowerCase().includes(this.filtroNome.toLowerCase())
+        ? articolo.nomeArticolo
+            .toLowerCase()
+            .includes(this.filtroNome.toLowerCase())
         : true;
-      const matchMarca = this.filtroMarca ? articolo.marca === this.filtroMarca : true;
-      const matchGenere = this.filtroGenere ? articolo.genere === this.filtroGenere : true;
+      const matchMarca = this.filtroMarca
+        ? articolo.marca === this.filtroMarca
+        : true;
+      const matchGenere = this.filtroGenere
+        ? articolo.genere === this.filtroGenere
+        : true;
 
       return matchNome && matchMarca && matchGenere;
     });
   }
 
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-articoli');
+  }
+
   resetFiltri(): void {
-  this.filtroNome = '';
-  this.filtroMarca = '';
-  this.filtroGenere = '';
+    this.filtroNome = '';
+    this.filtroMarca = '';
+    this.filtroGenere = '';
 
-  // Ripristina la lista completa
-  this.articoliFiltrati = [...this.articoli];
-}
-
+    // Ripristina la lista completa
+    this.articoliFiltrati = [...this.articoli];
+  }
 }

@@ -1,7 +1,7 @@
 body {
   padding: 20px !important;
   overflow-x: hidden;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .articolo-container {
@@ -10,7 +10,7 @@ body {
   gap: 40px;
   margin: 40px auto;
   max-width: 1200px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .articolo-img {
@@ -22,6 +22,7 @@ body {
 
 .articolo-img img {
   width: 100%;
+  height: 100%;
   max-width: 600px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -30,7 +31,6 @@ body {
   padding: 20px;
 }
 
-/* Form aggiornato */
 .articolo-form {
   flex: 1 1 55%;
   max-width: 600px;
@@ -90,14 +90,12 @@ body {
   box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
 }
 
-/* Messaggi */
 .articolo-form .msg {
   margin: 10px 0;
   color: #e74c3c;
   font-weight: 500;
 }
 
-/* Pulsanti */
 .button-group {
   display: flex;
   justify-content: flex-end;
@@ -133,7 +131,7 @@ body {
 .button-group .btn.blue:hover {
   background-color: #357ab8;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .button-group .btn.red {
@@ -144,7 +142,6 @@ body {
   opacity: 0.9;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .articolo-container {
     flex-direction: column;

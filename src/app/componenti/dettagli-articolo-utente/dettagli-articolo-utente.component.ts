@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-dettagli-articolo-utente',
@@ -19,14 +20,14 @@ export class DettagliArticoloUtenteComponent {
 
   msg = '';
 
-  constructor(private route: ActivatedRoute, private service: BackendService) {}
+  constructor(private route: ActivatedRoute, private service: BackendService, private auth: AuthService) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.service.getArticoloById(id).subscribe((resp: any) => {
         console.log('Resp backend', resp);
-        this.articolo = resp.dati ?? resp; // fallback se resp non ha .dati
+        this.articolo = resp.dati ?? resp; 
 
         if (this.articolo?.tagliaIndumento !== null) {
           this.service
@@ -38,13 +39,16 @@ export class DettagliArticoloUtenteComponent {
   }
 
   onConferma(): void {
-    const utenteId = 2;
+    const utenteId = this.auth.getUserId();
+    if (!utenteId) {
+      this.msg = 'Effettua il login per aggiungere al carrello!';
+      return;
+    }
+
     this.service.aggiungiAlCarrello(utenteId, this.articolo.id).subscribe({
       next: () => (this.msg = 'Articolo aggiunto al carrello!'),
-      error: (err) => {
-        console.error(err);
-        this.msg = 'Errore aggiunta carrello';
-      },
+      error: () => (this.msg = 'Errore aggiunta carrello'),
     });
   }
+  
 }

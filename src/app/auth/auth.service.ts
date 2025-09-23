@@ -8,18 +8,17 @@ export class AuthService {
 
   isLogged = false;
   isAdmin = false;
-  
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  private user: any = null;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     console.log("AuthService constructor");
 
     if (isPlatformBrowser(this.platformId)) {
-
       const isLoggedValue = localStorage.getItem("isLogged");
       const isAdminValue = localStorage.getItem("isAdmin");
+      const storedUser = localStorage.getItem("utente");
 
       if (isLoggedValue != null && isAdminValue != null) {
-        console.log('token exist');
         this.isLogged = isLoggedValue === '1';
         this.isAdmin = isAdminValue === '1';
       } else {
@@ -27,12 +26,34 @@ export class AuthService {
         localStorage.setItem("isAdmin", "0");
       }
 
-      console.log("isLogged:", this.isLogged)
-      console.log("isAdmin:", this.isAdmin)
+      if (storedUser) {
+        this.user = JSON.parse(storedUser);
+      }
     }
-
   }
 
+  // 👇 gestione utente
+  setUser(user: any) {
+    this.user = user;
+    localStorage.setItem("utente", JSON.stringify(user));
+  }
+
+  getUser() {
+    if (this.user) return this.user;
+    const stored = localStorage.getItem("utente");
+    return stored ? JSON.parse(stored) : null;
+  }
+
+  getUserId(): number | null {
+    return this.getUser()?.id ?? null;
+  }
+
+  clearUser() {
+    this.user = null;
+    localStorage.removeItem("utente");
+  }
+
+  // 👇 i tuoi metodi esistenti
   isAutentificated() {
     return this.isLogged;
   }
@@ -59,7 +80,7 @@ export class AuthService {
     localStorage.setItem("isAdmin", "0");
     this.isLogged = false;
     this.isAdmin = false;
-
-
+    this.clearUser();
   }
+  
 }

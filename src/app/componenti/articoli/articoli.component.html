@@ -1,16 +1,21 @@
 <h1 class="titolo-articoli">Articoli disponibili</h1>
 
-<form class="filtro-articoli" (ngSubmit)="filtraArticoli()">
+<form class="filtro-articoli">
   <!-- Nome -->
   <input
     type="text"
     placeholder="Nome articolo"
     [(ngModel)]="filtroNome"
+    (ngModelChange)="filtraArticoli()"
     name="nome"
   />
 
   <!-- Marca -->
-  <select [(ngModel)]="filtroMarca" name="marca">
+  <select
+    [(ngModel)]="filtroMarca"
+    (ngModelChange)="filtraArticoli()"
+    name="marca"
+  >
     <option value="">Tutte le marche</option>
     <option *ngFor="let marca of marcheDisponibili" [value]="marca">
       {{ marca }}
@@ -18,18 +23,24 @@
   </select>
 
   <!-- Genere -->
-  <select [(ngModel)]="filtroGenere" name="genere">
+  <select
+    [(ngModel)]="filtroGenere"
+    (ngModelChange)="filtraArticoli()"
+    name="genere"
+  >
     <option value="">Tutti i generi</option>
     <option *ngFor="let genere of generiDisponibili" [value]="genere">
       {{ genere }}
     </option>
   </select>
 
-  <button type="submit">Filtra</button>
-  <button type="button" (click)="resetFiltri()">Reset</button>
+  <button type="button" (click)="resetFiltri()">Resetta filtri</button>
 </form>
 
-<div class="lista-articoli">
+<div
+  *ngIf="articoliFiltrati.length > 0; else noArticoli"
+  class="lista-articoli"
+>
   <div class="articolo-card" *ngFor="let articolo of articoliFiltrati">
     <a [routerLink]="['/dettagli-articolo-utente', articolo.id]">
       <!-- Immagine -->
@@ -44,9 +55,13 @@
         <p><strong>Marca:</strong> {{ articolo.marca }}</p>
         <p><strong>Categoria:</strong> {{ articolo.categoria }}</p>
         <p><strong>Genere:</strong> {{ articolo.genere }}</p>
-        <p class="prezzo">{{ articolo.prezzo | currency:'EUR' }}</p>
+        <p class="prezzo">{{ articolo.prezzo | currency : "EUR" }}</p>
       </div>
     </a>
   </div>
 </div>
 
+<!-- Template mostrato se non ci sono articoli -->
+<ng-template #noArticoli>
+  <p class="no-articoli">Nessun articolo presente per i criteri di ricerca!</p>
+</ng-template>

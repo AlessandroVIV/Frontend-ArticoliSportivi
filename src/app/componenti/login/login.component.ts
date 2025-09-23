@@ -47,6 +47,7 @@ export class LoginComponent {
         console.log(resp);
         if (resp.dati.logged) {
           console.log('utente logged.. role:' + resp.dati.role);
+          this.auth.setUser(resp.dati);
           this.auth.setAuthentificated();
           this.msg = '';
           if (resp.dati.role == 'ADMIN') {
