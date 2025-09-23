@@ -43,5 +43,13 @@ export class BackendService {
   getAllTaglieIndumento() {
     return this.http.get(this.url + 'taglia/listAll');
   }
+
+  createArticoloIndumento(body: any) {
+    return this.http.post(this.url + 'articolo/createIndumento', body);
+  }
+
+  createArticoloScarpa(body: any) {
+    return this.http.post(this.url + 'articolo/createScarpa', body);
+  }
 }
 

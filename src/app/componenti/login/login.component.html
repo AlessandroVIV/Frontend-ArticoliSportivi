@@ -2,13 +2,14 @@
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <img src="/images/iconaSito.png" alt="Sport Logo" class="logo" />
+        <div class="login-logo">
+          <img src="/images/iconaSito.png" alt="CodeRunner Shop" />
+        </div>
         <h2>CodeRunner Shop</h2>
         <p>Accedi al tuo account</p>
       </div>
 
       <form #signinForm="ngForm" (ngSubmit)="onSubmit(signinForm)">
-
         <div class="form-group">
           <input
             type="text"

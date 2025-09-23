@@ -1,22 +1,168 @@
-<div class="admin-lista-articoli">
+<!-- LISTA ARTICOLI -->
+<div class="admin-lista-articoli" *ngIf="!showCreateForm">
   <div class="admin-articolo-card" *ngFor="let articolo of articoli">
     <a [routerLink]="['/dettagliArticolo', articolo.id]">
-      <!-- Immagine -->
       <div class="img-container">
         <img [src]="articolo.urlImmagine" alt="{{ articolo.nomeArticolo }}" />
       </div>
 
-      <!-- Info -->
       <div class="admin-articolo-info">
         <h3>{{ articolo.nomeArticolo }}</h3>
         <p class="descrizione">{{ articolo.descrizione }}</p>
         <p><strong>Marca:</strong> {{ articolo.marca }}</p>
         <p><strong>Categoria:</strong> {{ articolo.categoria }}</p>
         <p><strong>Genere:</strong> {{ articolo.genere }}</p>
-        <p *ngIf="articolo.tagliaScarpe"><strong>Taglia Scarpe:</strong> {{ articolo.tagliaScarpe }}</p>
-        <p *ngIf="articolo.tagliaIndumento"><strong>Taglia Indumento:</strong> {{ articolo.tagliaIndumento }}</p>
-        <p class="prezzo">{{ articolo.prezzo | currency: 'EUR' }}</p>
+        <p *ngIf="articolo.tagliaScarpe">
+          <strong>Taglia Scarpe:</strong> {{ articolo.tagliaScarpe }}
+        </p>
+        <p *ngIf="articolo.tagliaIndumento">
+          <strong>Taglia Indumento:</strong> {{ articolo.tagliaIndumento }}
+        </p>
+        <p class="prezzo">{{ articolo.prezzo | currency : "EUR" }}</p>
       </div>
     </a>
   </div>
+
+</div>
+
+<!-- Bottoni per aprire i form -->
+<button type="button" class="btn grey" 
+        (click)="showCreateForm = true; createType = TYPE_INDUMENTO"
+        *ngIf="!showCreateForm">
+  + Crea Indumento
+</button>
+
+<button type="button" class="btn grey" 
+        (click)="showCreateForm = true; createType = TYPE_SCARPA"
+        *ngIf="!showCreateForm">
+  + Crea Scarpa
+</button>
+
+
+<!-- FORM INDUMENTO -->
+<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_INDUMENTO">
+  <h2>Gestione Indumento</h2>
+
+  <form [formGroup]="createFormIndumento" (ngSubmit)="onSubmitIndumento()">
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" formControlName="nomeArticolo" />
+      </div>
+
+      <div class="form-field">
+        <label for="prezzo">Prezzo</label>
+        <input id="prezzo" type="number" formControlName="prezzo" />
+      </div>
+
+      <div class="form-field full-width">
+        <label for="descrizione">Descrizione</label>
+        <textarea id="descrizione" rows="3" formControlName="descrizione"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label for="genere">Genere</label>
+        <select id="genere" formControlName="genere">
+          <option *ngFor="let g of generi" [value]="g.nome">{{ g.nome }}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="marca">Marca</label>
+        <select id="marca" formControlName="marca">
+          <option *ngFor="let m of marche" [value]="m.nome">{{ m.nome }}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" formControlName="categoria">
+          <option *ngFor="let c of categorie" [value]="c.nome">{{ c.nome }}</option>
+        </select>
+      </div>
+
+      <!-- Taglia Indumento -->
+      <div class="form-field">
+        <label for="tagliaIndumento">Taglia Indumento</label>
+        <select id="tagliaIndumento" formControlName="tagliaIndumento">
+          <option *ngFor="let t of taglieIndumento" [value]="t.nome">{{ t.nome }}</option>
+        </select>
+      </div>
+
+      <div class="form-field full-width">
+        <label for="urlImmagine">URL Immagine</label>
+        <input id="urlImmagine" type="text" formControlName="urlImmagine" />
+      </div>
+    </div>
+
+    <p class="msg">{{ msg }}</p>
+
+    <div class="button-group">
+      <button type="button" class="btn grey" (click)="onAnnul()">Indietro</button>
+      <button type="submit" class="btn blue" [disabled]="!createFormIndumento.valid">Crea</button>
+    </div>
+  </form>
+</div>
+
+<!-- FORM SCARPA -->
+<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_SCARPA">
+  <h2>Gestione Scarpa</h2>
+
+  <form [formGroup]="createFormScarpa" (ngSubmit)="onSubmitScarpa()">
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" formControlName="nome" />
+      </div>
+
+      <div class="form-field">
+        <label for="prezzo">Prezzo</label>
+        <input id="prezzo" type="number" formControlName="prezzo" />
+      </div>
+
+      <div class="form-field full-width">
+        <label for="descrizione">Descrizione</label>
+        <textarea id="descrizione" rows="3" formControlName="descrizione"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label for="genere">Genere</label>
+        <select id="genere" formControlName="genere">
+          <option *ngFor="let g of generi" [value]="g.nome">{{ g.nome }}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="marca">Marca</label>
+        <select id="marca" formControlName="marca">
+          <option *ngFor="let m of marche" [value]="m.nome">{{ m.nome }}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" formControlName="categoria">
+          <option *ngFor="let c of categorie" [value]="c.nome">{{ c.nome }}</option>
+        </select>
+      </div>
+
+      <!-- Taglia Scarpe -->
+      <div class="form-field">
+        <label for="tagliaScarpe">Taglia Scarpa</label>
+        <input id="tagliaScarpe" type="number" formControlName="tagliaScarpe" />
+      </div>
+
+      <div class="form-field full-width">
+        <label for="urlImmagine">URL Immagine</label>
+        <input id="urlImmagine" type="text" formControlName="urlImmagine" />
+      </div>
+    </div>
+
+    <p class="msg">{{ msg }}</p>
+
+    <div class="button-group">
+      <button type="button" class="btn grey" (click)="onAnnul()">Indietro</button>
+      <button type="submit" class="btn blue" [disabled]="!createFormScarpa.valid">Crea</button>
+    </div>
+  </form>
 </div>

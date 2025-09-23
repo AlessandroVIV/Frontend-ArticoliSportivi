@@ -82,7 +82,7 @@ export class DettagliArticoloComponent {
     genere: this.updateForm.value.genere,
     marca: this.updateForm.value.marca,
     categoria: this.updateForm.value.categoria,
-    urlImmagine: this.articolo.urlImmagine,
+    urlImmagine: this.updateForm.value.urlImmagine,
   };
 
   if (this.articolo?.tagliaScarpe !== null) {
