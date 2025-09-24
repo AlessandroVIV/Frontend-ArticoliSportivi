@@ -1,0 +1,45 @@
+<div class="header-container">
+  <h1 class="titolo-articoli">Gestione Categorie</h1>
+  <button class="btn primary" (click)="mostraFormCreazione()">+ Nuova Categoria</button>
+</div>
+
+<div class="container">
+
+  <!-- GRIGLIA CATEGORIE -->
+  <div *ngIf="!formAggiornamentoVisibile && !formCreazioneVisibile" class="categorie-grid">
+    <div *ngFor="let categoria of categorie" class="categoria-card" (click)="mostraFormAggiornamento(categoria)">
+      <span class="categoria-id">#{{ categoria.id }}</span>
+      <span class="categoria-nome">{{ categoria.nome }}</span>
+    </div>
+  </div>
+
+  <!-- FORM AGGIORNAMENTO -->
+  <div *ngIf="formAggiornamentoVisibile" class="form-categoria card">
+    <h2>Modifica Categoria</h2>
+    <div class="form-field">
+      <label>Nome Categoria</label>
+      <input [(ngModel)]="categoriaSelezionata.nome" />
+    </div>
+
+    <div class="button-group">
+      <button class="btn secondary" (click)="tornaIndietro()">Indietro</button>
+      <button class="btn primary" (click)="aggiornaCategoria()">Aggiorna</button>
+      <button class="btn danger" (click)="cancellaCategoria(categoriaSelezionata)">Cancella</button>
+    </div>
+  </div>
+
+  <!-- FORM CREAZIONE -->
+  <div *ngIf="formCreazioneVisibile" class="form-categoria card">
+    <h2>Nuova Categoria</h2>
+    <div class="form-field">
+      <label>Nome Categoria</label>
+      <input [(ngModel)]="nuovaCategoria.nome" />
+    </div>
+
+    <div class="button-group">
+      <button class="btn secondary" (click)="tornaIndietro()">Indietro</button>
+      <button class="btn success" (click)="creaCategoria()">Crea</button>
+    </div>
+  </div>
+
+</div>

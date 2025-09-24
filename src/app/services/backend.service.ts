@@ -71,4 +71,18 @@ export class BackendService {
     const body = { articoloId, quantita: 1 };
     return this.http.post(`${this.url}carrello/${utenteId}/items`, body);
   }
+
+  updateCategoria(body: any) {
+    console.log(body);
+    return this.http.put(this.url + 'categoria/updateCategoria', body);
+  }
+
+  removeCategoria(categoria: any) {
+    return this.http.request('delete', this.url + 'categoria/deleteCategoria', { body: categoria });
+  }
+
+  createCategoria(body: any) {
+    return this.http.post(this.url + 'categoria/createCategoria', body);
+  }
+
 }
