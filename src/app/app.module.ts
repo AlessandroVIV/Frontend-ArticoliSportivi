@@ -23,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { DeleteArticoloComponent } from './dialogs/delete-articolo/delete-articolo.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-utente/dettagli-articolo-utente.component';
+import { GestisciMarcaComponent } from './componenti/gestisci-marca/gestisci-marca.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-
     AdminComponent,
     DettagliArticoloComponent,
     DeleteArticoloComponent,
-    DettagliArticoloUtenteComponent
+    DettagliArticoloUtenteComponent,
+    GestisciMarcaComponent
   ],
   imports: [
     BrowserModule,

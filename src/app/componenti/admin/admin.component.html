@@ -37,6 +37,17 @@
           (click)="showCreateForm = true; createType = TYPE_SCARPA">
     + Crea Scarpa
   </button>
+  
+</div>
+
+<div class="button-container-left" *ngIf="!showCreateForm">
+  <button type="button" class="btn grey" [routerLink]="['/creaMarca']">
+    Gestione Marche
+  </button>
+
+  <button type="button" class="btn grey" [routerLink]="['/creaCategoria']">
+    Gestione Categorie
+  </button>
 </div>
 
 

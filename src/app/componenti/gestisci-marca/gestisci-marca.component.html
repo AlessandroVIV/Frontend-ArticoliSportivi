@@ -1,0 +1,57 @@
+<h1 class="titolo-articoli">Gestione Marche</h1>
+
+<div class="container">
+
+  <!-- PULSANTE NUOVA MARCA -->
+  <div class="button-container">
+    <button class="btn green" (click)="mostraFormCreazione()">+ Nuova Marca</button>
+  </div>
+
+  <!-- TABELLA -->
+  <div *ngIf="!formAggiornamentoVisibile && !formCreazioneVisibile" class="tabella-marche">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let marca of marche" (click)="mostraFormAggiornamento(marca)" class="clickable-row">
+          <td>{{ marca.id }}</td>
+          <td>{{ marca.nome }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FORM AGGIORNAMENTO -->
+  <div *ngIf="formAggiornamentoVisibile" class="form-marca">
+    <h2>Modifica Marca</h2>
+    <div class="form-field">
+      <label>Nome Marca</label>
+      <input [(ngModel)]="marcaSelezionata.nome" />
+    </div>
+
+    <div class="button-group">
+      <button class="btn grey" (click)="tornaIndietro()">Indietro</button>
+      <button class="btn blue" (click)="aggiornaMarca()">Aggiorna</button>
+      <button class="btn red" (click)="cancellaMarca(marcaSelezionata)">Cancella</button>
+    </div>
+  </div>
+
+  <!-- FORM CREAZIONE -->
+  <div *ngIf="formCreazioneVisibile" class="form-marca">
+    <h2>Nuova Marca</h2>
+    <div class="form-field">
+      <label>Nome Marca</label>
+      <input [(ngModel)]="nuovaMarca.nome" />
+    </div>
+
+    <div class="button-group">
+      <button class="btn grey" (click)="tornaIndietro()">Indietro</button>
+      <button class="btn green" (click)="creaMarca()">Crea</button>
+    </div>
+  </div>
+
+</div>

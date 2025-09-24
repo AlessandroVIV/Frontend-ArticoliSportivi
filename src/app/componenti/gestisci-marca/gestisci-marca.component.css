@@ -1,0 +1,148 @@
+.titolo-articoli {
+  text-align: center;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 30px 0 20px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.tabella-marche {
+  display: flex;
+  justify-content: center; /* mantiene la tabella centrata */
+  margin-top: 30px;
+}
+
+.tabella-marche table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem; /* font più grande */
+  color: #222; /* colore un po' più scuro */
+}
+
+.tabella-marche th,
+.tabella-marche td {
+  padding: 15px 20px; /* celle più grandi */
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.tabella-marche th {
+  background-color: #19508f;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.tabella-marche tr:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.tabella-marche tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+
+/* Stile form */
+.form-marca {
+  width: 50%;
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.form-marca h2 {
+  text-align: center; /* Centra il titolo */
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 2rem; /* Aumenta il font */
+  font-weight: bold;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form-field label {
+  font-size: 1.5rem; /* Etichette più grandi */
+  font-weight: 600;
+  color: #555;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1.4rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 8px 16px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn.blue {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn.grey {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.btn.red {
+  background-color: #ff0000;
+  color: white;
+}
+
+.button-container {
+  text-align: center;
+  margin-bottom: 20px;
+  position: absolute;  /* posizione assoluta rispetto a .admin-page */
+  top: 10%;           /* distanza dal bordo superiore */
+  left: 3%;         /* distanza dal bordo destro */
+  display: flex;
+  gap: 10px;           /* spazio tra i pulsanti */
+  z-index: 100;        /* assicurati che siano sopra gli altri elementi */
+}
+
+.btn.green {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.green:hover {
+  background-color: #218838;
+}
+
+
+
+
+

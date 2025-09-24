@@ -27,10 +27,11 @@
   overflow: hidden;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 450px;
+  flex: 1 1 calc(25% - 25px); 
+  max-width: calc(25% - 25px); 
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: left;
 }
 
 .articolo-card:hover {

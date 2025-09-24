@@ -103,7 +103,8 @@
 }
 
 /* Stile dei pulsanti */
-.button-container .btn {
+.button-container .btn ,
+.button-container-left .btn{
   padding: 10px 20px;
   font-size: 1.5rem;
   border-radius: 8px;
@@ -114,12 +115,14 @@
 }
 
 /* Bottone grigio */
-.button-container .btn.grey {
+.button-container .btn.grey ,
+.button-container-left .btn.grey {
   background-color: #e0e0e0;
   color: #333;
 }
 
-.button-container .btn.grey:hover {
+.button-container .btn.grey:hover ,
+.button-container-left .btn.grey:hover {
   background-color: #d5d5d5;
 }
 
@@ -239,6 +242,16 @@
   background-color: #357ab8;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenitore bottoni in alto a sinistra */
+.button-container-left {
+  position: absolute;   /* rispetto a .admin-page */
+  top: 10%;             /* distanza dal bordo superiore */
+  left: 3%;             /* distanza dal bordo sinistro */
+  display: flex;
+  gap: 10px;            /* spazio tra i pulsanti */
+  z-index: 100;
 }
 
 
