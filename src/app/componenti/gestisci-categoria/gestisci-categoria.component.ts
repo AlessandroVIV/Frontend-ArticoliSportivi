@@ -18,6 +18,11 @@ export class GestisciCategoriaComponent {
 
   ngOnInit(): void {
     this.caricaCategorie();
+    document.body.classList.add('sfondo-gestisci-categoria');
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-gestisci-categoria');
   }
 
   caricaCategorie(): void {

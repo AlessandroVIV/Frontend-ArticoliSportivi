@@ -41,7 +41,9 @@ export class BackendService {
   }
 
   removeMarca(marca: any) {
-    return this.http.request('delete', this.url + 'marca/deleteMarca', { body: marca });
+    return this.http.request('delete', this.url + 'marca/deleteMarca', {
+      body: marca,
+    });
   }
 
   createMarca(body: any) {
@@ -85,4 +87,14 @@ export class BackendService {
     return this.http.post(this.url + 'categoria/createCategoria', body);
   }
 
+  getCarrelloByUtente(utenteId: number) {
+    return this.http.get(${this.url}carrello/${utenteId}/items);
+  }
+
+  rimuoviDalCarrello(utenteId: number, carrelloItemId: number) {
+    return this.http.delete(
+      ${this.url}carrello/${utenteId}/items/${carrelloItemId},
+      { responseType: 'text' }
+    );
+  }
 }

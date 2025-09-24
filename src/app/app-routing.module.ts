@@ -12,6 +12,7 @@ import { adminGuard } from './auth/admin-guard.guard';
 import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-utente/dettagli-articolo-utente.component';
 import { GestisciMarcaComponent } from './componenti/gestisci-marca/gestisci-marca.component';
 import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gestisci-categoria.component';
+import { CarrelloComponent } from './componenti/carrello/carrello.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'dettagliArticolo/:id', component: DettagliArticoloComponent, canActivate: [adminGuard] },  
   {path: 'creaMarca', component: GestisciMarcaComponent, canActivate: [adminGuard]},
   {path: 'creaCategoria', component: GestisciCategoriaComponent, canActivate: [adminGuard]},
+  { path: 'carrello', component: CarrelloComponent },
   { path: 'login', component: LoginComponent, canActivate: [registerGuard] },
   { path: 'registrazione', component: RegistrazioneComponent, canActivate: [registerGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },

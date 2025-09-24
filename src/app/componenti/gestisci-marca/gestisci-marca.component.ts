@@ -19,6 +19,11 @@ export class GestisciMarcaComponent {
 
   ngOnInit(): void {
     this.caricaMarche();
+    document.body.classList.add('sfondo-gestisci-marca');
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-gestisci-marca');
   }
 
   caricaMarche(): void {

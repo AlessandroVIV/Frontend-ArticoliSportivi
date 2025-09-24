@@ -56,6 +56,7 @@ export class AdminComponent {
   ngOnInit(): void {
     console.log('ngOnInit');
 
+    document.body.classList.add('sfondo-admin');
     this.service.getArticoli().subscribe((resp) => {
       this.response = resp;
       this.articoli = this.response.dati;
@@ -141,5 +142,8 @@ export class AdminComponent {
     this.createType = null;
   };
 
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-admin');
+  }
 }
 

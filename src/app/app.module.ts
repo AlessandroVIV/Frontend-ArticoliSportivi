@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-utente/dettagli-articolo-utente.component';
 import { GestisciMarcaComponent } from './componenti/gestisci-marca/gestisci-marca.component';
 import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gestisci-categoria.component';
+import { CarrelloComponent } from './componenti/carrello/carrello.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gest
     DeleteArticoloComponent,
     DettagliArticoloUtenteComponent,
     GestisciMarcaComponent,
-    GestisciCategoriaComponent
+    GestisciCategoriaComponent,
+    CarrelloComponent
   ],
   imports: [
     BrowserModule,
