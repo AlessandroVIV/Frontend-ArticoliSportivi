@@ -88,12 +88,12 @@ export class BackendService {
   }
 
   getCarrelloByUtente(utenteId: number) {
-    return this.http.get(${this.url}carrello/${utenteId}/items);
+    return this.http.get(`${this.url}carrello/${utenteId}/items`);
   }
 
   rimuoviDalCarrello(utenteId: number, carrelloItemId: number) {
     return this.http.delete(
-      ${this.url}carrello/${utenteId}/items/${carrelloItemId},
+      `${this.url}carrello/${utenteId}/items/${carrelloItemId}`,
       { responseType: 'text' }
     );
   }

@@ -1,14 +1,41 @@
 <nav class="navbar">
-  <a routerLink="" class="nav-link">Home</a>
-  <a routerLink="articoli" class="nav-link">Articoli</a>
+  <a routerLink="" class="nav-link">
+    <i class="fa-solid fa-house"></i> Home
+  </a>
 
-  <a *ngIf="!auth.isAutentificated()" routerLink="login" class="nav-link login">
-    <i class="fa-solid fa-arrow-right-to-bracket"></i>Login
+  <a routerLink="articoli" class="nav-link">
+    <i class="fa-solid fa-shirt"></i> Articoli
   </a>
-  <a routerLink="/admin" *ngIf="auth.isRoleAdmin()" class="nav-link">Admin</a>
-  <a *ngIf="auth.isAutentificated()" (click)="logout()" class="nav-link logout">
-    <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
+
+  <a routerLink="/admin" *ngIf="auth.isRoleAdmin()" class="nav-link">
+    <i class="fa-solid fa-user-shield"></i> Admin
   </a>
+
+  <div class="nav-right">
+    <a
+      *ngIf="auth.isAutentificated()"
+      routerLink="/carrello"
+      class="nav-link carrello"
+    >
+      <i class="fa-solid fa-cart-shopping"></i> Carrello
+    </a>
+
+    <a
+      *ngIf="!auth.isAutentificated()"
+      routerLink="login"
+      class="nav-link login"
+    >
+      <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
+    </a>
+
+    <a
+      *ngIf="auth.isAutentificated()"
+      (click)="logout()"
+      class="nav-link logout"
+    >
+      <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+    </a>
+  </div>
 </nav>
 
 <main class="main-content">

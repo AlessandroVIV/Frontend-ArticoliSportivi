@@ -1,0 +1,22 @@
+<h1 class="titolo-articoli">Il mio carrello</h1>
+
+<div *ngIf="items.length > 0; else noItems" class="lista-articoli">
+  <div class="articolo-card" *ngFor="let item of items">
+    <div class="img-container">
+      <img [src]="item.urlImmagine" alt="{{ item.articolo.nomeArticolo }}" />
+    </div>
+
+    <div class="articolo-info">
+      <h3>{{ item.articolo.nomeArticolo }}</h3>
+      <p>{{ item.articolo.descrizione }}</p>
+      <p><strong>Marca:</strong> {{ item.articolo.marca }}</p>
+      <p><strong>Quantità:</strong> {{ item.quantita }}</p>
+      <p class="prezzo">{{ item.articolo.prezzo | currency : "EUR" }}</p>
+      <button (click)="rimuoviItem(item.id)">Rimuovi</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noItems>
+  <p class="no-articoli">Il carrello è vuoto 🛒</p>
+</ng-template>

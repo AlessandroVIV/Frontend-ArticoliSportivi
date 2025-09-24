@@ -39,12 +39,15 @@
   width: 100%;
 }
 
-.logout i, .login i {
-  margin-right: 6px; 
+.logout i,
+.login i,
+.carrello i {
+  margin-right: 6px;
 }
 
-.logout,
-.login {
-  margin-left: auto;
-  margin-right: 0;
+/* nuovo wrapper */
+.nav-right {
+  margin-left: auto; /* manda tutto a destra */
+  display: flex;
+  align-items: center;
 }
