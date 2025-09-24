@@ -1,1 +1,28 @@
-<p>home works!</p>
+<div class="homepage">
+
+  <!-- Carousel -->
+  <div class="carousel">
+    <div 
+      class="carousel-slide" 
+      *ngFor="let banner of banners; let i = index" 
+      [class.active]="i === currentIndex">
+      <img [src]="banner.image" [alt]="banner.title">
+      <div class="caption">{{ banner.title }}</div>
+    </div>
+
+    <button class="carousel-btn prev" (click)="prevSlide()">❮</button>
+    <button class="carousel-btn next" (click)="nextSlide()">❯</button>
+  </div>
+
+  <!-- Categorie -->
+  <section class="categories">
+    <h2>Scopri le categorie</h2>
+    <div class="grid">
+      <div class="card" *ngFor="let cat of categories">
+        <img [src]="cat.image" [alt]="cat.name">
+        <h3>{{ cat.name }}</h3>
+      </div>
+    </div>
+  </section>
+
+</div>
