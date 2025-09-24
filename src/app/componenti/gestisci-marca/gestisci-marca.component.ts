@@ -5,7 +5,7 @@ import { BackendService } from '../../services/backend.service';
   selector: 'app-gestisci-marca',
   standalone: false,
   templateUrl: './gestisci-marca.component.html',
-  styleUrl: './gestisci-marca.component.css'
+  styleUrl: './gestisci-marca.component.css',
 })
 export class GestisciMarcaComponent {
   marche: any[] = [];
@@ -15,7 +15,7 @@ export class GestisciMarcaComponent {
   formCreazioneVisibile: boolean = false;
   nuovaMarca: any = {};
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService) {}
 
   ngOnInit(): void {
     this.caricaMarche();
@@ -40,8 +40,8 @@ export class GestisciMarcaComponent {
   }
 
   onSelectMarca(marca: any): void {
-    this.marcaSelezionata = { ...marca }; // Copia dell’oggetto
-    this.formVisibile = true; // Mostra form
+    this.marcaSelezionata = { ...marca };
+    this.formVisibile = true;
   }
 
   tornaIndietro(): void {
@@ -51,7 +51,10 @@ export class GestisciMarcaComponent {
   }
 
   aggiornaMarca(): void {
-    const body = { id: this.marcaSelezionata.id, nome: this.marcaSelezionata.nome };
+    const body = {
+      id: this.marcaSelezionata.id,
+      nome: this.marcaSelezionata.nome,
+    };
     this.backendService.updateMarca(body).subscribe(() => {
       this.caricaMarche();
       this.tornaIndietro();
@@ -60,43 +63,31 @@ export class GestisciMarcaComponent {
 
   creaMarca() {
     if (!this.nuovaMarca.nome) {
-      alert("Inserisci il nome della marca!");
-      return;
+      return; // niente nome -> non faccio nulla
     }
 
     this.backendService.createMarca(this.nuovaMarca).subscribe({
-      next: (res: any) => {
-        alert(res.msg || "Marca creata con successo");
+      next: () => {
         this.formCreazioneVisibile = false;
-        this.ngOnInit(); // Ricarica la tabella
+        this.caricaMarche();
       },
       error: (err) => {
         console.error(err);
-        alert("Errore nella creazione della marca");
-      }
+      },
     });
   }
 
   cancellaMarca(marca: any) {
     if (confirm(`Sei sicuro di voler cancellare la marca ${marca.nome}?`)) {
       this.backendService.removeMarca(marca).subscribe({
-        next: (res: any) => {
-          alert(res.msg || "Marca cancellata con successo");
-          this.ngOnInit(); // ricarica la tabella
+        next: () => {
+          this.caricaMarche();
+          this.tornaIndietro();
         },
         error: (err) => {
           console.error(err);
-          alert("Errore nella cancellazione della marca");
-        }
+        },
       });
     }
   }
-
-
-
-
-
-
-
-
 }

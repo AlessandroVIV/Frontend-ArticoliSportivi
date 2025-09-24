@@ -1,32 +1,20 @@
-<h1 class="titolo-articoli">Gestione Marche</h1>
+<div class="header-container">
+  <h1 class="titolo-articoli">Gestione Marche</h1>
+  <button class="btn primary" (click)="mostraFormCreazione()">+ Nuova Marca</button>
+</div>
 
 <div class="container">
 
-  <!-- PULSANTE NUOVA MARCA -->
-  <div class="button-container">
-    <button class="btn green" (click)="mostraFormCreazione()">+ Nuova Marca</button>
-  </div>
-
-  <!-- TABELLA -->
-  <div *ngIf="!formAggiornamentoVisibile && !formCreazioneVisibile" class="tabella-marche">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let marca of marche" (click)="mostraFormAggiornamento(marca)" class="clickable-row">
-          <td>{{ marca.id }}</td>
-          <td>{{ marca.nome }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- GRIGLIA MARCHE -->
+  <div *ngIf="!formAggiornamentoVisibile && !formCreazioneVisibile" class="marche-grid">
+    <div *ngFor="let marca of marche" class="marca-card" (click)="mostraFormAggiornamento(marca)">
+      <span class="marca-id">#{{ marca.id }}</span>
+      <span class="marca-nome">{{ marca.nome }}</span>
+    </div>
   </div>
 
   <!-- FORM AGGIORNAMENTO -->
-  <div *ngIf="formAggiornamentoVisibile" class="form-marca">
+  <div *ngIf="formAggiornamentoVisibile" class="form-marca card">
     <h2>Modifica Marca</h2>
     <div class="form-field">
       <label>Nome Marca</label>
@@ -34,14 +22,14 @@
     </div>
 
     <div class="button-group">
-      <button class="btn grey" (click)="tornaIndietro()">Indietro</button>
-      <button class="btn blue" (click)="aggiornaMarca()">Aggiorna</button>
-      <button class="btn red" (click)="cancellaMarca(marcaSelezionata)">Cancella</button>
+      <button class="btn secondary" (click)="tornaIndietro()">Indietro</button>
+      <button class="btn primary" (click)="aggiornaMarca()">Aggiorna</button>
+      <button class="btn danger" (click)="cancellaMarca(marcaSelezionata)">Cancella</button>
     </div>
   </div>
 
   <!-- FORM CREAZIONE -->
-  <div *ngIf="formCreazioneVisibile" class="form-marca">
+  <div *ngIf="formCreazioneVisibile" class="form-marca card">
     <h2>Nuova Marca</h2>
     <div class="form-field">
       <label>Nome Marca</label>
@@ -49,8 +37,8 @@
     </div>
 
     <div class="button-group">
-      <button class="btn grey" (click)="tornaIndietro()">Indietro</button>
-      <button class="btn green" (click)="creaMarca()">Crea</button>
+      <button class="btn secondary" (click)="tornaIndietro()">Indietro</button>
+      <button class="btn success" (click)="creaMarca()">Crea</button>
     </div>
   </div>
 

@@ -39,6 +39,10 @@
   width: 100%;
 }
 
+.logout i, .login i {
+  margin-right: 6px; 
+}
+
 .logout,
 .login {
   margin-left: auto;

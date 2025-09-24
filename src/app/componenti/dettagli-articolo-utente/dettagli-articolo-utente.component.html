@@ -1,38 +1,35 @@
-<!-- dettagli-articolo-utente.component.html -->
 <div class="articolo-container" *ngIf="articolo">
   <div class="articolo-img">
-    <img [src]="articolo.urlImmagine" alt="{{ articolo.nomeArticolo }}" />
+    <img [src]="articolo.urlImmagine" alt="{{ articolo.nome }}" />
   </div>
 
   <div class="articolo-info">
     <h2>{{ articolo.nome }}</h2>
-    <p>{{ articolo.descrizione }}</p>
+    <p class="descrizione">{{ articolo.descrizione }}</p>
     <p><strong>Marca:</strong> {{ articolo.marca?.nome }}</p>
     <p><strong>Categoria:</strong> {{ articolo.categoria?.nome }}</p>
     <p><strong>Genere:</strong> {{ articolo.genere?.nome }}</p>
+    <p class="prezzo">{{ articolo.prezzo | currency : 'EUR' }}</p>
 
-    <p><strong>Prezzo:</strong> {{ articolo.prezzo | currency : "EUR" }}</p>
+    <form [formGroup]="formTaglia" (ngSubmit)="onConferma()" class="taglia-form">
+      <!-- Se scarpa -->
+      <div class="form-field" *ngIf="articolo?.tagliaScarpe !== null">
+        <label for="tagliaScarpe">Taglia Scarpa</label>
+        <input id="tagliaScarpe" type="number" formControlName="taglia" />
+      </div>
+
+      <!-- Se indumento -->
+      <div class="form-field" *ngIf="articolo?.tagliaIndumento !== null">
+        <label for="tagliaIndumento">Taglia Indumento</label>
+        <select id="tagliaIndumento" formControlName="taglia">
+          <option *ngFor="let t of taglieIndumento" [value]="t.nome">
+            {{ t.nome }}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn blue">Aggiungi al carrello</button>
+    </form>
+    <p class="msg">{{ msg }}</p>
   </div>
-
-  <form [formGroup]="formTaglia" (ngSubmit)="onConferma()">
-    <!-- Se scarpa -->
-    <div class="form-field" *ngIf="articolo?.tagliaScarpe !== null">
-      <label for="tagliaScarpe">Taglia Scarpa</label>
-      <input id="tagliaScarpe" type="number" formControlName="taglia" />
-    </div>
-
-    <!-- Se indumento -->
-    <div class="form-field" *ngIf="articolo?.tagliaIndumento !== null">
-      <label for="tagliaIndumento">Taglia Indumento</label>
-      <select id="tagliaIndumento" formControlName="taglia">
-        <option *ngFor="let t of taglieIndumento" [value]="t.nome">
-          {{ t.nome }}
-        </option>
-      </select>
-    </div>
-
-    <button type="submit" class="btn blue">Conferma</button>
-  </form>
-
-  <p class="msg">{{ msg }}</p>
 </div>
