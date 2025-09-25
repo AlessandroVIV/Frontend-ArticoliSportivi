@@ -17,11 +17,13 @@ export class ArticoliComponent {
   filtroNome: string = '';
   filtroMarca: string = '';
   filtroGenere: string = '';
+  filtroCategoria: string = '';
 
   marcheDisponibili: string[] = [];
   generiDisponibili: string[] = [];
+  categorieDisponibili: string[] = [];
 
-  categoria: string | null = null; // 🔹 categoria dalla route
+  categoria: string | null = null;
 
   constructor(
     private service: BackendService,
@@ -31,11 +33,9 @@ export class ArticoliComponent {
   ngOnInit(): void {
     document.body.classList.add('sfondo-articoli');
 
-    // 1️⃣ Leggo categoria dalla route
     this.route.paramMap.subscribe((params) => {
       this.categoria = params.get('nome');
 
-      // 2️⃣ Quando carico articoli, applico filtro categoria
       this.service.getArticoli().subscribe((resp: any) => {
         this.articoli = resp.dati;
 
@@ -49,12 +49,9 @@ export class ArticoliComponent {
           this.articoliFiltrati = [...this.articoli];
         }
 
-        this.marcheDisponibili = [
-          ...new Set(this.articoli.map((a) => a.marca)),
-        ];
-        this.generiDisponibili = [
-          ...new Set(this.articoli.map((a) => a.genere)),
-        ];
+        this.marcheDisponibili = [...new Set(this.articoli.map((a) => a.marca))];
+        this.generiDisponibili = [...new Set(this.articoli.map((a) => a.genere))];
+        this.categorieDisponibili = [...new Set(this.articoli.map((a) => a.categoria))];
       });
     });
   }
@@ -62,21 +59,15 @@ export class ArticoliComponent {
   filtraArticoli(): void {
     this.articoliFiltrati = this.articoli.filter((articolo) => {
       const matchNome = this.filtroNome
-        ? articolo.nomeArticolo
-            .toLowerCase()
-            .includes(this.filtroNome.toLowerCase())
+        ? articolo.nomeArticolo.toLowerCase().includes(this.filtroNome.toLowerCase())
         : true;
-      const matchMarca = this.filtroMarca
-        ? articolo.marca === this.filtroMarca
-        : true;
-      const matchGenere = this.filtroGenere
-        ? articolo.genere === this.filtroGenere
-        : true;
-
-      // 🔹 Se è stata scelta una categoria da route, mantienila
+      const matchMarca = this.filtroMarca ? articolo.marca === this.filtroMarca : true;
+      const matchGenere = this.filtroGenere ? articolo.genere === this.filtroGenere : true;
       const matchCategoria = this.categoria
         ? articolo.categoria?.toLowerCase() === this.categoria!.toLowerCase()
-        : true;
+        : this.filtroCategoria
+          ? articolo.categoria === this.filtroCategoria
+          : true;
 
       return matchNome && matchMarca && matchGenere && matchCategoria;
     });
@@ -86,6 +77,7 @@ export class ArticoliComponent {
     this.filtroNome = '';
     this.filtroMarca = '';
     this.filtroGenere = '';
+    this.filtroCategoria = '';
 
     this.articoliFiltrati = this.categoria
       ? this.articoli.filter(

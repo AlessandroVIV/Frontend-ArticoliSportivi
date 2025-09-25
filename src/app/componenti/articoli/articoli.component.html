@@ -35,6 +35,18 @@
     </option>
   </select>
 
+  <!-- Categoria -->
+  <select
+    [(ngModel)]="filtroCategoria"
+    (ngModelChange)="filtraArticoli()"
+    name="genere"
+  >
+    <option value="">Tutte le categorie</option>
+    <option *ngFor="let categoria of categorieDisponibili" [value]="categoria">
+      {{ categoria }}
+    </option>
+  </select>
+
   <button type="button" (click)="resetFiltri()">Resetta filtri</button>
 </form>
 

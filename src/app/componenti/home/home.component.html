@@ -1,41 +1,43 @@
 <div class="homepage">
-
   <!-- Carousel -->
   <div class="carousel">
-    <div 
-      class="carousel-slide" 
-      *ngFor="let banner of banners; let i = index" 
-      [class.active]="i === currentIndex">
-      <img [src]="banner.image" [alt]="banner.title">
+    <div
+      class="carousel-slide"
+      *ngFor="let banner of banners; let i = index"
+      [class.active]="i === currentIndex"
+    >
+      <img [src]="banner.image" [alt]="banner.title" />
       <div class="caption">{{ banner.title }}</div>
     </div>
 
-    <button class="carousel-btn prev" (click)="prevSlide()">❮</button>
-    <button class="carousel-btn next" (click)="nextSlide()">❯</button>
+    <button class="carousel-btn prev" (click)="prevSlide()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="carousel-btn next" (click)="nextSlide()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
   </div>
 
   <!-- Categorie -->
   <section class="categories">
     <h2>Scopri le categorie</h2>
     <div class="grid">
-  <div class="card" [routerLink]="['/categoria', 'running']">
-    <img src="/images/running.png" alt="Running">
-    <h3>Running</h3>
-  </div>
-  <div class="card" [routerLink]="['/categoria', 'calcio']">
-    <img src="/images/calcio.png" alt="Calcio">
-    <h3>Calcio</h3>
-  </div>
-  <div class="card" [routerLink]="['/categoria', 'palestra']">
-    <img src="/images/palestra.png" alt="Palestra">
-    <h3>Palestra</h3>
-  </div>
-  <div class="card" [routerLink]="['/categoria', 'outdoor']">
-    <img src="/images/outdoor.png" alt="Outdoor">
-    <h3>Outdoor</h3>
-  </div>
-</div>
-
+      <div class="card" [routerLink]="['/categoria', 'running']">
+        <img src="/images/running.png" alt="Running" />
+        <h3>Running</h3>
+      </div>
+      <div class="card" [routerLink]="['/categoria', 'calcio']">
+        <img src="/images/calcio.png" alt="Calcio" />
+        <h3>Calcio</h3>
+      </div>
+      <div class="card" [routerLink]="['/categoria', 'palestra']">
+        <img src="/images/palestra.png" alt="Palestra" />
+        <h3>Palestra</h3>
+      </div>
+      <div class="card" [routerLink]="['/categoria', 'outdoor']">
+        <img src="/images/outdoor.png" alt="Outdoor" />
+        <h3>Outdoor</h3>
+      </div>
+    </div>
   </section>
-
 </div>
