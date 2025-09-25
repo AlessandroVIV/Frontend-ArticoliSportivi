@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +6,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   banners = [
     { image: '/images/banner1.png', title: 'Nuova collezione running' },
@@ -25,8 +24,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   interval: any;
 
+  constructor(private el: ElementRef) {}
+
   ngOnInit(): void {
     this.startAutoSlide();
+  }
+
+  ngAfterViewInit(): void {
+    this.setAspectRatio();
   }
 
   ngOnDestroy(): void {
@@ -43,5 +48,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   prevSlide() {
     this.currentIndex = (this.currentIndex - 1 + this.banners.length) % this.banners.length;
+  }
+
+  private setAspectRatio() {
+    const img = new Image();
+    img.src = this.banners[0].image;
+    img.onload = () => {
+      const ratio = img.naturalWidth / img.naturalHeight;
+      const carouselEl = this.el.nativeElement.querySelector('.carousel');
+      if (carouselEl) {
+        carouselEl.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+        console.log(`Aspect ratio impostato a ${ratio.toFixed(2)} (${img.naturalWidth}:${img.naturalHeight})`);
+      }
+    };
   }
 }
