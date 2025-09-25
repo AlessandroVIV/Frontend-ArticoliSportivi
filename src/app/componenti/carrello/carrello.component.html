@@ -1,6 +1,5 @@
 <div class="carrello-container">
   <div class="articoli-lista">
-    <h1 class="titolo-articoli">Il mio carrello</h1>
     <div *ngFor="let item of items" class="articolo-card">
       <div class="img-container">
         <img [src]="item.articolo.urlImmagine" alt="{{ item.articolo.nomeArticolo }}" />

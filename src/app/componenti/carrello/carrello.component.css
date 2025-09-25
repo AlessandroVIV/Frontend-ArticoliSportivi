@@ -9,7 +9,14 @@
   flex: 2;
   max-height: 80vh; /* Altezza visibile */
   overflow-y: auto; /* Scroll verticale */
-  padding-right: 10px; 
+  padding-right: 10px;
+
+  /* Nascondo scrollbar cross-browser */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE e Edge */
+}
+.articoli-lista::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari */
 }
 
 .articolo-card {
