@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class BackendService {
   url = 'http://localhost:9090/rest/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getArticoloById(id: number) {
     return this.http.get(this.url + 'articolo/getArticolo', { params: { id } });
@@ -50,9 +50,6 @@ export class BackendService {
     return this.http.post(this.url + 'marca/createMarca', body);
   }
 
-
-
-
   getAllGeneri() {
     return this.http.get(this.url + 'genere/listAll');
   }
@@ -69,9 +66,12 @@ export class BackendService {
     return this.http.post(this.url + 'articolo/createScarpa', body);
   }
 
-  aggiungiAlCarrello(utenteId: number, articoloId: number) {
-    const body = { articoloId, quantita: 1 };
-    return this.http.post(`${this.url}carrello/${utenteId}/items`, body);
+  aggiungiAlCarrello(utenteId: number, articoloId: number, taglia: string) {
+    return this.http.post(`${this.url}carrello/${utenteId}/items`, {
+      articoloId: articoloId,
+      quantita: 1,
+      taglia: taglia,
+    });
   }
 
   updateCategoria(body: any) {
@@ -80,7 +80,9 @@ export class BackendService {
   }
 
   removeCategoria(categoria: any) {
-    return this.http.request('delete', this.url + 'categoria/deleteCategoria', { body: categoria });
+    return this.http.request('delete', this.url + 'categoria/deleteCategoria', {
+      body: categoria,
+    });
   }
 
   createCategoria(body: any) {

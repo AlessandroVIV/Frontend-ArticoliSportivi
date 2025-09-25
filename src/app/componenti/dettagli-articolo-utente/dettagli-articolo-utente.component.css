@@ -7,12 +7,12 @@
   max-width: 1200px;
 }
 
-.articolo-img, 
+.articolo-img,
 .articolo-info {
   flex: 1 1 50%;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -92,12 +92,19 @@
   background: #357ab8;
 }
 
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
 @media (max-width: 768px) {
   .articolo-container {
     flex-direction: column;
     align-items: center;
   }
-  .articolo-img, .articolo-info {
+  .articolo-img,
+  .articolo-info {
     flex: 1 1 100%;
     max-width: 100%;
   }
