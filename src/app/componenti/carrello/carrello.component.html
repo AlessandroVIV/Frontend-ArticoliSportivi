@@ -2,7 +2,10 @@
   <div class="articoli-lista">
     <div *ngFor="let item of items" class="articolo-card">
       <div class="img-container">
-        <img [src]="item.articolo.urlImmagine" alt="{{ item.articolo.nomeArticolo }}" />
+        <img
+          [src]="item.articolo.urlImmagine"
+          alt="{{ item.articolo.nomeArticolo }}"
+        />
       </div>
       <div class="articolo-info">
         <h3>{{ item.articolo.nome }}</h3>
@@ -11,12 +14,24 @@
         <p><strong>Categoria:</strong> {{ item.articolo.categoria.nome }}</p>
         <p><strong>Genere:</strong> {{ item.articolo.genere.nome }}</p>
         <p>
+          <strong>Taglia:</strong>
+          {{
+            item.taglia
+              ? item.taglia
+              : item.articolo.categoria?.nome === "Scarpe"
+              ? "Taglia scarpa non inserita"
+              : "Tutte le taglie"
+          }}
+        </p>
+
+        <p>
           <strong>Quantità:</strong> {{ item.quantita }}
           <button (click)="aumentaQuantita(item.id)">+</button>
           <button (click)="diminuisciQuantita(item.id)">-</button>
         </p>
         <p class="prezzo">
-          <strong>Prezzo:</strong> {{ item.articolo.prezzo * item.quantita | currency : "EUR" }}
+          <strong>Prezzo:</strong>
+          {{ item.articolo.prezzo * item.quantita | currency : "EUR" }}
         </p>
         <button (click)="rimuoviItem(item.id)">Rimuovi</button>
       </div>

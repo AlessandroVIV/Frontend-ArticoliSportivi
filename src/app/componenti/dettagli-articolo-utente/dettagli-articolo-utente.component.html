@@ -31,10 +31,12 @@
         </small>
       </div>
 
-      <!-- Se indumento -->
+      <!-- Indumenti -->
       <div class="form-field" *ngIf="articolo?.tagliaIndumento !== null">
         <label for="tagliaIndumento">Taglia Indumento</label>
         <select id="tagliaIndumento" formControlName="taglia">
+          <option value="" disabled selected>Seleziona una taglia</option>
+          <!-- 👈 default -->
           <option *ngFor="let t of taglieIndumento" [value]="t.nome">
             {{ t.nome }}
           </option>
