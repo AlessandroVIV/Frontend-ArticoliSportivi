@@ -8,9 +8,9 @@
 .carousel {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 730px;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0;
   margin-bottom: 2rem;
 }
 
@@ -30,6 +30,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .caption {

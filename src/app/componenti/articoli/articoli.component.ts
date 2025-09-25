@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-articoli',
@@ -10,44 +11,56 @@ import { BackendService } from '../../services/backend.service';
 export class ArticoliComponent {
   response: any;
 
-  // Lista completa degli articoli
   articoli: any[] = [];
-
-  // Lista filtrata che userai nel template
   articoliFiltrati: any[] = [];
 
-  // Variabili per i filtri
   filtroNome: string = '';
   filtroMarca: string = '';
   filtroGenere: string = '';
 
-  // Liste per menu a tendina
   marcheDisponibili: string[] = [];
   generiDisponibili: string[] = [];
 
-  constructor(private service: BackendService) {}
+  categoria: string | null = null; // 🔹 categoria dalla route
+
+  constructor(
+    private service: BackendService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     document.body.classList.add('sfondo-articoli');
 
-    this.service.getArticoli().subscribe((resp: any) => {
-      this.articoli = resp.dati;
-      this.articoliFiltrati = [...this.articoli];
+    // 1️⃣ Leggo categoria dalla route
+    this.route.paramMap.subscribe((params) => {
+      this.categoria = params.get('nome');
 
-      this.marcheDisponibili = [...new Set(this.articoli.map((a) => a.marca))];
-      this.generiDisponibili = [...new Set(this.articoli.map((a) => a.genere))];
+      // 2️⃣ Quando carico articoli, applico filtro categoria
+      this.service.getArticoli().subscribe((resp: any) => {
+        this.articoli = resp.dati;
+
+        if (this.categoria) {
+          this.articoliFiltrati = this.articoli.filter(
+            (a) =>
+              a.categoria &&
+              a.categoria.toLowerCase() === this.categoria!.toLowerCase()
+          );
+        } else {
+          this.articoliFiltrati = [...this.articoli];
+        }
+
+        this.marcheDisponibili = [
+          ...new Set(this.articoli.map((a) => a.marca)),
+        ];
+        this.generiDisponibili = [
+          ...new Set(this.articoli.map((a) => a.genere)),
+        ];
+      });
     });
   }
 
   filtraArticoli(): void {
-    console.log(
-      'Filtra cliccato',
-      this.filtroNome,
-      this.filtroMarca,
-      this.filtroGenere
-    );
     this.articoliFiltrati = this.articoli.filter((articolo) => {
-      console.log('Articolo genere:', articolo.genere);
       const matchNome = this.filtroNome
         ? articolo.nomeArticolo
             .toLowerCase()
@@ -60,12 +73,13 @@ export class ArticoliComponent {
         ? articolo.genere === this.filtroGenere
         : true;
 
-      return matchNome && matchMarca && matchGenere;
-    });
-  }
+      // 🔹 Se è stata scelta una categoria da route, mantienila
+      const matchCategoria = this.categoria
+        ? articolo.categoria?.toLowerCase() === this.categoria!.toLowerCase()
+        : true;
 
-  ngOnDestroy() {
-    document.body.classList.remove('sfondo-articoli');
+      return matchNome && matchMarca && matchGenere && matchCategoria;
+    });
   }
 
   resetFiltri(): void {
@@ -73,7 +87,16 @@ export class ArticoliComponent {
     this.filtroMarca = '';
     this.filtroGenere = '';
 
-    // Ripristina la lista completa
-    this.articoliFiltrati = [...this.articoli];
+    this.articoliFiltrati = this.categoria
+      ? this.articoli.filter(
+          (a) =>
+            a.categoria &&
+            a.categoria.toLowerCase() === this.categoria!.toLowerCase()
+        )
+      : [...this.articoli];
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-articoli');
   }
 }

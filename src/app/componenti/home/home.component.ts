@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements OnInit, OnDestroy {
 
   banners = [
-    { image: '/images/banner1.jpeg', title: 'Nuova collezione running' },
-    { image: '/images/banner2.jpg', title: 'Attrezzatura palestra -30%' },
-    { image: '/images/banner3.jpg', title: 'Sport outdoor' }
+    { image: '/images/banner1.png', title: 'Nuova collezione running' },
+    { image: '/images/banner2.png', title: 'Attrezzatura palestra -30%' },
+    { image: '/images/banner3.png', title: 'Sport outdoor' }
   ];
 
   categories = [
