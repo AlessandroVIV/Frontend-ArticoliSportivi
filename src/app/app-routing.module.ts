@@ -13,19 +13,38 @@ import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-
 import { GestisciMarcaComponent } from './componenti/gestisci-marca/gestisci-marca.component';
 import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gestisci-categoria.component';
 import { CarrelloComponent } from './componenti/carrello/carrello.component';
-
+import { userGuard } from './auth/user.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'articoli', component: ArticoliComponent },
-  { path: 'dettagli-articolo-utente/:id', component: DettagliArticoloUtenteComponent },
-  { path: 'dettagliArticolo/:id', component: DettagliArticoloComponent, canActivate: [adminGuard] },  
-  {path: 'creaMarca', component: GestisciMarcaComponent, canActivate: [adminGuard]},
-  {path: 'creaCategoria', component: GestisciCategoriaComponent, canActivate: [adminGuard]},
-  { path: 'carrello', component: CarrelloComponent },
+  {
+    path: 'dettagli-articolo-utente/:id',
+    component: DettagliArticoloUtenteComponent,
+  },
+  {
+    path: 'dettagliArticolo/:id',
+    component: DettagliArticoloComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'creaMarca',
+    component: GestisciMarcaComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'creaCategoria',
+    component: GestisciCategoriaComponent,
+    canActivate: [adminGuard],
+  },
+  { path: 'carrello', component: CarrelloComponent, canActivate: [userGuard] },
   { path: 'login', component: LoginComponent, canActivate: [registerGuard] },
-  { path: 'registrazione', component: RegistrazioneComponent, canActivate: [registerGuard] },
+  {
+    path: 'registrazione',
+    component: RegistrazioneComponent,
+    canActivate: [registerGuard],
+  },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '404' },
@@ -33,6 +52,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

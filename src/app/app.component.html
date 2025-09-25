@@ -1,7 +1,5 @@
 <nav class="navbar">
-  <a routerLink="" class="nav-link">
-    <i class="fa-solid fa-house"></i> Home
-  </a>
+  <a routerLink="" class="nav-link"> <i class="fa-solid fa-house"></i> Home </a>
 
   <a routerLink="articoli" class="nav-link">
     <i class="fa-solid fa-shirt"></i> Articoli
@@ -13,7 +11,7 @@
 
   <div class="nav-right">
     <a
-      *ngIf="auth.isAutentificated()"
+      *ngIf="auth.isAutentificated() && !auth.isRoleAdmin()"
       routerLink="/carrello"
       class="nav-link carrello"
     >

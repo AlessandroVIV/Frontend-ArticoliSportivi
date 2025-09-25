@@ -1,6 +1,6 @@
 .titolo-articoli {
   text-align: center;
-  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  font-family: "Poppins", "Segoe UI", Tahoma, sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
@@ -9,7 +9,6 @@
   text-transform: uppercase;
 }
 
-/* Lista articoli admin */
 .admin-lista-articoli {
   display: flex;
   flex-wrap: wrap;
@@ -18,7 +17,6 @@
   padding: 25px;
 }
 
-/* Card articoli admin */
 .admin-articolo-card {
   background: #fff;
   border-radius: 12px;
@@ -45,23 +43,22 @@
 
 .img-container {
   width: 100%;
-  height: 280px;           
+  height: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #f3f3f3;
-  overflow: hidden;      
+  overflow: hidden;
   border-bottom: 1px solid #eee;
 }
 
 .img-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain;     
+  object-fit: contain;
   transform: scale(1.3);
 }
 
-/* Info articoli */
 .admin-articolo-info {
   padding: 20px;
   flex-grow: 1;
@@ -86,25 +83,26 @@
   margin-top: 10px;
 }
 
-
-/* Assicurati che il contenitore principale abbia posizione relativa */
-.admin-page {
-  position: relative;
-}
-
-/* Contenitore dei bottoni in alto a destra */
 .button-container {
-  position: absolute;  /* posizione assoluta rispetto a .admin-page */
-  top: 10%;           /* distanza dal bordo superiore */
-  right: 3%;         /* distanza dal bordo destro */
+  position: absolute;
+  top: 10%;
+  right: 3%;
   display: flex;
-  gap: 10px;           /* spazio tra i pulsanti */
-  z-index: 100;        /* assicurati che siano sopra gli altri elementi */
+  gap: 10px;
+  z-index: 100;
 }
 
-/* Stile dei pulsanti */
-.button-container .btn ,
-.button-container-left .btn{
+.button-container-left {
+  position: absolute;
+  top: 10%;
+  left: 3%;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.button-container .btn,
+.button-container-left .btn {
   padding: 10px 20px;
   font-size: 1.5rem;
   border-radius: 8px;
@@ -114,77 +112,74 @@
   transition: all 0.3s ease;
 }
 
-/* Bottone grigio */
-.button-container .btn.grey ,
-.button-container-left .btn.grey {
-  background-color: #e0e0e0;
-  color: #333;
+.button-container .btn.indumento {
+  background-color: #28a745;
+  color: white;
+}
+.button-container .btn.indumento:hover {
+  background-color: #218838;
 }
 
-.button-container .btn.grey:hover ,
-.button-container-left .btn.grey:hover {
-  background-color: #d5d5d5;
+.button-container .btn.scarpa {
+  background-color: #28a745;
+  color: white;
+}
+.button-container .btn.scarpa:hover {
+  background-color: #218838;
 }
 
-/* Bottone blu */
-.button-container .btn.blue {
+.button-container-left .btn.gestione {
   background-color: #4a90e2;
   color: white;
 }
-
-.button-container .btn.blue:hover {
+.button-container-left .btn.gestione:hover {
   background-color: #357ab8;
 }
 
-/* Contenitore generale del form */
 .articolo-form {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 30px;
+  max-width: 800px; /* da 600 → 800 */
+  margin: 50px auto; /* più spazio sopra/sotto */
+  padding: 40px; /* più aria interna */
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  font-family: "Arial", sans-serif;
 }
 
-/* Titolo del form */
 .articolo-form h2 {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   color: #333;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
-/* Griglia del form */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 25px;
 }
 
-/* Campo a tutta larghezza */
 .form-field.full-width {
   grid-column: 1 / -1;
 }
 
-/* Label dei campi */
 .form-field label {
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
   color: #555;
+  font-size: 1.4rem;
 }
 
-/* Input, select, textarea */
 .form-field input,
 .form-field select,
 .form-field textarea {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
@@ -196,14 +191,12 @@
   box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
 }
 
-/* Messaggi */
 .articolo-form .msg {
   margin: 10px 0;
   color: #e74c3c;
   font-weight: 500;
 }
 
-/* Gruppo dei pulsanti */
 .button-group {
   display: flex;
   justify-content: flex-end;
@@ -211,7 +204,6 @@
   margin-top: 20px;
 }
 
-/* Stile pulsanti */
 .button-group .btn {
   padding: 10px 20px;
   border-radius: 8px;
@@ -219,10 +211,9 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 1.4rem;
 }
 
-/* Bottone grigio (Indietro) */
 .button-group .btn.grey {
   background-color: #e0e0e0;
   color: #333;
@@ -232,7 +223,6 @@
   background-color: #d5d5d5;
 }
 
-/* Bottone blu (Crea) */
 .button-group .btn.blue {
   background-color: #4a90e2;
   color: white;
@@ -243,15 +233,3 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
-/* Contenitore bottoni in alto a sinistra */
-.button-container-left {
-  position: absolute;   /* rispetto a .admin-page */
-  top: 10%;             /* distanza dal bordo superiore */
-  left: 3%;             /* distanza dal bordo sinistro */
-  display: flex;
-  gap: 10px;            /* spazio tra i pulsanti */
-  z-index: 100;
-}
-
-

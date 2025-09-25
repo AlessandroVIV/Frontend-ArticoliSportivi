@@ -26,29 +26,28 @@
 
 </div>
 
-<!-- Bottoni per aprire i form -->
 <div class="button-container" *ngIf="!showCreateForm">
-  <button type="button" class="btn grey" 
+  <button type="button" class="btn indumento" 
           (click)="showCreateForm = true; createType = TYPE_INDUMENTO">
     + Crea Indumento
   </button>
 
-  <button type="button" class="btn grey" 
+  <button type="button" class="btn scarpa" 
           (click)="showCreateForm = true; createType = TYPE_SCARPA">
     + Crea Scarpa
   </button>
-  
 </div>
 
 <div class="button-container-left" *ngIf="!showCreateForm">
-  <button type="button" class="btn grey" [routerLink]="['/creaMarca']">
+  <button type="button" class="btn gestione" [routerLink]="['/creaMarca']">
     Gestione Marche
   </button>
 
-  <button type="button" class="btn grey" [routerLink]="['/creaCategoria']">
+  <button type="button" class="btn gestione" [routerLink]="['/creaCategoria']">
     Gestione Categorie
   </button>
 </div>
+
 
 
 
