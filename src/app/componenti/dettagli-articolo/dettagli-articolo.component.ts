@@ -40,6 +40,7 @@ export class DettagliArticoloComponent {
   ) {}
 
   ngOnInit() {
+    document.body.classList.add('sfondo-dettagli-articolo');
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id = id;
 
@@ -71,6 +72,10 @@ export class DettagliArticoloComponent {
     this.backendService
       .getAllTaglieIndumento()
       .subscribe((data: any) => (this.taglieIndumento = data.dati));
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-dettagli-articolo');
   }
 
   onSubmit() {

@@ -33,6 +33,7 @@ export class DettagliArticoloUtenteComponent {
   ) {}
 
   ngOnInit(): void {
+    document.body.classList.add('sfondo-dettagli-articolo');
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.service.getArticoloById(id).subscribe((resp: any) => {
@@ -60,6 +61,10 @@ export class DettagliArticoloUtenteComponent {
         }
       });
     }
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-dettagli-articolo');
   }
 
   onConferma(): void {
