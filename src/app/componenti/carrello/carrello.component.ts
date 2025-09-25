@@ -15,6 +15,7 @@ export class CarrelloComponent implements OnInit {
   constructor(private service: BackendService, private auth: AuthService) { }
 
   ngOnInit(): void {
+    document.body.classList.add('sfondo-carrello');
     const utenteId = this.auth.getUserId();
     if (!utenteId) {
       this.msg = 'Devi essere loggato per vedere il carrello!';
@@ -32,6 +33,10 @@ export class CarrelloComponent implements OnInit {
         this.msg = 'Errore nel recupero del carrello';
       },
     });
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-carrello');
   }
 
   rimuoviItem(itemId: number) {
@@ -93,5 +98,13 @@ export class CarrelloComponent implements OnInit {
         this.msg = 'Errore diminuzione quantità';
       }
     });
+  }
+
+  calcolaTotale(): number {
+    return this.items.reduce((sum, item) => sum + item.articolo.prezzo * item.quantita, 0);
+  }
+
+  procediPagamento() {
+    alert('Funzionalità di pagamento non implementata.');
   }
 }

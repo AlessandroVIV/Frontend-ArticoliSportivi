@@ -1,0 +1,155 @@
+.carrello-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Lista articoli a sinistra */
+.articoli-lista {
+  flex: 2;
+  max-height: 80vh; /* Altezza visibile */
+  overflow-y: auto; /* Scroll verticale */
+  padding-right: 10px; 
+}
+
+.articolo-card {
+  display: flex;
+  gap: 20px; /* più spazio tra immagine e testo */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  min-height: 150px; /* rettangolo più grande */
+}
+
+.img-container {
+  flex-shrink: 0;
+}
+
+.img-container img {
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.articolo-info {
+  flex-grow: 1;
+  font-size: 24px; /* font più grande nei riquadri articoli */
+}
+
+/* --- Attributi articolo --- */
+.articolo-info p {
+  margin: 5px 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.articolo-info p strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Stile per descrizione */
+.articolo-info p:first-of-type {
+  font-style: italic;
+  color: #555;
+}
+
+/* Prezzo in rosso */
+.articolo-info .prezzo {
+  color: red;
+  font-weight: bold;
+  font-size: 20px; /* leggermente più grande */
+}
+
+/* --- Pulsanti quantità --- */
+.articolo-info button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+.articolo-info button:hover {
+  background: #0056b3;
+}
+
+/* Pulsanti più e meno distinti */
+.articolo-info button:first-of-type {
+  background: #28a745; /* verde + */
+}
+
+.articolo-info button:first-of-type:hover {
+  background: #218838;
+}
+
+.articolo-info button:last-of-type {
+  background: #dc3545; /* rosso - */
+}
+
+.articolo-info button:last-of-type:hover {
+  background: #c82333;
+}
+
+/* Rimuovi articolo */
+.articolo-info > button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #ffc107;
+  color: #212529;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+}
+
+.articolo-info > button:hover {
+  background: #e0a800;
+}
+
+/* Pannello fisso a destra */
+.totale-fisso {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  border: 1px solid #ddd;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-left: 30px; /* spazio extra a sinistra per distanziarla dai riquadri articoli */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* leggero effetto ombra */
+  font-size: 22px;
+}
+
+.totale-fisso table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.totale-fisso td {
+  padding: 8px;
+}
+
+.totale-fisso button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 25px;
+}
+
+.totale-fisso button:hover {
+  background: #218838;
+}

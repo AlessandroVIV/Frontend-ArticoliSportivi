@@ -1,36 +1,41 @@
-<h1 class="titolo-articoli">Il mio carrello</h1>
+<div class="carrello-container">
+  <div class="articoli-lista">
+    <h1 class="titolo-articoli">Il mio carrello</h1>
+    <div *ngFor="let item of items" class="articolo-card">
+      <div class="img-container">
+        <img [src]="item.articolo.urlImmagine" alt="{{ item.articolo.nomeArticolo }}" />
+      </div>
+      <div class="articolo-info">
+        <h3>{{ item.articolo.nome }}</h3>
+        <p>{{ item.articolo.descrizione }}</p>
+        <p><strong>Marca:</strong> {{ item.articolo.marca.nome }}</p>
+        <p><strong>Categoria:</strong> {{ item.articolo.categoria.nome }}</p>
+        <p><strong>Genere:</strong> {{ item.articolo.genere.nome }}</p>
+        <p>
+          <strong>Quantità:</strong> {{ item.quantita }}
+          <button (click)="aumentaQuantita(item.id)">+</button>
+          <button (click)="diminuisciQuantita(item.id)">-</button>
+        </p>
+        <p class="prezzo">
+          <strong>Prezzo:</strong> {{ item.articolo.prezzo * item.quantita | currency : "EUR" }}
+        </p>
+        <button (click)="rimuoviItem(item.id)">Rimuovi</button>
+      </div>
+    </div>
 
-<div *ngFor="let item of items" class="articolo-card">
-  <div class="img-container">
-    <img
-      [src]="item.articolo.urlImmagine"
-      alt="{{ item.articolo.nomeArticolo }}"
-    />
+    <ng-template #noItems>
+      <p class="no-articoli">Il carrello è vuoto 🛒</p>
+    </ng-template>
   </div>
 
-  <div class="articolo-info">
-    <h3>{{ item.articolo.nomeArticolo }}</h3>
-    <p>{{ item.articolo.descrizione }}</p>
-    <p><strong>Marca:</strong> {{ item.articolo.marca.nome }}</p>
-    <p><strong>Categoria:</strong> {{ item.articolo.categoria.nome }}</p>
-    <p><strong>Genere:</strong> {{ item.articolo.genere.nome }}</p>
-
-    <p>
-      <strong>Quantità:</strong>
-      {{ item.quantita }}
-      <button (click)="aumentaQuantita(item.id)">+</button>
-      <button (click)="diminuisciQuantita(item.id)">-</button>
-    </p>
-
-    <p class="prezzo">
-      <strong>Prezzo:</strong>
-      {{ item.articolo.prezzo * item.quantita | currency : "EUR" }}
-    </p>
-
-    <button (click)="rimuoviItem(item.id)">Rimuovi</button>
+  <div class="totale-fisso">
+    <h2>Totale Carrello</h2>
+    <table>
+      <tr>
+        <td>Totale articoli:</td>
+        <td>{{ calcolaTotale() | currency : "EUR" }}</td>
+      </tr>
+    </table>
+    <button (click)="procediPagamento()">Procedi al checkout</button>
   </div>
 </div>
-
-<ng-template #noItems>
-  <p class="no-articoli">Il carrello è vuoto 🛒</p>
-</ng-template>
