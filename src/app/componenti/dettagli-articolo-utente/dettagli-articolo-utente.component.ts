@@ -21,14 +21,19 @@ export class DettagliArticoloUtenteComponent {
 
   msg = '';
 
-  constructor(private route: ActivatedRoute, private service: BackendService, private auth: AuthService, private carrelloService: CarrelloService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private service: BackendService,
+    private auth: AuthService,
+    private carrelloService: CarrelloService
+  ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.service.getArticoloById(id).subscribe((resp: any) => {
         console.log('Resp backend', resp);
-        this.articolo = resp.dati ?? resp; 
+        this.articolo = resp.dati ?? resp;
 
         if (this.articolo?.tagliaIndumento !== null) {
           this.service
@@ -50,9 +55,8 @@ export class DettagliArticoloUtenteComponent {
       next: (resp: any) => {
         this.msg = 'Articolo aggiunto al carrello! ✅';
 
-        
         const items = this.carrelloService.getItems();
-        const existing = items.find(i => i.articolo.id === this.articolo.id);
+        const existing = items.find((i) => i.articolo.id === this.articolo.id);
 
         if (existing) {
           existing.quantita += 1;
@@ -66,8 +70,7 @@ export class DettagliArticoloUtenteComponent {
 
         this.carrelloService.aggiornaItems([...items]);
       },
-      error: () => (this.msg = 'Errore aggiunta carrello ❌'),
+      error: () => (this.msg = 'Errore aggiunta carrello'),
     });
   }
-  
 }

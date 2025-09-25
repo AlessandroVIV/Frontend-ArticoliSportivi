@@ -9,9 +9,13 @@
     <p><strong>Marca:</strong> {{ articolo.marca?.nome }}</p>
     <p><strong>Categoria:</strong> {{ articolo.categoria?.nome }}</p>
     <p><strong>Genere:</strong> {{ articolo.genere?.nome }}</p>
-    <p class="prezzo">{{ articolo.prezzo | currency : 'EUR' }}</p>
+    <p class="prezzo">{{ articolo.prezzo | currency : "EUR" }}</p>
 
-    <form [formGroup]="formTaglia" (ngSubmit)="onConferma()" class="taglia-form">
+    <form
+      [formGroup]="formTaglia"
+      (ngSubmit)="onConferma()"
+      class="taglia-form"
+    >
       <!-- Se scarpa -->
       <div class="form-field" *ngIf="articolo?.tagliaScarpe !== null">
         <label for="tagliaScarpe">Taglia Scarpa</label>
