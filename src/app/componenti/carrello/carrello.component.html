@@ -1,19 +1,33 @@
 <h1 class="titolo-articoli">Il mio carrello</h1>
 
-<div *ngIf="items.length > 0; else noItems" class="lista-articoli">
-  <div class="articolo-card" *ngFor="let item of items">
-    <div class="img-container">
-      <img [src]="item.urlImmagine" alt="{{ item.articolo.nomeArticolo }}" />
-    </div>
+<div *ngFor="let item of items" class="articolo-card">
+  <div class="img-container">
+    <img
+      [src]="item.articolo.urlImmagine"
+      alt="{{ item.articolo.nomeArticolo }}"
+    />
+  </div>
 
-    <div class="articolo-info">
-      <h3>{{ item.articolo.nomeArticolo }}</h3>
-      <p>{{ item.articolo.descrizione }}</p>
-      <p><strong>Marca:</strong> {{ item.articolo.marca }}</p>
-      <p><strong>Quantità:</strong> {{ item.quantita }}</p>
-      <p class="prezzo">{{ item.articolo.prezzo | currency : "EUR" }}</p>
-      <button (click)="rimuoviItem(item.id)">Rimuovi</button>
-    </div>
+  <div class="articolo-info">
+    <h3>{{ item.articolo.nomeArticolo }}</h3>
+    <p>{{ item.articolo.descrizione }}</p>
+    <p><strong>Marca:</strong> {{ item.articolo.marca.nome }}</p>
+    <p><strong>Categoria:</strong> {{ item.articolo.categoria.nome }}</p>
+    <p><strong>Genere:</strong> {{ item.articolo.genere.nome }}</p>
+
+    <p>
+      <strong>Quantità:</strong>
+      {{ item.quantita }}
+      <button (click)="aumentaQuantita(item.id)">+</button>
+      <button (click)="diminuisciQuantita(item.id)">-</button>
+    </p>
+
+    <p class="prezzo">
+      <strong>Prezzo:</strong>
+      {{ item.articolo.prezzo * item.quantita | currency : "EUR" }}
+    </p>
+
+    <button (click)="rimuoviItem(item.id)">Rimuovi</button>
   </div>
 </div>
 

@@ -97,4 +97,20 @@ export class BackendService {
       { responseType: 'text' }
     );
   }
+
+  aumentaQuantitaCarrello(utenteId: number, carrelloItemId: number) {
+    return this.http.patch(
+      `${this.url}carrello/${utenteId}/items/${carrelloItemId}/incrementa`,
+      {},
+      { responseType: 'text' }
+    );
+  }
+
+  diminuisciQuantitaCarrello(utenteId: number, carrelloItemId: number) {
+    return this.http.patch(
+      `${this.url}carrello/${utenteId}/items/${carrelloItemId}/decrementa`,
+      {},
+      { responseType: 'text' }
+    );
+  }
 }

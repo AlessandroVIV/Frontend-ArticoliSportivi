@@ -12,7 +12,7 @@ export class CarrelloComponent implements OnInit {
   items: any[] = [];
   msg = '';
 
-  constructor(private service: BackendService, private auth: AuthService) {}
+  constructor(private service: BackendService, private auth: AuthService) { }
 
   ngOnInit(): void {
     const utenteId = this.auth.getUserId();
@@ -52,6 +52,46 @@ export class CarrelloComponent implements OnInit {
         console.error('Errore eliminazione:', err);
         this.msg = 'Errore eliminazione';
       },
+    });
+  }
+
+  aumentaQuantita(itemId: number) {
+    const utenteId = this.auth.getUserId();
+    if (!utenteId) {
+      this.msg = 'Devi essere loggato per modificare il carrello!';
+      return;
+    }
+
+    this.service.aumentaQuantitaCarrello(utenteId, itemId).subscribe({
+      next: (resp: any) => {
+        const item = this.items.find(i => i.id === itemId);
+        if (item) item.quantita += 1;
+      },
+      error: (err) => {
+        console.error('Errore aumento quantità:', err);
+        this.msg = 'Errore aumento quantità';
+      }
+    });
+  }
+
+  diminuisciQuantita(itemId: number) {
+    const utenteId = this.auth.getUserId();
+    if (!utenteId) {
+      this.msg = 'Devi essere loggato per modificare il carrello!';
+      return;
+    }
+
+    const item = this.items.find(i => i.id === itemId);
+    if (!item || item.quantita <= 1) return; // blocco quantità minore di 1
+
+    this.service.diminuisciQuantitaCarrello(utenteId, itemId).subscribe({
+      next: (resp: any) => {
+        if (item) item.quantita -= 1;
+      },
+      error: (err) => {
+        console.error('Errore diminuzione quantità:', err);
+        this.msg = 'Errore diminuzione quantità';
+      }
     });
   }
 }
