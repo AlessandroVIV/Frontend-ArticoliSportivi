@@ -38,6 +38,8 @@ const routes: Routes = [
     component: GestisciCategoriaComponent,
     canActivate: [adminGuard],
   },
+  { path: 'categoria/:nome', component: ArticoliComponent },
+  { path: 'categoria/:nome', component: ArticoliComponent },
   { path: 'carrello', component: CarrelloComponent, canActivate: [userGuard] },
   { path: 'login', component: LoginComponent, canActivate: [registerGuard] },
   {
