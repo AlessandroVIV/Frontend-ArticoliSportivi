@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
+import { CarrelloService } from '../../services/carrello.service';
 
 @Component({
   selector: 'app-carrello',
@@ -12,7 +13,7 @@ export class CarrelloComponent implements OnInit {
   items: any[] = [];
   msg = '';
 
-  constructor(private service: BackendService, private auth: AuthService) { }
+  constructor(private service: BackendService, private auth: AuthService, private carrelloService: CarrelloService) { }
 
   ngOnInit(): void {
     document.body.classList.add('sfondo-carrello');
@@ -33,6 +34,18 @@ export class CarrelloComponent implements OnInit {
         this.msg = 'Errore nel recupero del carrello';
       },
     });
+
+    this.service.getCarrelloByUtente(utenteId).subscribe({
+      next: (resp: any) => {
+        this.items = resp.dati ?? resp;
+        this.carrelloService.aggiornaItems(this.items);
+      },
+      error: (err) => {
+        console.error('Errore carrello:', err);
+        this.msg = 'Errore nel recupero del carrello';
+      },
+    });
+
   }
 
   ngOnDestroy() {
@@ -58,6 +71,7 @@ export class CarrelloComponent implements OnInit {
         this.msg = 'Errore eliminazione';
       },
     });
+    this.carrelloService.aggiornaItems(this.items);
   }
 
   aumentaQuantita(itemId: number) {
@@ -70,7 +84,10 @@ export class CarrelloComponent implements OnInit {
     this.service.aumentaQuantitaCarrello(utenteId, itemId).subscribe({
       next: (resp: any) => {
         const item = this.items.find(i => i.id === itemId);
-        if (item) item.quantita += 1;
+        if (item) {
+          item.quantita += 1;
+          this.carrelloService.aggiornaItems([...this.items]);
+        }
       },
       error: (err) => {
         console.error('Errore aumento quantità:', err);
@@ -87,11 +104,14 @@ export class CarrelloComponent implements OnInit {
     }
 
     const item = this.items.find(i => i.id === itemId);
-    if (!item || item.quantita <= 1) return; // blocco quantità minore di 1
+    if (!item || item.quantita <= 1) return;
 
     this.service.diminuisciQuantitaCarrello(utenteId, itemId).subscribe({
       next: (resp: any) => {
-        if (item) item.quantita -= 1;
+        if (item) {
+          item.quantita -= 1;
+          this.carrelloService.aggiornaItems([...this.items]);
+        }
       },
       error: (err) => {
         console.error('Errore diminuzione quantità:', err);

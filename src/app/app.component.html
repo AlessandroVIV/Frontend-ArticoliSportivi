@@ -13,9 +13,11 @@
     <a
       *ngIf="auth.isAutentificated() && !auth.isRoleAdmin()"
       routerLink="/carrello"
-      class="nav-link carrello"
+      class="nav-link carrello carrello-icon"
     >
-      <i class="fa-solid fa-cart-shopping"></i> Carrello
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span class="badge" *ngIf="totaleArticoli > 0">{{ totaleArticoli }}</span>
+      Carrello
     </a>
 
     <a
