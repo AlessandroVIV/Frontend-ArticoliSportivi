@@ -1,0 +1,19 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <form (ngSubmit)="confermaOrdine()" #checkoutForm="ngForm">
+    <label>Nome</label>
+    <input [(ngModel)]="ordine.nome" name="nome" required />
+
+    <label>Cognome</label>
+    <input [(ngModel)]="ordine.cognome" name="cognome" required />
+
+    <label>Email</label>
+    <input [(ngModel)]="ordine.email" name="email" required type="email" />
+
+    <label>Indirizzo</label>
+    <input [(ngModel)]="ordine.indirizzo" name="indirizzo" required />
+
+    <button type="submit" [disabled]="!checkoutForm.form.valid">Conferma Ordine</button>
+  </form>
+</div>

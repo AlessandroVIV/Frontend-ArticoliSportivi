@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { AuthService } from '../../auth/auth.service';
 import { CarrelloService } from '../../services/carrello.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrello',
@@ -13,7 +14,12 @@ export class CarrelloComponent implements OnInit {
   items: any[] = [];
   msg = '';
 
-  constructor(private service: BackendService, private auth: AuthService, private carrelloService: CarrelloService) { }
+  constructor(
+    private service: BackendService,
+    private auth: AuthService,
+    private carrelloService: CarrelloService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     document.body.classList.add('sfondo-carrello');
@@ -45,7 +51,6 @@ export class CarrelloComponent implements OnInit {
         this.msg = 'Errore nel recupero del carrello';
       },
     });
-
   }
 
   ngOnDestroy() {
@@ -83,7 +88,7 @@ export class CarrelloComponent implements OnInit {
 
     this.service.aumentaQuantitaCarrello(utenteId, itemId).subscribe({
       next: (resp: any) => {
-        const item = this.items.find(i => i.id === itemId);
+        const item = this.items.find((i) => i.id === itemId);
         if (item) {
           item.quantita += 1;
           this.carrelloService.aggiornaItems([...this.items]);
@@ -92,7 +97,7 @@ export class CarrelloComponent implements OnInit {
       error: (err) => {
         console.error('Errore aumento quantità:', err);
         this.msg = 'Errore aumento quantità';
-      }
+      },
     });
   }
 
@@ -103,7 +108,7 @@ export class CarrelloComponent implements OnInit {
       return;
     }
 
-    const item = this.items.find(i => i.id === itemId);
+    const item = this.items.find((i) => i.id === itemId);
     if (!item || item.quantita <= 1) return;
 
     this.service.diminuisciQuantitaCarrello(utenteId, itemId).subscribe({
@@ -116,15 +121,18 @@ export class CarrelloComponent implements OnInit {
       error: (err) => {
         console.error('Errore diminuzione quantità:', err);
         this.msg = 'Errore diminuzione quantità';
-      }
+      },
     });
   }
 
   calcolaTotale(): number {
-    return this.items.reduce((sum, item) => sum + item.articolo.prezzo * item.quantita, 0);
+    return this.items.reduce(
+      (sum, item) => sum + item.articolo.prezzo * item.quantita,
+      0
+    );
   }
 
   procediPagamento() {
-    alert('Funzionalità di pagamento non implementata.');
+    this.router.navigate(['/checkout']);
   }
 }

@@ -14,6 +14,7 @@ import { GestisciMarcaComponent } from './componenti/gestisci-marca/gestisci-mar
 import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gestisci-categoria.component';
 import { CarrelloComponent } from './componenti/carrello/carrello.component';
 import { userGuard } from './auth/user.guard';
+import { CheckoutComponent } from './componenti/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +39,7 @@ const routes: Routes = [
     component: GestisciCategoriaComponent,
     canActivate: [adminGuard],
   },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'categoria/:nome', component: ArticoliComponent },
   { path: 'categoria/:nome', component: ArticoliComponent },
   { path: 'carrello', component: CarrelloComponent, canActivate: [userGuard] },

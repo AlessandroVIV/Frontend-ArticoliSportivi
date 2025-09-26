@@ -115,4 +115,12 @@ export class BackendService {
       { responseType: 'text' }
     );
   }
+
+  createOrdine(ordine: any) {
+    return this.http.post(this.url + 'ordine/createOrdine', ordine);
+  }
+
+  getOrdiniByUtente(utenteId: number) {
+    return this.http.get(this.url + `ordine/utente/${utenteId}`);
+  }
 }
