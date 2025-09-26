@@ -26,8 +26,12 @@
 
         <p>
           <strong>Quantità:</strong> {{ item.quantita }}
-          <button (click)="aumentaQuantita(item.id)">+</button>
-          <button (click)="diminuisciQuantita(item.id)">-</button>
+          <button (click)="aumentaQuantita(item.id)" class="icon-btn">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button (click)="diminuisciQuantita(item.id)" class="icon-btn">
+            <i class="fa-solid fa-minus"></i>
+          </button>
         </p>
         <p class="prezzo">
           <strong>Prezzo:</strong>

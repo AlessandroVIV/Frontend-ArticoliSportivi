@@ -160,3 +160,44 @@
 .totale-fisso button:hover {
   background: #218838;
 }
+
+/* Pulsanti icone quantità */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.icon-btn i {
+  color: white;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Bottone + (verde) */
+.plus-btn {
+  background: #28a745;
+}
+
+.plus-btn:hover {
+  background: #218838;
+}
+
+/* Bottone - (rosso) */
+.minus-btn {
+  background: #dc3545;
+}
+
+.minus-btn:hover {
+  background: #c82333;
+}
