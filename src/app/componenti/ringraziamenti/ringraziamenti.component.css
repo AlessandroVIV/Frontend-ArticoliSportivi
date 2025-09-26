@@ -1,0 +1,60 @@
+.ringraziamento-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  padding: 40px;
+  background: #f5f5f5;
+}
+
+.messaggio-card {
+  border: none;
+  border-radius: 15px;
+  padding: 60px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+}
+
+.icona-top {
+  font-size: 80px;
+  color: #b5651d; /* pacco marrone */
+  margin-bottom: 20px;
+}
+
+.messaggio-card h1 {
+  font-size: 50px;
+  margin-bottom: 40px;
+  color: #000;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.messaggio-card .sottotitolo {
+  font-size: 26px;
+  margin: 20px 0;
+  color: #444;
+  line-height: 1.6;
+}
+
+.messaggio-card .sottotitolo i {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+.thumbs-icon {
+  color: #28a745; /* verde */
+}
+
+.mail-icon {
+  color: #007bff; /* blu */
+}
+
+.credits {
+  margin-top: 60px;
+  font-size: 22px;
+  color: #555;
+  line-height: 1.8;
+}

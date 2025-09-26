@@ -15,6 +15,7 @@ import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gest
 import { CarrelloComponent } from './componenti/carrello/carrello.component';
 import { userGuard } from './auth/user.guard';
 import { CheckoutComponent } from './componenti/checkout/checkout.component';
+import { RingraziamentiComponent } from './componenti/ringraziamenti/ringraziamenti.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -49,6 +50,7 @@ const routes: Routes = [
     component: RegistrazioneComponent,
     canActivate: [registerGuard],
   },
+  { path: 'ringraziamenti', component: RingraziamentiComponent },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '404' },

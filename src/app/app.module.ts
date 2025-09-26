@@ -27,6 +27,7 @@ import { GestisciMarcaComponent } from './componenti/gestisci-marca/gestisci-mar
 import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gestisci-categoria.component';
 import { CarrelloComponent } from './componenti/carrello/carrello.component';
 import { CheckoutComponent } from './componenti/checkout/checkout.component';
+import { RingraziamentiComponent } from './componenti/ringraziamenti/ringraziamenti.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CheckoutComponent } from './componenti/checkout/checkout.component';
     GestisciMarcaComponent,
     GestisciCategoriaComponent,
     CarrelloComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    RingraziamentiComponent
   ],
   imports: [
     BrowserModule,
