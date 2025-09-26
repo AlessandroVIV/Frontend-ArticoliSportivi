@@ -1,19 +1,40 @@
+<h1 class="titolo">conferma ordine</h1>
+
 <div class="checkout-container">
-  <h2>Checkout</h2>
+  <!-- FORM DI CHECKOUT -->
+  <div class="checkout-form">
+    <form (ngSubmit)="confermaOrdine()">
+      <div>
+        <label>Nome</label>
+        <input type="text" [(ngModel)]="ordine.nome" name="nome" required />
+      </div>
+      <div>
+        <label>Cognome</label>
+        <input type="text" [(ngModel)]="ordine.cognome" name="cognome" required />
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" [(ngModel)]="ordine.email" name="email" required />
+      </div>
+      <div>
+        <label>Indirizzo</label>
+        <input type="text" [(ngModel)]="ordine.indirizzo" name="indirizzo" required />
+      </div>
 
-  <form (ngSubmit)="confermaOrdine()" #checkoutForm="ngForm">
-    <label>Nome</label>
-    <input [(ngModel)]="ordine.nome" name="nome" required />
+      <button type="submit">Conferma Ordine</button>
+    </form>
+  </div>
 
-    <label>Cognome</label>
-    <input [(ngModel)]="ordine.cognome" name="cognome" required />
-
-    <label>Email</label>
-    <input [(ngModel)]="ordine.email" name="email" required type="email" />
-
-    <label>Indirizzo</label>
-    <input [(ngModel)]="ordine.indirizzo" name="indirizzo" required />
-
-    <button type="submit" [disabled]="!checkoutForm.form.valid">Conferma Ordine</button>
-  </form>
+  <!-- MINI CARRELLO (SCROLL) -->
+  <div class="checkout-carrello">
+    <h3>Carrello</h3>
+    <div class="checkout-articoli-scroll">
+      <div *ngFor="let item of carrello" class="checkout-img-card">
+        <img
+          [src]="item.articolo.urlImmagine"
+          alt="{{ item.articolo.nomeArticolo }}"
+        />
+      </div>
+    </div>
+  </div>
 </div>

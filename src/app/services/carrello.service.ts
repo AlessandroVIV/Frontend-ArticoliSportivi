@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarrelloService {
   private itemsSubject = new BehaviorSubject<any[]>([]);
@@ -14,13 +14,16 @@ export class CarrelloService {
 
   aggiornaItems(items: any[]) {
     this.itemsSubject.next(items);
+    localStorage.setItem('carrello', JSON.stringify(items)); // <-- aggiungi questo
   }
 
   getTotaleArticoli(): number {
-    return this.itemsSubject.getValue().reduce((acc, item) => acc + item.quantita, 0);
+    return this.itemsSubject
+      .getValue()
+      .reduce((acc, item) => acc + item.quantita, 0);
   }
 
   getItems(): any[] {
-  return this.itemsSubject.getValue();
-}
+    return this.itemsSubject.getValue();
+  }
 }

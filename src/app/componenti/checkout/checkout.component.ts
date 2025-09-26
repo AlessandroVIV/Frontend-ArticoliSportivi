@@ -28,9 +28,8 @@ export class CheckoutComponent {
   ) {}
 
   ngOnInit() {
-    // Carica l'utente
+    document.body.classList.add('sfondo-checkout');
     this.utente = this.authService.getUser();
-    console.log('Utente:', this.utente.nome);
 
     if (this.utente) {
       this.ordine.nome = this.utente.nome;
@@ -38,14 +37,19 @@ export class CheckoutComponent {
       this.ordine.email = this.utente.email;
     }
 
-    console.log('Utente:', this.utente);
+    const carrelloData = localStorage.getItem('carrello');
+    this.carrello = carrelloData ? JSON.parse(carrelloData) : [];
 
-    // Carica il carrello
-    this.carrello = JSON.parse(localStorage.getItem('carrello') || '[]');
+    console.log('Carrello:', this.carrello);
+
     this.totaleCarrello = this.carrello.reduce(
       (tot, item) => tot + item.articolo.prezzo * item.quantita,
       0
     );
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-checkout');
   }
 
   confermaOrdine() {
