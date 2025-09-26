@@ -1,5 +1,7 @@
 <nav class="navbar">
-  <a routerLink="" class="nav-link"> <i class="fa-solid fa-house"></i> Home </a>
+  <a routerLink="" class="nav-link">
+    <i class="fa-solid fa-house"></i> Home
+  </a>
 
   <a routerLink="articoli" class="nav-link">
     <i class="fa-solid fa-shirt"></i> Articoli
@@ -10,6 +12,16 @@
   </a>
 
   <div class="nav-right">
+    <!-- I miei ordini -->
+    <a
+      *ngIf="auth.isAutentificated() && !auth.isRoleAdmin()"
+      routerLink="/storico-ordini"
+      class="nav-link ordini"
+    >
+      <i class="fa-solid fa-box-archive"></i> I miei ordini
+    </a>
+
+    <!-- Carrello -->
     <a
       *ngIf="auth.isAutentificated() && !auth.isRoleAdmin()"
       routerLink="/carrello"
@@ -20,6 +32,7 @@
       Carrello
     </a>
 
+    <!-- Login -->
     <a
       *ngIf="!auth.isAutentificated()"
       routerLink="login"
@@ -28,6 +41,7 @@
       <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
     </a>
 
+    <!-- Logout -->
     <a
       *ngIf="auth.isAutentificated()"
       (click)="logout()"

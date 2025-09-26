@@ -1,0 +1,59 @@
+.ordine-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ordine-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.data-ordine {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.indirizzo {
+  font-style: italic;
+  color: #444;
+}
+
+.articoli-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto; /* Scroll orizzontale */
+  padding-bottom: 8px;
+}
+
+.articolo-item {
+  flex: 0 0 auto;
+  width: 200px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 8px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.articolo-foto {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.articolo-info {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.nome-articolo {
+  font-weight: bold;
+}

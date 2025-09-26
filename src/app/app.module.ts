@@ -28,6 +28,7 @@ import { GestisciCategoriaComponent } from './componenti/gestisci-categoria/gest
 import { CarrelloComponent } from './componenti/carrello/carrello.component';
 import { CheckoutComponent } from './componenti/checkout/checkout.component';
 import { RingraziamentiComponent } from './componenti/ringraziamenti/ringraziamenti.component';
+import { StoricoOrdiniComponent } from './componenti/storico-ordini/storico-ordini.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RingraziamentiComponent } from './componenti/ringraziamenti/ringraziame
     GestisciCategoriaComponent,
     CarrelloComponent,
     CheckoutComponent,
-    RingraziamentiComponent
+    RingraziamentiComponent,
+    StoricoOrdiniComponent
   ],
   imports: [
     BrowserModule,

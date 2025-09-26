@@ -16,6 +16,7 @@ import { CarrelloComponent } from './componenti/carrello/carrello.component';
 import { userGuard } from './auth/user.guard';
 import { CheckoutComponent } from './componenti/checkout/checkout.component';
 import { RingraziamentiComponent } from './componenti/ringraziamenti/ringraziamenti.component';
+import { StoricoOrdiniComponent } from './componenti/storico-ordini/storico-ordini.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -50,6 +51,7 @@ const routes: Routes = [
     component: RegistrazioneComponent,
     canActivate: [registerGuard],
   },
+  {path: 'storico-ordini', component: StoricoOrdiniComponent},
   { path: 'ringraziamenti', component: RingraziamentiComponent },
   { path: 'admin', component: AdminComponent, canActivate: [adminGuard] },
   { path: '404', component: NotfoundComponent },
