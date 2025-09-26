@@ -64,12 +64,17 @@ export class CheckoutComponent {
       utenteId: this.utente.id,
     };
 
-    this.backend.createOrdine(ordinePayload).subscribe({
-      next: (resp) => {
-        console.log('Ordine creato con successo', resp);
-        this.router.navigate(['/ordine-confermato']);
-      },
-      error: (err) => console.error(err),
+this.backend.createOrdine(ordinePayload).subscribe({
+  next: (resp) => {
+    console.log('Ordine creato con successo', resp);
+
+    // ✅ mostra ringraziamenti SOLO qui
+    this.router.navigateByUrl('/ringraziamenti', {
+      state: { ordineOk: true },
     });
+  },
+  error: (err) => console.error(err),
+});
+
   }
 }

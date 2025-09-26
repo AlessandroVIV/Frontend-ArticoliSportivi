@@ -2,27 +2,28 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
+
   isLogged = false;
   isAdmin = false;
   private user: any = null;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    console.log('AuthService constructor');
+    console.log("AuthService constructor");
 
     if (isPlatformBrowser(this.platformId)) {
-      const isLoggedValue = localStorage.getItem('isLogged');
-      const isAdminValue = localStorage.getItem('isAdmin');
-      const storedUser = localStorage.getItem('utente');
+      const isLoggedValue = localStorage.getItem("isLogged");
+      const isAdminValue = localStorage.getItem("isAdmin");
+      const storedUser = localStorage.getItem("utente");
 
       if (isLoggedValue != null && isAdminValue != null) {
         this.isLogged = isLoggedValue === '1';
         this.isAdmin = isAdminValue === '1';
       } else {
-        localStorage.setItem('isLogged', '0');
-        localStorage.setItem('isAdmin', '0');
+        localStorage.setItem("isLogged", "0");
+        localStorage.setItem("isAdmin", "0");
       }
 
       if (storedUser) {
@@ -33,14 +34,12 @@ export class AuthService {
 
   setUser(user: any) {
     this.user = user;
-    localStorage.setItem('utente', JSON.stringify(user));
+    localStorage.setItem("utente", JSON.stringify(user));
   }
 
   getUser() {
-    console.log('getUser chiamato, this.user =', this.user);
     if (this.user) return this.user;
-    const stored = localStorage.getItem('utente');
-    console.log('Stored user da localStorage:', stored);
+    const stored = localStorage.getItem("utente");
     return stored ? JSON.parse(stored) : null;
   }
 
@@ -50,9 +49,10 @@ export class AuthService {
 
   clearUser() {
     this.user = null;
-    localStorage.removeItem('utente');
+    localStorage.removeItem("utente");
   }
 
+  // 👇 i tuoi metodi esistenti
   isAutentificated() {
     return this.isLogged;
   }
@@ -62,23 +62,24 @@ export class AuthService {
   }
 
   setAuthentificated() {
-    localStorage.setItem('isLogged', '1');
-    localStorage.setItem('isAdmin', '0');
+    localStorage.setItem("isLogged", "1");
+    localStorage.setItem("isAdmin", "0");
     this.isLogged = true;
     this.isAdmin = false;
   }
 
   setAdmin() {
-    localStorage.setItem('isAdmin', '1');
+    localStorage.setItem("isAdmin", "1");
     this.isAdmin = true;
   }
 
   resetAll() {
-    console.log('Logout effettuato');
-    localStorage.setItem('isLogged', '0');
-    localStorage.setItem('isAdmin', '0');
+    console.log("Logout effettuato");
+    localStorage.setItem("isLogged", "0");
+    localStorage.setItem("isAdmin", "0");
     this.isLogged = false;
     this.isAdmin = false;
     this.clearUser();
   }
+  
 }
