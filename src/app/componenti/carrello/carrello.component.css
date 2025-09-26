@@ -4,30 +4,27 @@
   padding: 20px;
 }
 
-/* Lista articoli a sinistra */
 .articoli-lista {
   flex: 2;
-  max-height: 80vh; /* Altezza visibile */
-  overflow-y: auto; /* Scroll verticale */
+  max-height: 80vh;
+  overflow-y: auto;
   padding-right: 10px;
-
-  /* Nascondo scrollbar cross-browser */
-  scrollbar-width: none;        /* Firefox */
-  -ms-overflow-style: none;     /* IE e Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .articoli-lista::-webkit-scrollbar {
-  display: none;                /* Chrome, Safari */
+  display: none;
 }
 
 .articolo-card {
   display: flex;
-  gap: 20px; /* più spazio tra immagine e testo */
+  gap: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 20px;
   background-color: #fff;
-  min-height: 150px; /* rettangolo più grande */
+  min-height: 150px;
 }
 
 .img-container {
@@ -43,10 +40,9 @@
 
 .articolo-info {
   flex-grow: 1;
-  font-size: 24px; /* font più grande nei riquadri articoli */
+  font-size: 24px;
 }
 
-/* --- Attributi articolo --- */
 .articolo-info p {
   margin: 5px 0;
   font-size: 18px;
@@ -58,69 +54,58 @@
   font-weight: 600;
 }
 
-/* Stile per descrizione */
 .articolo-info p:first-of-type {
   font-style: italic;
   color: #555;
 }
 
-/* Prezzo in rosso */
 .articolo-info .prezzo {
-  color: red;
+  color: black;
   font-weight: bold;
-  font-size: 20px; /* leggermente più grande */
+  font-size: 20px;
 }
 
-/* --- Pulsanti quantità --- */
-.articolo-info button {
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin-left: 5px;
+/* Bottoni quantità (+ e -) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: white;
+  color: black;
+  margin-left: 6px;
   cursor: pointer;
-  font-size: 18px;
-  transition: background 0.3s ease;
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.articolo-info button:hover {
-  background: #0056b3;
+.icon-btn i {
+  color: inherit;
 }
 
-/* Pulsanti più e meno distinti */
-.articolo-info button:first-of-type {
-  background: #28a745; /* verde + */
+.icon-btn:hover {
+  transform: scale(1.05);
 }
 
-.articolo-info button:first-of-type:hover {
-  background: #218838;
-}
-
-.articolo-info button:last-of-type {
-  background: #dc3545; /* rosso - */
-}
-
-.articolo-info button:last-of-type:hover {
-  background: #c82333;
-}
-
-/* Rimuovi articolo */
+/* Bottone Rimuovi */
 .articolo-info > button {
   margin-top: 10px;
   padding: 8px 12px;
-  background: #ffc107;
-  color: #212529;
+  background: #000;
+  color: #fff;
   font-weight: bold;
   border-radius: 5px;
   border: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
 }
 
 .articolo-info > button:hover {
-  background: #e0a800;
+  background: #333;
 }
 
-/* Pannello fisso a destra */
 .totale-fisso {
   flex: 1;
   position: sticky;
@@ -130,8 +115,8 @@
   padding: 20px;
   background: #f9f9f9;
   border-radius: 8px;
-  margin-left: 30px; /* spazio extra a sinistra per distanziarla dai riquadri articoli */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* leggero effetto ombra */
+  margin-left: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-size: 22px;
 }
 
@@ -159,45 +144,4 @@
 
 .totale-fisso button:hover {
   background: #218838;
-}
-
-/* Pulsanti icone quantità */
-.icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 8px;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.icon-btn i {
-  color: white;
-}
-
-.icon-btn:hover {
-  transform: scale(1.1);
-}
-
-/* Bottone + (verde) */
-.plus-btn {
-  background: #28a745;
-}
-
-.plus-btn:hover {
-  background: #218838;
-}
-
-/* Bottone - (rosso) */
-.minus-btn {
-  background: #dc3545;
-}
-
-.minus-btn:hover {
-  background: #c82333;
 }
