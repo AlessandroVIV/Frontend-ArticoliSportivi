@@ -2,9 +2,15 @@
   <!-- Header ordine -->
   <div class="ordine-header">
     <h3>Ordine #{{ ordine.id }}</h3>
-    <span class="data-ordine">{{ ordine.dataOrdine | date: 'dd/MM/yyyy, HH:mm' }}</span>
+    <span class="data-ordine">{{
+      ordine.dataOrdine | date : "dd/MM/yyyy, HH:mm"
+    }}</span>
     <p class="indirizzo" *ngIf="ordine.indirizzo">
       Indirizzo: {{ ordine.indirizzo }}
+    </p>
+    <p class="totale-ordine">
+      Totale:
+      {{ calcolaTotale(ordine) | currency : "EUR" : "symbol" : "1.2-2" }}
     </p>
   </div>
 
@@ -12,15 +18,18 @@
   <div class="articoli-container">
     <div *ngFor="let item of ordine.items" class="articolo-item">
       <img
-        [src]="item.articolo.fotoUrl || 'assets/default.png'"
-        alt="{{ item.articolo.nomeArticolo }}"
         class="articolo-foto"
+        [src]="item.articolo.urlImmagine"
+        alt="{{ item.articolo.nomeArticolo }}"
       />
       <div class="articolo-info">
         <p class="nome-articolo">{{ item.articolo.nomeArticolo }}</p>
         <p>Taglia: {{ item.taglia }}</p>
         <p>Quantità: {{ item.quantita }}</p>
-        <p>Prezzo: {{ item.prezzoTotale | currency:'EUR':'symbol':'1.2-2' }}</p>
+        <p>
+          Prezzo:
+          {{ item.prezzoTotale | currency : "EUR" : "symbol" : "1.2-2" }}
+        </p>
       </div>
     </div>
   </div>

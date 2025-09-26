@@ -29,4 +29,10 @@ export class StoricoOrdiniComponent {
       }
     });
   }
+
+  calcolaTotale(ordine: any): number {
+  return ordine.items.reduce((somma: number, item: any) => {
+    return somma + item.prezzoTotale;
+  }, 0);
+}
 }
