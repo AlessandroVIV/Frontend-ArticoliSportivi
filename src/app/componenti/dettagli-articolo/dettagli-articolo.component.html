@@ -1,5 +1,4 @@
 <div class="articolo-container" *ngIf="articolo">
-
   <div class="articolo-img">
     <img [src]="articolo.urlImmagine" alt="{{ articolo.nome }}" />
   </div>
@@ -90,17 +89,41 @@
 
       <p class="msg">{{ msg }}</p>
 
-      <!-- Bottoni -->
+      <!-- Bottoni principali -->
       <div class="button-group">
         <button type="button" class="btn grey" (click)="onAnnul()">
           Indietro
         </button>
-        <button type="submit" class="btn blue" [disabled]="!updateForm.valid">
-          Aggiorna
-        </button>
+        <button type="submit" class="btn blue">Aggiorna</button>
         <button type="button" class="btn red" (click)="onDelete()">
           Elimina
         </button>
+      </div>
+
+      <!-- MODAL DELETE -->
+      <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+        <div class="modal-box" (click)="$event.stopPropagation()">
+          <h2>
+            Vuoi eliminare <span>"{{ articolo.nome }}"</span
+            >?
+          </h2>
+          <p>
+            Questa azione non può essere annullata, sei sicuro di voler
+            procedere?
+          </p>
+
+          <div class="modal-actions">
+            <!-- SOLO chiude il modal -->
+            <button type="button" class="btn-cancel" (click)="closeModal()">
+              Annulla
+            </button>
+
+            <!-- Conferma delete -->
+            <button type="button" class="btn-confirm" (click)="confirmDelete()">
+              Elimina
+            </button>
+          </div>
+        </div>
       </div>
     </form>
   </div>

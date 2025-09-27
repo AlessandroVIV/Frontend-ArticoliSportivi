@@ -13,14 +13,13 @@ import { NotfoundComponent } from './componenti/notfound/notfound.component';
 import { LoginComponent } from './componenti/login/login.component';
 import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
 import { AdminComponent } from './componenti/admin/admin.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { DettagliArticoloComponent } from './componenti/dettagli-articolo/dettagli-articolo.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatCardModule} from '@angular/material/card';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import { DeleteArticoloComponent } from './dialogs/delete-articolo/delete-articolo.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DettagliArticoloUtenteComponent } from './componenti/dettagli-articolo-utente/dettagli-articolo-utente.component';
 import { GestisciMarcaComponent } from './componenti/gestisci-marca/gestisci-marca.component';
@@ -40,14 +39,13 @@ import { StoricoOrdiniComponent } from './componenti/storico-ordini/storico-ordi
     RegistrazioneComponent,
     AdminComponent,
     DettagliArticoloComponent,
-    DeleteArticoloComponent,
     DettagliArticoloUtenteComponent,
     GestisciMarcaComponent,
     GestisciCategoriaComponent,
     CarrelloComponent,
     CheckoutComponent,
     RingraziamentiComponent,
-    StoricoOrdiniComponent
+    StoricoOrdiniComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +63,6 @@ import { StoricoOrdiniComponent } from './componenti/storico-ordini/storico-ordi
     MatButtonModule,
     ReactiveFormsModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

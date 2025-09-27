@@ -1,9 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { DeleteArticoloComponent } from '../../dialogs/delete-articolo/delete-articolo.component';
 
 @Component({
   selector: 'app-dettagli-articolo',
@@ -17,9 +15,10 @@ export class DettagliArticoloComponent {
   categorie: any[] = [];
   taglieIndumento: any[] = [];
   id!: number;
-  readonly dialog = inject(MatDialog);
   articolo: any;
   msg = '';
+
+  showModal = false; // unico modal per delete
 
   updateForm: FormGroup = new FormGroup({
     nome: new FormControl(),
@@ -56,22 +55,22 @@ export class DettagliArticoloComponent {
         categoria: this.articolo.categoria?.nome,
         tagliaScarpe: this.articolo.tagliaScarpe,
         tagliaIndumento: this.articolo.tagliaIndumento,
-        urlImmagine: this.articolo.urlImmagine
+        urlImmagine: this.articolo.urlImmagine,
       });
     });
 
     this.backendService
       .getAllGeneri()
-      .subscribe((data: any) => (this.generi = data.dati));
+      .subscribe((d: any) => (this.generi = d.dati));
     this.backendService
       .getAllMarche()
-      .subscribe((data: any) => (this.marche = data.dati));
+      .subscribe((d: any) => (this.marche = d.dati));
     this.backendService
       .getAllCategorie()
-      .subscribe((data: any) => (this.categorie = data.dati));
+      .subscribe((d: any) => (this.categorie = d.dati));
     this.backendService
       .getAllTaglieIndumento()
-      .subscribe((data: any) => (this.taglieIndumento = data.dati));
+      .subscribe((d: any) => (this.taglieIndumento = d.dati));
   }
 
   ngOnDestroy() {
@@ -79,56 +78,28 @@ export class DettagliArticoloComponent {
   }
 
   onSubmit() {
-  const updateBody: any = {
-    id: this.id,
-    nome: this.updateForm.value.nome,
-    descrizione: this.updateForm.value.descrizione,
-    prezzo: this.updateForm.value.prezzo,
-    genere: this.updateForm.value.genere,
-    marca: this.updateForm.value.marca,
-    categoria: this.updateForm.value.categoria,
-    urlImmagine: this.updateForm.value.urlImmagine,
-  };
+    const updateBody: any = {
+      id: this.id,
+      nome: this.updateForm.value.nome,
+      descrizione: this.updateForm.value.descrizione,
+      prezzo: this.updateForm.value.prezzo,
+      genere: this.updateForm.value.genere,
+      marca: this.updateForm.value.marca,
+      categoria: this.updateForm.value.categoria,
+      urlImmagine: this.updateForm.value.urlImmagine,
+    };
 
-  if (this.articolo?.tagliaScarpe !== null) {
-    updateBody.tagliaScarpe = this.updateForm.value.tagliaScarpe;
-  }
-
-  if (this.articolo?.tagliaIndumento !== null) {
-    updateBody.tagliaIndumento = this.updateForm.value.tagliaIndumento;
-  }
-
-  console.log('UpdateBody inviato:', updateBody);
-
-  this.backendService.updateArticolo(updateBody).subscribe((resp: any) => {
-    if (resp.rc) {
-      this.routing.navigate(['/admin']).then(() => window.location.reload());
-    } else {
-      this.msg = resp.msg;
+    if (this.articolo?.tagliaScarpe !== null) {
+      updateBody.tagliaScarpe = this.updateForm.value.tagliaScarpe;
     }
-  });
-}
 
+    if (this.articolo?.tagliaIndumento !== null) {
+      updateBody.tagliaIndumento = this.updateForm.value.tagliaIndumento;
+    }
 
-  onDelete() {
-    console.log('onDelete');
-    const enterAnimationDuration: string = '500ms';
-    const exitAnimationDuration: string = '500ms';
+    console.log('UpdateBody inviato:', updateBody);
 
-    const dialogRef = this.dialog.open(DeleteArticoloComponent, {
-      width: '350px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-      data: { articolo: this.articolo },
-      restoreFocus: false,
-    });
-    dialogRef.afterClosed().subscribe((resp) => {
-      if (resp == 'si') this.onDeleteAction();
-    });
-  }
-
-  onDeleteAction() {
-    this.backendService.removeArticolo(this.id).subscribe((resp: any) => {
+    this.backendService.updateArticolo(updateBody).subscribe((resp: any) => {
       if (resp.rc) {
         this.routing.navigate(['/admin']).then(() => window.location.reload());
       } else {
@@ -136,6 +107,29 @@ export class DettagliArticoloComponent {
       }
     });
   }
+
+  // apre modal
+  onDelete() {
+    this.showModal = true;
+  }
+
+  // chiude modal
+  closeModal() {
+    this.showModal = false;
+  }
+
+  // conferma ed elimina
+  confirmDelete() {
+    this.backendService.removeArticolo(this.id).subscribe((resp: any) => {
+      if (resp.rc) {
+        this.routing.navigate(['/admin']).then(() => window.location.reload());
+      } else {
+        this.msg = resp.msg;
+      }
+    });
+    this.closeModal();
+  }
+
   onAnnul() {
     this.routing.navigate(['/admin']).then(() => {
       window.location.reload();
