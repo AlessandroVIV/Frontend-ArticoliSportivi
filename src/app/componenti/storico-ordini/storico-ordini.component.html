@@ -1,3 +1,6 @@
+<h1 class="titolo">Storico Ordini</h1>
+<p *ngIf="ordini.length === 0">Nessun ordine effettuato</p>
+
 <div *ngFor="let ordine of ordini" class="ordine-card">
   <!-- Header ordine -->
   <div class="ordine-header">

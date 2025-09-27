@@ -3,25 +3,68 @@
 <div class="checkout-container">
   <!-- FORM DI CHECKOUT -->
   <div class="checkout-form">
-    <form (ngSubmit)="confermaOrdine()">
+    <form #ordineForm="ngForm" (ngSubmit)="confermaOrdine()" novalidate>
       <div>
         <label>Nome</label>
-        <input type="text" [(ngModel)]="ordine.nome" name="nome" required />
-      </div>
-      <div>
-        <label>Cognome</label>
-        <input type="text" [(ngModel)]="ordine.cognome" name="cognome" required />
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" [(ngModel)]="ordine.email" name="email" required />
-      </div>
-      <div>
-        <label>Indirizzo</label>
-        <input type="text" [(ngModel)]="ordine.indirizzo" name="indirizzo" required />
+        <input
+          type="text"
+          [(ngModel)]="ordine.nome"
+          name="nome"
+          required
+          #nome="ngModel"
+        />
+        <div *ngIf="nome.invalid && nome.touched" class="errore">
+          Il nome è obbligatorio
+        </div>
       </div>
 
-      <button type="submit">Conferma Ordine</button>
+      <div>
+        <label>Cognome</label>
+        <input
+          type="text"
+          [(ngModel)]="ordine.cognome"
+          name="cognome"
+          required
+          #cognome="ngModel"
+        />
+        <div *ngIf="cognome.invalid && cognome.touched" class="errore">
+          Il cognome è obbligatorio
+        </div>
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input
+          type="email"
+          [(ngModel)]="ordine.email"
+          name="email"
+          required
+          email
+          #email="ngModel"
+        />
+        <div *ngIf="email.invalid && email.touched" class="errore">
+          Inserisci una email valida
+        </div>
+      </div>
+
+      <div>
+        <label>Indirizzo</label>
+        <input
+          type="text"
+          [(ngModel)]="ordine.indirizzo"
+          name="indirizzo"
+          required
+          #indirizzo="ngModel"
+        />
+        <div *ngIf="indirizzo.invalid" class="errore">
+          L’indirizzo è obbligatorio
+        </div>
+      </div>
+
+      <!-- il bottone viene disabilitato se il form è invalido -->
+      <button type="submit" [disabled]="ordineForm.invalid">
+        Conferma Ordine
+      </button>
     </form>
   </div>
 
@@ -38,3 +81,6 @@
     </div>
   </div>
 </div>
+
+<p>Form valido? {{ ordineForm.valid }}</p>
+<p>Form invalido? {{ ordineForm.invalid }}</p>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { CarrelloService } from '../../services/carrello.service';
 
 @Component({
   selector: 'app-checkout',
@@ -24,8 +25,9 @@ export class CheckoutComponent {
   constructor(
     private backend: BackendService,
     private router: Router,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService, 
+    private carrelloService: CarrelloService
+  ) { }
 
   ngOnInit() {
     document.body.classList.add('sfondo-checkout');
@@ -64,17 +66,18 @@ export class CheckoutComponent {
       utenteId: this.utente.id,
     };
 
-this.backend.createOrdine(ordinePayload).subscribe({
-  next: (resp) => {
-    console.log('Ordine creato con successo', resp);
+    this.backend.createOrdine(ordinePayload).subscribe({
+      next: (resp) => {
+        console.log('Ordine creato con successo', resp);
 
-    // ✅ mostra ringraziamenti SOLO qui
-    this.router.navigateByUrl('/ringraziamenti', {
-      state: { ordineOk: true },
+        // ✅ mostra ringraziamenti SOLO qui
+        this.router.navigateByUrl('/ringraziamenti', {
+          state: { ordineOk: true },
+        });
+      },
+      error: (err) => console.error(err),
     });
-  },
-  error: (err) => console.error(err),
-});
 
+    this.carrelloService.svuotaCarrello();
   }
 }

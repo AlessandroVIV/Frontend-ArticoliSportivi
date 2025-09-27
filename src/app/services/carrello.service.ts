@@ -14,7 +14,7 @@ export class CarrelloService {
 
   aggiornaItems(items: any[]) {
     this.itemsSubject.next(items);
-    localStorage.setItem('carrello', JSON.stringify(items)); // <-- aggiungi questo
+    localStorage.setItem('carrello', JSON.stringify(items));
   }
 
   getTotaleArticoli(): number {
@@ -26,4 +26,8 @@ export class CarrelloService {
   getItems(): any[] {
     return this.itemsSubject.getValue();
   }
+
+  svuotaCarrello() {
+  this.aggiornaItems([]);
+}
 }

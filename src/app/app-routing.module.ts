@@ -17,7 +17,6 @@ import { userGuard } from './auth/user.guard';
 import { CheckoutComponent } from './componenti/checkout/checkout.component';
 import { RingraziamentiComponent } from './componenti/ringraziamenti/ringraziamenti.component';
 import { StoricoOrdiniComponent } from './componenti/storico-ordini/storico-ordini.component';
-import { RingraziamentiGuard } from './auth/ringraziamenti.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
