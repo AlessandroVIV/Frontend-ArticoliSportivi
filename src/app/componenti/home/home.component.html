@@ -16,7 +16,6 @@
     <button class="carousel-btn next" (click)="nextSlide()">
       <i class="fas fa-chevron-right"></i>
     </button>
-    
   </div>
 
   <!-- Categorie -->
@@ -42,3 +41,165 @@
     </div>
   </section>
 </div>
+
+<h2 class="titolo-slider">Scopri i nostri partner</h2>
+
+<div
+  *ngFor="let marca of articoliPerMarca | keyvalue"
+  class="slider-wrapper"
+  [ngClass]="marca.key.toLowerCase()"
+>
+  <h3 class="marca-titolo">{{ marca.key }}</h3>
+
+  <swiper-container
+    effect="coverflow"
+    grab-cursor="true"
+    centered-slides="true"
+    slides-per-view="3"
+    space-between="30"
+    pagination="false"
+    autoplay-delay="3000"
+    coverflow-effect-rotate="20"
+    coverflow-effect-stretch="0"
+    coverflow-effect-depth="250"
+    coverflow-effect-modifier="1.2"
+    coverflow-effect-slide-shadows="false"
+    class="mySwiper"
+  >
+    <swiper-slide *ngFor="let articolo of marca.value">
+      <a
+        [routerLink]="['/dettagli-articolo-utente', articolo.id]"
+        class="articolo-card-3d"
+      >
+        <div class="img-box">
+          <img [src]="articolo.urlImmagine" [alt]="articolo.nomeArticolo" />
+        </div>
+        <h5 class="nome-articolo">{{ articolo.nomeArticolo }}</h5>
+        <h4>{{ articolo.descrizione }}</h4>
+        <p class="prezzo">{{ articolo.prezzo | currency : "EUR" }}</p>
+      </a>
+    </swiper-slide>
+  </swiper-container>
+</div>
+
+<div class="banner-fullwidth">
+  <img src="/images/bannerSconto.png" alt="Sconto" />
+</div>
+
+<div class="banner-fullwidth">
+  <img src="/images/sfondoFooter.jpg" alt="sfondo del footer" />
+</div>
+
+<div class="info-box">
+  <h1>CodeRunner Shop: IL MEGLIO DELLO SPORT</h1>
+  <h2>SCARPE, ABBIGLIAMENTO E ACCESSORI PER SPORT E TEMPO LIBERO.</h2>
+
+  <p>
+    Su CodeRunner Shop trovi tutto il necessario per praticare al meglio il tuo
+    <strong>sport</strong> preferito. Avrai sempre a disposizione gli ultimi
+    modelli di scarpe, abbigliamento e accessori pensati per la tua attività
+    fisica o per la vita di tutti i giorni.
+  </p>
+
+  <p>
+    Rinnova il tuo guardaroba con le ultime collezioni da
+    <a href="#">uomo</a> e <a href="#">donna</a> di abbigliamento urban e
+    sneakers delle migliori marche. Su CodeRunner Shop trovi solo i
+    <strong>top brand</strong> come: <a href="#">Nike</a>,
+    <a href="#">Adidas</a>, <a href="#">The North Face</a>,
+    <a href="#">Asics</a>, <a href="#">Birkenstock</a>, <a href="#">Garmin</a> e
+    tanti altri!
+  </p>
+
+  <p>
+    Per chi ama il <a href="#">running</a>, un’ampia selezione di abbigliamento
+    e scarpe da corsa. Per chi scende in campo, CodeRunner Shop offre scarpe
+    <a href="#">calcio</a> e divise ufficiali da calcio delle principali squadre
+    calcistiche. Mentre, quando sali in vetta, indossa l'abbigliamento e le
+    scarpe da <a href="#">outdoor</a>. Mantieniti in forma con la linea
+    <a href="#">fitness</a> dedicata agli appassionati di palestra. Per gli
+    amanti del <a href="#">tennis</a>, un’ampia scelta di racchette e palline,
+    per dare il meglio sul campo.
+  </p>
+
+  <p>
+    Tanti altri sport ti aspettano su CodeRunner Shop:
+    <a href="#">ciclismo</a>, <a href="#">basket</a>, <a href="#">yoga</a>
+    e molto altro ancora!
+  </p>
+
+  <p>
+    Il design e la qualità dei capi è assicurata da brand come
+    <a href="#">Puma</a>, <a href="#">Fila</a>, <a href="#">Tommy Jeans</a>,
+    <a href="#">Ellesse</a>, abbinabili a scarpe must have di
+    <a href="#">Nike</a>, <a href="#">adidas Originals</a>,
+    <a href="#">New Balance</a> e <a href="#">Saucony</a>.
+  </p>
+
+  <p>
+    Sappiamo quanto è importante praticare sport sin da bambino: CodeRunner Shop
+    propone scarpe bambino e abbigliamento comodo per sport, scuola e tempo
+    libero.
+  </p>
+</div>
+
+<footer class="footer-home">
+  <div class="footer-container">
+    <!-- La nostra sede -->
+    <div class="footer-section sede">
+      <h3>LA NOSTRA SEDE</h3>
+      <p>CodeRunner S.p.A.<br />Via del Poggio Laurentino, 66 – 00144 Roma</p>
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5946.02547369072!2d12.474581176774374!3d41.828023871247346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13258b02337f4033%3A0x2a72695378bd6337!2sVia%20del%20Poggio%20Laurentino%2C%2066%2C%2000144%20Roma%20RM!5e0!3m2!1sit!2sit!4v1759077428938!5m2!1sit!2sit"
+          width="100%"
+          height="200"
+          style="border: 0; border-radius: 8px"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="footer-section">
+      <h3>CODERUNNER SHOP</h3>
+      <ul>
+        <li><a href="#">Sostenibilità</a></li>
+        <li><a href="#">Negozi</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Eventi</a></li>
+        <li><a href="#">Lavora con noi</a></li>
+        <li><a href="#">CodeRunner Group</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>AIUTO</h3>
+      <ul>
+        <li><a href="#">Servizio clienti</a></li>
+        <li><a href="#">Domande frequenti</a></li>
+        <li><a href="#">Come acquistare online</a></li>
+        <li><a href="#">Termini e condizioni</a></li>
+        <li><a href="#">Stato dell'ordine</a></li>
+        <li><a href="#">Reso</a></li>
+        <li><a href="#">Acquisti sicuri: best practices</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <p>
+      <a href="#">Privacy Policy</a> | <a href="#">Cookies</a> |
+      <a href="#">Preferenze Cookie</a> |
+      <a href="#">Segnalazioni illeciti</a> |
+      <a href="#">Dichiarazione di accessibilità</a>
+    </p>
+    <p>
+      CodeRunner S.p.A. Via del Poggio Laurentino, 66 – 00144 Roma C.F.
+      284734954 – Capitale Sociale: € 28.353.142,00 i.v.
+    </p>
+  </div>
+</footer>

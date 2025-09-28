@@ -1,33 +1,51 @@
-import { Component, OnInit, OnDestroy, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-home',
   standalone: false,
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+  articoli: any[] = [];
+  articoliPerMarca: { [marca: string]: any[] } = {};
+  marcheVisibili = ['Reebok', 'Puma', 'Nike'];
+
+  constructor(private el: ElementRef, private service: BackendService) {}
 
   banners = [
     { image: '/images/banner1.png', title: 'Nuova collezione running' },
     { image: '/images/banner2.png', title: 'Attrezzatura palestra -30%' },
-    { image: '/images/banner3.png', title: 'Sport outdoor' }
+    { image: '/images/banner3.png', title: 'Sport outdoor' },
   ];
 
   categories = [
     { name: 'Running', image: '/images/running.png' },
     { name: 'Calcio', image: '/images/calcio.png' },
     { name: 'Palestra', image: '/images/palestra.png' },
-    { name: 'Outdoor', image: '/images/outdoor.png' }
+    { name: 'Outdoor', image: '/images/outdoor.png' },
   ];
 
   currentIndex = 0;
   interval: any;
 
-  constructor(private el: ElementRef) {}
-
   ngOnInit(): void {
-    this.startAutoSlide();
+    this.service.getArticoli().subscribe((resp: any) => {
+      this.articoli = resp.dati;
+
+      this.marcheVisibili.forEach((marca) => {
+        this.articoliPerMarca[marca] = this.articoli.filter(
+          (a) => a.marca?.toLowerCase() === marca.toLowerCase()
+        );
+      });
+    });
   }
 
   ngAfterViewInit(): void {
@@ -47,7 +65,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.banners.length) % this.banners.length;
+    this.currentIndex =
+      (this.currentIndex - 1 + this.banners.length) % this.banners.length;
   }
 
   private setAspectRatio() {
@@ -58,7 +77,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const carouselEl = this.el.nativeElement.querySelector('.carousel');
       if (carouselEl) {
         carouselEl.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
-        console.log(`Aspect ratio impostato a ${ratio.toFixed(2)} (${img.naturalWidth}:${img.naturalHeight})`);
+        console.log(
+          `Aspect ratio impostato a ${ratio.toFixed(2)} (${img.naturalWidth}:${
+            img.naturalHeight
+          })`
+        );
       }
     };
   }
