@@ -17,6 +17,8 @@ export class StoricoOrdiniComponent {
   ) {}
 
   ngOnInit(): void {
+    document.body.classList.add('sfondo-ordini');
+
     const utenteId = this.auth.getUser().id;
 
     this.backend.getOrdiniByUtente(utenteId).subscribe({
@@ -28,6 +30,10 @@ export class StoricoOrdiniComponent {
         console.error("Errore recupero ordini:", err);
       }
     });
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('sfondo-ordini');
   }
 
   calcolaTotale(ordine: any): number {

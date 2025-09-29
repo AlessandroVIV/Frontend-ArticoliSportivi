@@ -5,6 +5,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CarrelloService {
+
+  constructor() {
+    const salvati = JSON.parse(localStorage.getItem('carrello') || '[]');
+    this.itemsSubject = new BehaviorSubject<any[]>(salvati);
+    this.items$ = this.itemsSubject.asObservable();
+  }
+
   private itemsSubject = new BehaviorSubject<any[]>([]);
   items$ = this.itemsSubject.asObservable();
 
@@ -28,6 +35,6 @@ export class CarrelloService {
   }
 
   svuotaCarrello() {
-  this.aggiornaItems([]);
-}
+    this.aggiornaItems([]);
+  }
 }
