@@ -56,8 +56,9 @@
           required
           #indirizzo="ngModel"
         />
-        <div *ngIf="indirizzo.invalid" class="errore">
-          L’indirizzo è obbligatorio
+        <div *ngIf="indirizzo.invalid && indirizzo.touched" class="errore">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          Per completare l’ordine inserisci l’indirizzo di spedizione
         </div>
       </div>
 

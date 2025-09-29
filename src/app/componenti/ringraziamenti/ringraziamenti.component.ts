@@ -9,18 +9,18 @@ declare var lottie: any;
   styleUrl: './ringraziamenti.component.css',
 })
 export class RingraziamentiComponent {
-
-    constructor(private router: Router) {
+  constructor(private router: Router) {
     const nav = this.router.getCurrentNavigation();
     const ordineOk = nav?.extras.state?.['ordineOk'];
 
     if (!ordineOk) {
-      // 🚫 accesso diretto bloccato
       this.router.navigate(['/']);
     }
   }
 
   ngOnInit(): void {
+    document.body.classList.add('no-scroll');
+
     lottie.loadAnimation({
       container: document.getElementById('animazione-pacco') as Element,
       renderer: 'svg',
@@ -30,5 +30,7 @@ export class RingraziamentiComponent {
     });
   }
 
-  
+  ngOnDestroy(): void {
+    document.body.classList.remove('no-scroll');
+  }
 }

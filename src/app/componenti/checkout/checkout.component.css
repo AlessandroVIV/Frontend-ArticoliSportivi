@@ -74,6 +74,14 @@
   border-radius: 12px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  /* Nasconde la scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge */
+}
+
+.checkout-carrello::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .checkout-carrello h3 {
@@ -111,9 +119,9 @@
 }
 
 .checkout-form button:disabled {
-  background: #cccccc;   /* colore grigio */
-  cursor: not-allowed;   /* blocca il cursore */
-  opacity: 0.7;          /* effetto visivo */
+  background: #cccccc; /* colore grigio */
+  cursor: not-allowed; /* blocca il cursore */
+  opacity: 0.7; /* effetto visivo */
 }
 
 .totale-checkout {
@@ -128,5 +136,24 @@
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.errore {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #d9534f; /* rosso elegante */
+  background: rgba(217, 83, 79, 0.1); /* sfondo rosso chiaro */
+  border: 1px solid #d9534f;
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.errore i {
+  color: #d9534f;
+  font-size: 1.1rem;
 }

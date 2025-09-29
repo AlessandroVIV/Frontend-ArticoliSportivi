@@ -36,7 +36,6 @@
         <label for="tagliaIndumento">Taglia Indumento</label>
         <select id="tagliaIndumento" formControlName="taglia">
           <option value="" disabled selected>Seleziona una taglia</option>
-          <!-- 👈 default -->
           <option *ngFor="let t of taglieIndumento" [value]="t.nome">
             {{ t.nome }}
           </option>
@@ -47,6 +46,13 @@
         Aggiungi al carrello
       </button>
     </form>
-    <p class="msg">{{ msg }}</p>
   </div>
+</div>
+
+<div
+  *ngIf="showMessage"
+  class="add-message"
+  [ngClass]="[messageType, fadingOut ? 'fade-out' : 'fade-in']"
+>
+  {{ messageText }}
 </div>

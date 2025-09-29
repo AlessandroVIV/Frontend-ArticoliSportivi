@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { CarrelloService } from '../../services/carrello.service';
 
@@ -14,7 +9,7 @@ import { CarrelloService } from '../../services/carrello.service';
   selector: 'app-dettagli-articolo-utente',
   standalone: false,
   templateUrl: './dettagli-articolo-utente.component.html',
-  styleUrl: './dettagli-articolo-utente.component.css',
+  styleUrls: ['./dettagli-articolo-utente.component.css'],
 })
 export class DettagliArticoloUtenteComponent {
   articolo: any;
@@ -22,7 +17,10 @@ export class DettagliArticoloUtenteComponent {
 
   formTaglia!: FormGroup;
 
-  msg = '';
+  showMessage = false;
+  fadingOut = false; // 👈 per gestire il fade-out
+  messageText = '';
+  messageType: 'success' | 'error' = 'success';
 
   constructor(
     private route: ActivatedRoute,
@@ -44,14 +42,12 @@ export class DettagliArticoloUtenteComponent {
             .getAllTaglieIndumento()
             .subscribe((t: any) => (this.taglieIndumento = t.dati));
 
-          // 👇 Form per indumenti (solo required)
           this.formTaglia = this.fb.group({
             taglia: ['', Validators.required],
           });
         }
 
         if (this.articolo?.tagliaScarpe !== null) {
-          // 👇 Form per scarpe (required + range)
           this.formTaglia = this.fb.group({
             taglia: [
               '',
@@ -67,15 +63,39 @@ export class DettagliArticoloUtenteComponent {
     document.body.classList.remove('sfondo-dettagli-articolo');
   }
 
+  private showAnimatedMessage(text: string, type: 'success' | 'error') {
+    this.messageText = text;
+    this.messageType = type;
+    this.showMessage = true;
+    this.fadingOut = false;
+
+    // dopo 2.5s parte il fade-out
+    setTimeout(() => {
+      this.fadingOut = true;
+    }, 2500);
+
+    // dopo 3.2s rimuovo il messaggio
+    setTimeout(() => {
+      this.showMessage = false;
+      this.messageText = '';
+    }, 3200);
+  }
+
   onConferma(): void {
     const utenteId = this.auth.getUserId();
     if (!utenteId) {
-      this.msg = 'Effettua il login per aggiungere al carrello!';
+      this.showAnimatedMessage(
+        'Effettua il login per aggiungere al carrello!',
+        'error'
+      );
       return;
     }
 
     if (this.formTaglia.invalid) {
-      this.msg = 'Inserisci una taglia valida (tra 30 e 50)!';
+      this.showAnimatedMessage(
+        'Inserisci una taglia valida (tra 30 e 50)!',
+        'error'
+      );
       return;
     }
 
@@ -85,8 +105,6 @@ export class DettagliArticoloUtenteComponent {
       .aggiungiAlCarrello(utenteId, this.articolo.id, tagliaSelezionata)
       .subscribe({
         next: (resp: any) => {
-          this.msg = 'Articolo aggiunto al carrello!';
-
           const items = this.carrelloService.getItems();
           const existing = items.find(
             (i) => i.articolo.id === this.articolo.id
@@ -103,8 +121,10 @@ export class DettagliArticoloUtenteComponent {
           }
 
           this.carrelloService.aggiornaItems([...items]);
+          this.showAnimatedMessage('Articolo aggiunto al carrello!', 'success');
         },
-        error: () => (this.msg = 'Errore aggiunta carrello'),
+        error: () =>
+          this.showAnimatedMessage('Errore aggiunta carrello', 'error'),
       });
   }
 }
