@@ -82,5 +82,7 @@
   </div>
 </div>
 
-<p>Form valido? {{ ordineForm.valid }}</p>
-<p>Form invalido? {{ ordineForm.invalid }}</p>
+<div class="totale-checkout">
+  <strong>Totale: </strong
+  >{{ totaleCarrello | currency : "EUR" : "symbol" : "1.2-2" }}
+</div>

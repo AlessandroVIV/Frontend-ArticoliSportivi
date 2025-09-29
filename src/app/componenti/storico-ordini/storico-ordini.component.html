@@ -1,5 +1,16 @@
 <h1 class="titolo">Storico Ordini</h1>
-<p *ngIf="ordini.length === 0">Nessun ordine effettuato</p>
+
+<ng-container *ngIf="ordini.length === 0">
+  <div class="ordine-vuoto">
+    <p class="no-ordini">
+      Nessun ordine effettuato...<br />
+      Vai a fare il tuo primo ordine!
+    </p>
+    <button routerLink="/articoli" class="btn-torna">
+      Vai al catalogo degli articoli
+    </button>
+  </div>
+</ng-container>
 
 <div *ngFor="let ordine of ordini" class="ordine-card">
   <!-- Header ordine -->
