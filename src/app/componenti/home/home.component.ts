@@ -16,7 +16,7 @@ import { BackendService } from '../../services/backend.service';
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   articoli: any[] = [];
   articoliPerMarca: { [marca: string]: any[] } = {};
-  marcheVisibili = ['Reebok', 'Puma', 'Nike'];
+  marcheVisibili = ['Mizuno', 'Puma', 'Nike'];
 
   constructor(private el: ElementRef, private service: BackendService) {}
 

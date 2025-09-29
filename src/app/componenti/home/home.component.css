@@ -229,8 +229,8 @@ swiper-slide {
     linear-gradient(to bottom, #f8f8f8, #ffffff 40%, #ffffff 60%, #f8f8f8);
 }
 
-.slider-wrapper.reebok {
-  background: url("/images/sfondoReebok.jpg") center/cover no-repeat,
+.slider-wrapper.mizuno {
+  background: url("/images/sfondoMizuno.jpg") center/cover no-repeat,
     linear-gradient(to bottom, #f8f8f8, #ffffff 40%, #ffffff 60%, #f8f8f8);
 }
 
