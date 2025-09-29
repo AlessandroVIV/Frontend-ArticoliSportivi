@@ -16,15 +16,27 @@
       (ngSubmit)="onConferma()"
       class="taglia-form"
     >
-      <div class="form-field" *ngIf="articolo?.tagliaScarpe !== null">
+      <!-- Scarpe -->
+      <div
+        class="form-field"
+        *ngIf="
+          articolo?.categoria?.nome?.toLowerCase() === 'scarpe' ||
+          articolo?.categoria?.nome?.toLowerCase() === 'running'
+        "
+      >
         <label for="tagliaScarpe">Taglia Scarpa</label>
-        <input id="tagliaScarpe" type="number" formControlName="taglia" />
-
+        <input
+          id="tagliaScarpe"
+          type="number"
+          formControlName="taglia"
+          min="30"
+          max="50"
+        />
         <small
           class="error"
           *ngIf="
-            formTaglia.get('taglia')?.hasError('min') ||
-            formTaglia.get('taglia')?.hasError('max')
+            formTaglia.get('taglia')?.invalid &&
+            formTaglia.get('taglia')?.touched
           "
         >
           La taglia deve essere tra 30 e 50
@@ -32,7 +44,13 @@
       </div>
 
       <!-- Indumenti -->
-      <div class="form-field" *ngIf="articolo?.tagliaIndumento !== null">
+      <div
+        class="form-field"
+        *ngIf="
+          articolo?.tagliaIndumento !== null &&
+          articolo?.tagliaIndumento !== undefined
+        "
+      >
         <label for="tagliaIndumento">Taglia Indumento</label>
         <select id="tagliaIndumento" formControlName="taglia">
           <option value="" disabled selected>Seleziona una taglia</option>

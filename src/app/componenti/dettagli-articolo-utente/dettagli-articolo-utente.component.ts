@@ -33,26 +33,30 @@ export class DettagliArticoloUtenteComponent {
   ngOnInit(): void {
     document.body.classList.add('sfondo-dettagli-articolo');
     const id = Number(this.route.snapshot.paramMap.get('id'));
+
     if (id) {
       this.service.getArticoloById(id).subscribe((resp: any) => {
         this.articolo = resp.dati ?? resp;
 
-        if (this.articolo?.tagliaIndumento !== null) {
+        // 🔹 Se categoria è "scarpa" → input number
+        if (
+          this.articolo?.categoria?.nome?.toLowerCase() === 'running' ||
+          this.articolo?.categoria?.nome?.toLowerCase() === 'scarpe'
+        ) {
+          this.formTaglia = this.fb.group({
+            taglia: [
+              '',
+              [Validators.required, Validators.min(30), Validators.max(50)],
+            ],
+          });
+        } else {
+          // 🔹 Caso indumento
           this.service
             .getAllTaglieIndumento()
             .subscribe((t: any) => (this.taglieIndumento = t.dati));
 
           this.formTaglia = this.fb.group({
             taglia: ['', Validators.required],
-          });
-        }
-
-        if (this.articolo?.tagliaScarpe !== null) {
-          this.formTaglia = this.fb.group({
-            taglia: [
-              '',
-              [Validators.required, Validators.min(30), Validators.max(50)],
-            ],
           });
         }
       });
