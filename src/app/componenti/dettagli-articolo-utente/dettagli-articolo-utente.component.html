@@ -17,11 +17,20 @@
       (ngSubmit)="onConferma()"
       class="taglia-form"
     >
+      <!-- 👟 Scarpe (tutte le categorie sportive) -->
       <div
         class="form-field"
         *ngIf="
-          articolo?.categoria?.nome?.toLowerCase() === 'scarpe' ||
-          articolo?.categoria?.nome?.toLowerCase() === 'running'
+          [
+            'running',
+            'calcio',
+            'outdoor',
+            'tennis',
+            'fitness',
+            'altri sport',
+            'basket',
+            'nuoto'
+          ].includes(articolo?.categoria?.nome?.toLowerCase()?.trim())
         "
       >
         <label for="tagliaScarpe">Taglia Scarpa</label>
@@ -43,6 +52,7 @@
         </small>
       </div>
 
+      <!-- 👕 Indumenti -->
       <div
         class="form-field"
         *ngIf="

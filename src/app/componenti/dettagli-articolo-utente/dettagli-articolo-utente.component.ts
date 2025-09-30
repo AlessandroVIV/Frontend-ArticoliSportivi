@@ -38,9 +38,20 @@ export class DettagliArticoloUtenteComponent {
       this.service.getArticoloById(id).subscribe((resp: any) => {
         this.articolo = resp.dati ?? resp;
 
+        const categoriaNome =
+          this.articolo?.categoria?.nome?.toLowerCase?.().trim() || '';
+
         if (
-          this.articolo?.categoria?.nome?.toLowerCase() === 'running' ||
-          this.articolo?.categoria?.nome?.toLowerCase() === 'scarpe'
+          [
+            'running',
+            'calcio',
+            'outdoor',
+            'tennis',
+            'fitness',
+            'altri sport',
+            'basket',
+            'nuoto',
+          ].includes(categoriaNome)
         ) {
           this.formTaglia = this.fb.group({
             taglia: [
