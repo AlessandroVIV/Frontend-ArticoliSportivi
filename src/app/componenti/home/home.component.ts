@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   articoli: any[] = [];
   articoliPerMarca: { [marca: string]: any[] } = {};
   marcheVisibili = ['Mizuno', 'Puma', 'Nike'];
+  articoliArena: any[] = [];
 
   constructor(private el: ElementRef, private service: BackendService) {}
 
@@ -40,11 +41,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.service.getArticoli().subscribe((resp: any) => {
       this.articoli = resp.dati;
 
+      // Normali marche
       this.marcheVisibili.forEach((marca) => {
         this.articoliPerMarca[marca] = this.articoli.filter(
           (a) => a.marca?.toLowerCase() === marca.toLowerCase()
         );
       });
+
+      // Arena separata
+      this.articoliArena = this.articoli.filter(
+        (a) => a.marca?.toLowerCase() === 'arena'
+      );
     });
   }
 

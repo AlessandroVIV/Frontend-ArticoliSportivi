@@ -82,12 +82,57 @@
   </swiper-container>
 </div>
 
+<!-- Banner sconto -->
 <div class="banner-fullwidth">
   <img src="/images/bannerSconto.png" alt="Sconto" />
 </div>
 
-<div class="banner-fullwidth">
+<!-- Sezione Arena -->
+<div class="slider-wrapper arena">
+  <h3 class="marca-titolo-nuoto">Sezione per il nuoto - Arena</h3>
+
+  <swiper-container
+    slides-per-view="4"
+    space-between="20"
+    autoplay-delay="2500"
+    pagination="false"
+    navigation="true"
+    class="arena-swiper"
+  >
+    <swiper-slide *ngFor="let articolo of articoliArena">
+      <a
+        [routerLink]="['/dettagli-articolo-utente', articolo.id]"
+        class="articolo-card"
+      >
+        <div class="img-box">
+          <img [src]="articolo.urlImmagine" [alt]="articolo.nomeArticolo" />
+        </div>
+        <h5 class="nome-articolo">{{ articolo.nomeArticolo }}</h5>
+        <p>{{ articolo.descrizione }}</p>
+        <p class="prezzo">{{ articolo.prezzo | currency : "EUR" }}</p>
+      </a>
+    </swiper-slide>
+  </swiper-container>
+</div>
+
+<!-- Banner footer con overlay -->
+<div class="banner-fullwidth-footer">
   <img src="/images/sfondoFooter.jpg" alt="sfondo del footer" />
+
+  <!-- OVERLAY TESTO -->
+  <div class="footer-hero">
+    <div class="scrim"></div>
+    <div class="footer-hero-content">
+      <h1>Collezione Autunnale Calcistica</h1>
+      <p>
+        Vieni a scoprirla: nuove divise, scarpe e accessori per il mondo
+        calcistico!
+      </p>
+      <a class="btn-cta" [routerLink]="['/categoria', 'calcio']"
+        >Scopri Calcio</a
+      >
+    </div>
+  </div>
 </div>
 
 <div class="info-box">

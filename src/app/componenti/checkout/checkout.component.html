@@ -1,6 +1,6 @@
 <h1 class="titolo">conferma ordine</h1>
 
-<div class="checkout-container">
+<div class="checkout-container" *ngIf="carrello.length > 0; else carrelloVuoto">
   <!-- FORM DI CHECKOUT -->
   <div class="checkout-form">
     <form #ordineForm="ngForm" (ngSubmit)="confermaOrdine()" novalidate>
@@ -73,17 +73,32 @@
   <div class="checkout-carrello">
     <h3>Carrello</h3>
     <div class="checkout-articoli-scroll">
-      <div *ngFor="let item of carrello" class="checkout-img-card">
-        <img
-          [src]="item.articolo.urlImmagine"
-          alt="{{ item.articolo.nomeArticolo }}"
-        />
+      <div *ngFor="let item of carrello" class="checkout-item-card">
+        <img [src]="item.articolo.urlImmagine" alt="{{ item.articolo.nome }}" />
+        <div class="checkout-item-info">
+          <p>
+            <strong>{{ item.articolo.nome }}</strong>
+          </p>
+          <p>Taglia: {{ item.taglia || "Tutte le taglie" }}</p>
+          <p>Quantità: {{ item.quantita }}</p>
+          <p>Genere: {{ item.articolo.genere.nome }}</p>
+          <p>Categoria: {{ item.articolo.categoria.nome }}</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="totale-checkout">
-  <strong>Totale: </strong
-  >{{ totaleCarrello | currency : "EUR" : "symbol" : "1.2-2" }}
+<!-- Totale -->
+<div class="totale-checkout" *ngIf="carrello.length > 0">
+  <strong>Totale: </strong>
+  {{ totaleCarrello | currency : "EUR" : "symbol" : "1.2-2" }}
 </div>
+
+<!-- Messaggio se carrello vuoto -->
+<ng-template #carrelloVuoto>
+  <div class="checkout-empty">
+    <h2>Il tuo carrello è vuoto 🛒</h2>
+    <button routerLink="/home" class="btn">Torna agli articoli</button>
+  </div>
+</ng-template>

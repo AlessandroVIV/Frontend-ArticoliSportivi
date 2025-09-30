@@ -1,56 +1,74 @@
 .titolo {
   text-align: center;
   font-family: "Poppins", "Segoe UI", Tahoma, sans-serif;
-  font-size: 2.5rem;
+  font-size: 3rem; /* + grande */
   font-weight: 700;
   color: #333;
-  margin: 30px 0 20px 0;
-  letter-spacing: 1px;
+  margin: 40px 0 30px 0;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
 .ordine-card {
   border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 24px; /* più aria */
+  margin-bottom: 28px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.7);
 }
 
+/* HEADER ORDINE */
 .ordine-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
   border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
-  margin-bottom: 12px;
-  font-size: 2em;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  font-size: 2rem;
+}
+
+.ordine-header h3 {
+  
+  font-weight: 800;
+  margin: 0;
 }
 
 .data-ordine {
-  font-size: 0.9em;
-  color: #666;
+  color: #555;
 }
 
 .indirizzo {
   font-style: italic;
-  color: #444;
+  color: #333;
+  margin: 0;
 }
 
+.totale-ordine {
+  font-weight: bold;
+  color: #1f3c88;
+  margin: 0;
+}
+
+/* ARTICOLI */
 .articoli-container {
   display: flex;
-  gap: 12px;
-  overflow-x: auto; /* Scroll orizzontale */
-  padding-bottom: 8px;
-  scrollbar-width: thin; /* Firefox */
+  gap: 20px; /* più spazio tra card */
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
 }
 
 .articoli-container::-webkit-scrollbar {
-  height: 8px; /* Altezza scrollbar */
+  height: 10px;
 }
 
 .articoli-container::-webkit-scrollbar-thumb {
   background-color: #888;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .articoli-container::-webkit-scrollbar-track {
@@ -59,70 +77,69 @@
 
 .articolo-item {
   flex: 0 0 auto;
-  width: 350x;
+  width: 500px; /* card più grande */
   border: 1px solid #eee;
-  border-radius: 6px;
-  padding: 8px;
+  border-radius: 10px;
+  padding: 18px;
   background: #fafafa;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  gap: 20px;
   transition: transform 0.2s ease;
 }
 
 .articolo-item:hover {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .articolo-foto {
-  width: 330px;
+  width: 150px; /* immagine più grande */
   height: auto;
-  object-fit: cover;
-  border-radius: 4px;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 .articolo-info {
-  text-align: center;
-  margin-top: 8px;
-  word-wrap: break-word;
+  flex: 1;
+  text-align: left;
+  font-size: 1.2rem;
 }
 
 .nome-articolo {
   font-weight: bold;
-  font-size: 1.5em;
-  margin-bottom: 4px;
-}
-
-.taglia, .quantita, .prezzo {
   font-size: 1.4em;
-  color: #555;
+  margin-bottom: 8px;
 }
 
-.totale-ordine {
-  font-weight: bold;
-  color: #2c3e50;
-  margin-top: 4px;
+.taglia,
+.quantita,
+.prezzo {
+  font-size: 1.2em;
+  color: #444;
+  margin: 4px 0;
 }
 
+/* ORDINI VUOTI */
 .ordine-vuoto {
   text-align: center;
-  padding: 40px;
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 600px;
+  padding: 50px;
+  border-radius: 12px;
+  margin: 30px auto;
+  max-width: 700px;
 }
 
 .no-ordini {
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: #333;
   font-weight: 600;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   opacity: 0.95;
 }
 
 .btn-torna {
-  padding: 15px 35px;
-  font-size: 1.6rem;
+  padding: 16px 32px;
+  font-size: 1.5rem;
   font-weight: 700;
   background-color: blue;
   color: #fff;
@@ -136,4 +153,3 @@
 .btn-torna:hover {
   background-color: #0056b3;
 }
-

@@ -12,6 +12,7 @@
     <p class="prezzo">{{ articolo.prezzo | currency : "EUR" }}</p>
 
     <form
+      *ngIf="formTaglia"
       [formGroup]="formTaglia"
       (ngSubmit)="onConferma()"
       class="taglia-form"
@@ -60,7 +61,14 @@
         </select>
       </div>
 
-      <button type="submit" class="btn blue" [disabled]="formTaglia.invalid">
+      <!-- Bottone unico -->
+      <button
+        type="submit"
+        class="btn blue"
+        [disabled]="
+          formTaglia.invalid && articolo?.categoria?.nome !== 'Occhialini'
+        "
+      >
         Aggiungi al carrello
       </button>
     </form>

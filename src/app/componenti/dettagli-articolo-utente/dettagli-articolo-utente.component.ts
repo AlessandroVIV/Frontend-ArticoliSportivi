@@ -38,25 +38,33 @@ export class DettagliArticoloUtenteComponent {
       this.service.getArticoloById(id).subscribe((resp: any) => {
         this.articolo = resp.dati ?? resp;
 
-        // 🔹 Se categoria è "scarpa" → input number
         if (
           this.articolo?.categoria?.nome?.toLowerCase() === 'running' ||
           this.articolo?.categoria?.nome?.toLowerCase() === 'scarpe'
         ) {
+          // Scarpe
           this.formTaglia = this.fb.group({
             taglia: [
               '',
               [Validators.required, Validators.min(30), Validators.max(50)],
             ],
           });
-        } else {
-          // 🔹 Caso indumento
+        } else if (
+          this.articolo?.tagliaIndumento !== null &&
+          this.articolo?.tagliaIndumento !== undefined
+        ) {
+          // Indumenti
           this.service
             .getAllTaglieIndumento()
             .subscribe((t: any) => (this.taglieIndumento = t.dati));
 
           this.formTaglia = this.fb.group({
             taglia: ['', Validators.required],
+          });
+        } else {
+          // 🔹 Articoli SENZA TAGLIA (es. occhialini, cuffie)
+          this.formTaglia = this.fb.group({
+            taglia: [null], // campo opzionale
           });
         }
       });
@@ -95,15 +103,18 @@ export class DettagliArticoloUtenteComponent {
       return;
     }
 
-    if (this.formTaglia.invalid) {
-      this.showAnimatedMessage(
-        'Inserisci una taglia valida (tra 30 e 50)!',
-        'error'
-      );
+    // 🔹 Se ha bisogno di taglia, ma non valida
+    if (
+      (this.articolo?.categoria?.nome?.toLowerCase() === 'running' ||
+        this.articolo?.categoria?.nome?.toLowerCase() === 'scarpe' ||
+        this.articolo?.tagliaIndumento !== null) &&
+      this.formTaglia.invalid
+    ) {
+      this.showAnimatedMessage('Inserisci una taglia valida!', 'error');
       return;
     }
 
-    const tagliaSelezionata = this.formTaglia.value.taglia;
+    const tagliaSelezionata = this.formTaglia.value.taglia ?? null;
 
     this.service
       .aggiungiAlCarrello(utenteId, this.articolo.id, tagliaSelezionata)

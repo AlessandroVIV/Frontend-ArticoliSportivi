@@ -25,9 +25,9 @@ export class CheckoutComponent {
   constructor(
     private backend: BackendService,
     private router: Router,
-    private authService: AuthService, 
+    private authService: AuthService,
     private carrelloService: CarrelloService
-  ) { }
+  ) {}
 
   ngOnInit() {
     document.body.classList.add('sfondo-checkout');
@@ -55,6 +55,11 @@ export class CheckoutComponent {
   }
 
   confermaOrdine() {
+    if (this.carrello.length === 0) {
+      alert('Il carrello è vuoto! Aggiungi articoli per continuare.');
+      return;
+    }
+
     const ordinePayload = {
       totale: this.totaleCarrello,
       indirizzo: this.ordine.indirizzo,
@@ -69,8 +74,6 @@ export class CheckoutComponent {
     this.backend.createOrdine(ordinePayload).subscribe({
       next: (resp) => {
         console.log('Ordine creato con successo', resp);
-
-        // ✅ mostra ringraziamenti SOLO qui
         this.router.navigateByUrl('/ringraziamenti', {
           state: { ordineOk: true },
         });
