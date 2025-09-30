@@ -18,7 +18,7 @@ export class DettagliArticoloUtenteComponent {
   formTaglia!: FormGroup;
 
   showMessage = false;
-  fadingOut = false; // 👈 per gestire il fade-out
+  fadingOut = false;
   messageText = '';
   messageType: 'success' | 'error' = 'success';
 
@@ -42,7 +42,6 @@ export class DettagliArticoloUtenteComponent {
           this.articolo?.categoria?.nome?.toLowerCase() === 'running' ||
           this.articolo?.categoria?.nome?.toLowerCase() === 'scarpe'
         ) {
-          // Scarpe
           this.formTaglia = this.fb.group({
             taglia: [
               '',
@@ -53,7 +52,6 @@ export class DettagliArticoloUtenteComponent {
           this.articolo?.tagliaIndumento !== null &&
           this.articolo?.tagliaIndumento !== undefined
         ) {
-          // Indumenti
           this.service
             .getAllTaglieIndumento()
             .subscribe((t: any) => (this.taglieIndumento = t.dati));
@@ -62,9 +60,8 @@ export class DettagliArticoloUtenteComponent {
             taglia: ['', Validators.required],
           });
         } else {
-          // 🔹 Articoli SENZA TAGLIA (es. occhialini, cuffie)
           this.formTaglia = this.fb.group({
-            taglia: [null], // campo opzionale
+            taglia: [null],
           });
         }
       });
@@ -81,12 +78,10 @@ export class DettagliArticoloUtenteComponent {
     this.showMessage = true;
     this.fadingOut = false;
 
-    // dopo 2.5s parte il fade-out
     setTimeout(() => {
       this.fadingOut = true;
     }, 2500);
 
-    // dopo 3.2s rimuovo il messaggio
     setTimeout(() => {
       this.showMessage = false;
       this.messageText = '';
@@ -103,7 +98,6 @@ export class DettagliArticoloUtenteComponent {
       return;
     }
 
-    // 🔹 Se ha bisogno di taglia, ma non valida
     if (
       (this.articolo?.categoria?.nome?.toLowerCase() === 'running' ||
         this.articolo?.categoria?.nome?.toLowerCase() === 'scarpe' ||

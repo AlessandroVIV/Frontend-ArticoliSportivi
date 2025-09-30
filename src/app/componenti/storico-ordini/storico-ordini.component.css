@@ -1,7 +1,7 @@
 .titolo {
   text-align: center;
   font-family: "Poppins", "Segoe UI", Tahoma, sans-serif;
-  font-size: 3rem; /* + grande */
+  font-size: 3rem;
   font-weight: 700;
   color: #333;
   margin: 40px 0 30px 0;
@@ -12,13 +12,12 @@
 .ordine-card {
   border: 1px solid #ccc;
   border-radius: 12px;
-  padding: 24px; /* più aria */
+  padding: 24px;
   margin-bottom: 28px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.7);
 }
 
-/* HEADER ORDINE */
 .ordine-header {
   display: flex;
   align-items: center;
@@ -31,7 +30,6 @@
 }
 
 .ordine-header h3 {
-  
   font-weight: 800;
   margin: 0;
 }
@@ -52,10 +50,9 @@
   margin: 0;
 }
 
-/* ARTICOLI */
 .articoli-container {
   display: flex;
-  gap: 20px; /* più spazio tra card */
+  gap: 20px;
   overflow-x: auto;
   padding-bottom: 12px;
   scrollbar-width: thin;
@@ -77,7 +74,7 @@
 
 .articolo-item {
   flex: 0 0 auto;
-  width: 500px; /* card più grande */
+  width: 500px;
   border: 1px solid #eee;
   border-radius: 10px;
   padding: 18px;
@@ -94,7 +91,7 @@
 }
 
 .articolo-foto {
-  width: 150px; /* immagine più grande */
+  width: 150px;
   height: auto;
   object-fit: contain;
   border-radius: 6px;
@@ -120,7 +117,6 @@
   margin: 4px 0;
 }
 
-/* ORDINI VUOTI */
 .ordine-vuoto {
   text-align: center;
   padding: 50px;

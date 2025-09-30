@@ -1,7 +1,6 @@
 <h1 class="titolo-articoli">Articoli disponibili</h1>
 
 <form class="filtro-articoli">
-  <!-- Nome -->
   <input
     type="text"
     placeholder="Nome articolo"
@@ -11,7 +10,6 @@
     autocomplete="off"
   />
 
-  <!-- Marca -->
   <select
     [(ngModel)]="filtroMarca"
     (ngModelChange)="filtraArticoli()"
@@ -23,7 +21,6 @@
     </option>
   </select>
 
-  <!-- Genere -->
   <select
     [(ngModel)]="filtroGenere"
     (ngModelChange)="filtraArticoli()"
@@ -35,7 +32,6 @@
     </option>
   </select>
 
-  <!-- Categoria -->
   <select
     [(ngModel)]="filtroCategoria"
     (ngModelChange)="filtraArticoli()"
@@ -56,12 +52,10 @@
 >
   <div class="articolo-card" *ngFor="let articolo of articoliFiltrati">
     <a [routerLink]="['/dettagli-articolo-utente', articolo.id]">
-      <!-- Immagine -->
       <div class="img-container">
         <img [src]="articolo.urlImmagine" alt="{{ articolo.nomeArticolo }}" />
       </div>
 
-      <!-- Info -->
       <div class="articolo-info">
         <h3>{{ articolo.nomeArticolo }}</h3>
         <p class="descrizione">{{ articolo.descrizione }}</p>
@@ -74,7 +68,6 @@
   </div>
 </div>
 
-<!-- Template mostrato se non ci sono articoli -->
 <ng-template #noArticoli>
   <p class="no-articoli">Nessun articolo presente per i criteri di ricerca!</p>
 </ng-template>

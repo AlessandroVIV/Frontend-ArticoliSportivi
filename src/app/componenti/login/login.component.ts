@@ -40,7 +40,7 @@ export class LoginComponent {
     this.utente.signin(payload).subscribe({
       next: (resp: any) => {
         console.log('Risposta login:', resp);
-        console.log(resp)
+        console.log(resp);
 
         if (resp.dati && resp.dati.logged) {
           console.log('utente logged.. role:' + resp.dati.role);
@@ -71,7 +71,7 @@ export class LoginComponent {
       error: (err) => {
         console.error('Errore login:', err);
         this.msg = 'Errore nel login. Riprova.';
-      }
+      },
     });
   }
 }

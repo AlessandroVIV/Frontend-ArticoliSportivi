@@ -7,10 +7,9 @@ export const registerGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (authService.isAutentificated()) {
-    // se è loggato, lo rimando alla home (o dove preferisci)
     router.navigate(['/']);
     return false;
   }
 
-  return true; // può entrare solo se NON è loggato
+  return true; 
 };

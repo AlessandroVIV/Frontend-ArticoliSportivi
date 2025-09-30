@@ -1,7 +1,6 @@
 <h1 class="titolo">conferma ordine</h1>
 
 <div class="checkout-container" *ngIf="carrello.length > 0; else carrelloVuoto">
-  <!-- FORM DI CHECKOUT -->
   <div class="checkout-form">
     <form #ordineForm="ngForm" (ngSubmit)="confermaOrdine()" novalidate>
       <div>
@@ -62,14 +61,12 @@
         </div>
       </div>
 
-      <!-- il bottone viene disabilitato se il form è invalido -->
       <button type="submit" [disabled]="ordineForm.invalid">
         Conferma Ordine
       </button>
     </form>
   </div>
 
-  <!-- MINI CARRELLO (SCROLL) -->
   <div class="checkout-carrello">
     <h3>Carrello</h3>
     <div class="checkout-articoli-scroll">
@@ -89,13 +86,11 @@
   </div>
 </div>
 
-<!-- Totale -->
 <div class="totale-checkout" *ngIf="carrello.length > 0">
   <strong>Totale: </strong>
   {{ totaleCarrello | currency : "EUR" : "symbol" : "1.2-2" }}
 </div>
 
-<!-- Messaggio se carrello vuoto -->
 <ng-template #carrelloVuoto>
   <div class="checkout-empty">
     <h2>Il tuo carrello è vuoto 🛒</h2>

@@ -8,19 +8,16 @@
 
     <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" autocomplete="off">
       <div class="form-grid">
-        <!-- Nome -->
         <div class="form-field">
           <label for="nome">Nome</label>
           <input id="nome" type="text" formControlName="nome" />
         </div>
 
-        <!-- Prezzo -->
         <div class="form-field">
           <label for="prezzo">Prezzo</label>
           <input id="prezzo" type="number" formControlName="prezzo" />
         </div>
 
-        <!-- Descrizione -->
         <div class="form-field full-width">
           <label for="descrizione">Descrizione</label>
           <textarea
@@ -30,7 +27,6 @@
           ></textarea>
         </div>
 
-        <!-- Genere -->
         <div class="form-field">
           <label for="genere">Genere</label>
           <select id="genere" formControlName="genere">
@@ -40,7 +36,6 @@
           </select>
         </div>
 
-        <!-- Marca -->
         <div class="form-field">
           <label for="marca">Marca</label>
           <select id="marca" formControlName="marca">
@@ -50,7 +45,6 @@
           </select>
         </div>
 
-        <!-- Categoria -->
         <div class="form-field">
           <label for="categoria">Categoria</label>
           <select id="categoria" formControlName="categoria">
@@ -60,7 +54,6 @@
           </select>
         </div>
 
-        <!-- Taglia Scarpa -->
         <div class="form-field" *ngIf="articolo?.tagliaScarpe !== null">
           <label for="tagliaScarpe">Taglia Scarpa</label>
           <input
@@ -70,7 +63,6 @@
           />
         </div>
 
-        <!-- Taglia Indumento -->
         <div class="form-field" *ngIf="articolo?.tagliaIndumento !== null">
           <label for="tagliaIndumento">Taglia Indumento</label>
           <select id="tagliaIndumento" formControlName="tagliaIndumento">
@@ -80,7 +72,6 @@
           </select>
         </div>
 
-        <!-- URL Immagine -->
         <div class="form-field full-width">
           <label for="urlImmagine">URL Immagine</label>
           <input id="urlImmagine" type="text" formControlName="urlImmagine" />
@@ -89,7 +80,6 @@
 
       <p class="msg">{{ msg }}</p>
 
-      <!-- Bottoni principali -->
       <div class="button-group">
         <button type="button" class="btn grey" (click)="onAnnul()">
           Indietro
@@ -100,12 +90,10 @@
         </button>
       </div>
 
-      <!-- MODAL DELETE -->
       <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
         <div class="modal-box" (click)="$event.stopPropagation()">
           <h2>
-            Vuoi eliminare <span>"{{ articolo.nome }}"</span
-            >?
+            Vuoi eliminare <span>"{{ articolo.nome }}"</span>?
           </h2>
           <p>
             Questa azione non può essere annullata, sei sicuro di voler
@@ -113,12 +101,10 @@
           </p>
 
           <div class="modal-actions">
-            <!-- SOLO chiude il modal -->
             <button type="button" class="btn-cancel" (click)="closeModal()">
               Annulla
             </button>
 
-            <!-- Conferma delete -->
             <button type="button" class="btn-confirm" (click)="confirmDelete()">
               Elimina
             </button>

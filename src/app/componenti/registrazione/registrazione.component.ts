@@ -10,7 +10,6 @@ import { NgForm } from '@angular/forms';
   styleUrl: './registrazione.component.css',
 })
 export class RegistrazioneComponent {
-
   msg: string = '';
   rc: boolean = true;
 
@@ -25,7 +24,6 @@ export class RegistrazioneComponent {
   constructor(private utente: UtenteServiceService, private router: Router) {}
 
   onSubmit(signup: NgForm) {
-
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!regexEmail.test(signup.form.value.email)) {
@@ -40,7 +38,6 @@ export class RegistrazioneComponent {
       this.rc = false;
       this.msg = 'Le passwords non corrispondono!';
     }
-
   }
 
   createUser(signup: NgForm) {
@@ -60,5 +57,4 @@ export class RegistrazioneComponent {
         } else this.msg = resp.msg;
       });
   }
-  
 }

@@ -1,5 +1,4 @@
 <div class="carrello-container">
-  <!-- Lista articoli -->
   <div class="articoli-lista" *ngIf="items.length > 0; else noItems">
     <div *ngFor="let item of items" class="articolo-card">
       <div class="img-container">
@@ -43,17 +42,18 @@
     </div>
   </div>
 
-  <!-- Template mostrato se non ci sono items -->
   <ng-template #noItems>
     <div class="carrello-vuoto">
-      <p class="no-articoli">Il tuo carrello è vuoto! <br> Va a riempirlo!</p>
+      <p class="no-articoli">
+        Il tuo carrello è vuoto! <br />
+        Va a riempirlo!
+      </p>
       <button routerLink="/articoli" class="btn-torna">
         Vai al catalogo degli articoli
       </button>
     </div>
   </ng-template>
 
-  <!-- Totale carrello (mostralo solo se ci sono articoli) -->
   <div class="totale-fisso" *ngIf="items.length > 0">
     <h2>Totale Carrello</h2>
     <table>

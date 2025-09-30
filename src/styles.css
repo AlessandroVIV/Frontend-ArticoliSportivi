@@ -69,7 +69,6 @@ body.no-scroll {
   overflow-y: hidden;
 }
 
-/* Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -77,6 +76,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 textarea {
-  resize: none; /* blocca il resize */
-  overflow: auto; /* gestisce eventuali scrollbar solo se serve */
+  resize: none;
+  overflow: auto;
 }

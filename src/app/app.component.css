@@ -48,14 +48,12 @@
   margin-right: 6px;
 }
 
-/* nuovo wrapper */
 .nav-right {
-  margin-left: auto; /* manda tutto a destra */
+  margin-left: auto;
   display: flex;
   align-items: center;
 }
 
-/* Stile per l'icona del carrello */
 .carrello-icon {
   position: relative;
   display: inline-block;

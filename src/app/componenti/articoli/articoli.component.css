@@ -99,13 +99,12 @@
   margin-top: 10px;
 }
 
-/*--------- STILE PER IL FORM DI FILTRAGGIO ---------*/
 .filtro-articoli {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap; /* va a capo su schermi piccoli */
-  justify-content: center; /* centra orizzontalmente */
-  margin: 20px 0; /* spazio sopra e sotto */
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
   align-items: center;
 }
 

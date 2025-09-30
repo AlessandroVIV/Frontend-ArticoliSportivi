@@ -68,7 +68,7 @@ export class GestisciMarcaComponent {
 
   creaMarca() {
     if (!this.nuovaMarca.nome) {
-      return; // niente nome -> non faccio nulla
+      return;
     }
 
     this.backendService.createMarca(this.nuovaMarca).subscribe({

@@ -18,7 +18,7 @@ export class DettagliArticoloComponent {
   articolo: any;
   msg = '';
 
-  showModal = false; // unico modal per delete
+  showModal = false;
 
   updateForm: FormGroup = new FormGroup({
     nome: new FormControl(),
@@ -108,17 +108,14 @@ export class DettagliArticoloComponent {
     });
   }
 
-  // apre modal
   onDelete() {
     this.showModal = true;
   }
 
-  // chiude modal
   closeModal() {
     this.showModal = false;
   }
 
-  // conferma ed elimina
   confirmDelete() {
     this.backendService.removeArticolo(this.id).subscribe((resp: any) => {
       if (resp.rc) {

@@ -1,5 +1,5 @@
 <h1 class="titolo-articoli">Gestisci articoli</h1>
-<!-- LISTA ARTICOLI -->
+
 <div class="admin-lista-articoli" *ngIf="!showCreateForm">
   <div class="admin-articolo-card" *ngFor="let articolo of articoli">
     <a [routerLink]="['/dettagliArticolo', articolo.id]">
@@ -23,17 +23,22 @@
       </div>
     </a>
   </div>
-
 </div>
 
 <div class="button-container" *ngIf="!showCreateForm">
-  <button type="button" class="btn indumento" 
-          (click)="showCreateForm = true; createType = TYPE_INDUMENTO">
+  <button
+    type="button"
+    class="btn indumento"
+    (click)="showCreateForm = true; createType = TYPE_INDUMENTO"
+  >
     + Crea Indumento
   </button>
 
-  <button type="button" class="btn scarpa" 
-          (click)="showCreateForm = true; createType = TYPE_SCARPA">
+  <button
+    type="button"
+    class="btn scarpa"
+    (click)="showCreateForm = true; createType = TYPE_SCARPA"
+  >
     + Crea Scarpa
   </button>
 </div>
@@ -48,133 +53,207 @@
   </button>
 </div>
 
-
-
-
-<!-- FORM INDUMENTO -->
-<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_INDUMENTO" autocomplete="off">
+<div
+  class="articolo-form"
+  *ngIf="showCreateForm && createType === TYPE_INDUMENTO"
+  autocomplete="off"
+>
   <h2>Creazione Indumento</h2>
 
   <form [formGroup]="createFormIndumento" (ngSubmit)="onSubmitIndumento()">
     <div class="form-grid">
       <div class="form-field">
         <label for="nome">Nome</label>
-        <input id="nome" type="text" formControlName="nomeArticolo" autocomplete="off"/>
+        <input
+          id="nome"
+          type="text"
+          formControlName="nomeArticolo"
+          autocomplete="off"
+        />
       </div>
 
       <div class="form-field">
         <label for="prezzo">Prezzo</label>
-        <input id="prezzo" type="number" formControlName="prezzo" autocomplete="off"/>
+        <input
+          id="prezzo"
+          type="number"
+          formControlName="prezzo"
+          autocomplete="off"
+        />
       </div>
 
       <div class="form-field full-width">
         <label for="descrizione">Descrizione</label>
-        <textarea id="descrizione" rows="3" formControlName="descrizione"></textarea>
+        <textarea
+          id="descrizione"
+          rows="3"
+          formControlName="descrizione"
+        ></textarea>
       </div>
 
       <div class="form-field">
         <label for="genere">Genere</label>
         <select id="genere" formControlName="genere">
-          <option *ngFor="let g of generi" [value]="g.nome">{{ g.nome }}</option>
+          <option *ngFor="let g of generi" [value]="g.nome">
+            {{ g.nome }}
+          </option>
         </select>
       </div>
 
       <div class="form-field">
         <label for="marca">Marca</label>
         <select id="marca" formControlName="marca">
-          <option *ngFor="let m of marche" [value]="m.nome">{{ m.nome }}</option>
+          <option *ngFor="let m of marche" [value]="m.nome">
+            {{ m.nome }}
+          </option>
         </select>
       </div>
 
       <div class="form-field">
         <label for="categoria">Categoria</label>
         <select id="categoria" formControlName="categoria">
-          <option *ngFor="let c of categorie" [value]="c.nome">{{ c.nome }}</option>
+          <option *ngFor="let c of categorie" [value]="c.nome">
+            {{ c.nome }}
+          </option>
         </select>
       </div>
 
-      <!-- Taglia Indumento -->
       <div class="form-field">
         <label for="tagliaIndumento">Taglia Indumento</label>
         <select id="tagliaIndumento" formControlName="tagliaIndumento">
-          <option *ngFor="let t of taglieIndumento" [value]="t.nome">{{ t.nome }}</option>
+          <option *ngFor="let t of taglieIndumento" [value]="t.nome">
+            {{ t.nome }}
+          </option>
         </select>
       </div>
 
       <div class="form-field full-width">
         <label for="urlImmagine">URL Immagine</label>
-        <input id="urlImmagine" type="text" formControlName="urlImmagine" autocomplete="off"/>
+        <input
+          id="urlImmagine"
+          type="text"
+          formControlName="urlImmagine"
+          autocomplete="off"
+        />
       </div>
     </div>
 
     <p class="msg">{{ msg }}</p>
 
     <div class="button-group">
-      <button type="button" class="btn grey" (click)="onAnnul()">Indietro</button>
-      <button type="submit" class="btn blue" [disabled]="!createFormIndumento.valid">Crea</button>
+      <button type="button" class="btn grey" (click)="onAnnul()">
+        Indietro
+      </button>
+      <button
+        type="submit"
+        class="btn blue"
+        [disabled]="!createFormIndumento.valid"
+      >
+        Crea
+      </button>
     </div>
   </form>
 </div>
 
-<!-- FORM SCARPA -->
-<div class="articolo-form" *ngIf="showCreateForm && createType === TYPE_SCARPA" autocomplete="off">
+<div
+  class="articolo-form"
+  *ngIf="showCreateForm && createType === TYPE_SCARPA"
+  autocomplete="off"
+>
   <h2>Creazione Scarpa</h2>
 
   <form [formGroup]="createFormScarpa" (ngSubmit)="onSubmitScarpa()">
     <div class="form-grid">
       <div class="form-field">
         <label for="nome">Nome</label>
-        <input id="nome" type="text" formControlName="nome" autocomplete="off"/>
+        <input
+          id="nome"
+          type="text"
+          formControlName="nome"
+          autocomplete="off"
+        />
       </div>
 
       <div class="form-field">
         <label for="prezzo">Prezzo</label>
-        <input id="prezzo" type="number" formControlName="prezzo" autocomplete="off"/>
+        <input
+          id="prezzo"
+          type="number"
+          formControlName="prezzo"
+          autocomplete="off"
+        />
       </div>
 
       <div class="form-field full-width">
         <label for="descrizione">Descrizione</label>
-        <textarea id="descrizione" rows="3" formControlName="descrizione"></textarea>
+        <textarea
+          id="descrizione"
+          rows="3"
+          formControlName="descrizione"
+        ></textarea>
       </div>
 
       <div class="form-field">
         <label for="genere">Genere</label>
         <select id="genere" formControlName="genere">
-          <option *ngFor="let g of generi" [value]="g.nome">{{ g.nome }}</option>
+          <option *ngFor="let g of generi" [value]="g.nome">
+            {{ g.nome }}
+          </option>
         </select>
       </div>
 
       <div class="form-field">
         <label for="marca">Marca</label>
         <select id="marca" formControlName="marca">
-          <option *ngFor="let m of marche" [value]="m.nome">{{ m.nome }}</option>
+          <option *ngFor="let m of marche" [value]="m.nome">
+            {{ m.nome }}
+          </option>
         </select>
       </div>
 
       <div class="form-field">
         <label for="categoria">Categoria</label>
         <select id="categoria" formControlName="categoria">
-          <option *ngFor="let c of categorie" [value]="c.nome">{{ c.nome }}</option>
+          <option *ngFor="let c of categorie" [value]="c.nome">
+            {{ c.nome }}
+          </option>
         </select>
       </div>
 
-      <!-- Taglia Scarpe -->
       <div class="form-field">
         <label for="tagliaScarpe">Taglia Scarpa</label>
-        <input id="tagliaScarpe" type="number" formControlName="tagliaScarpe" autocomplete="off"/>
+        <input
+          id="tagliaScarpe"
+          type="number"
+          formControlName="tagliaScarpe"
+          autocomplete="off"
+        />
       </div>
 
       <div class="form-field full-width">
         <label for="urlImmagine">URL Immagine</label>
-        <input id="urlImmagine" type="text" formControlName="urlImmagine" autocomplete="off"/>
+        <input
+          id="urlImmagine"
+          type="text"
+          formControlName="urlImmagine"
+          autocomplete="off"
+        />
       </div>
     </div>
 
     <p class="msg">{{ msg }}</p>
 
     <div class="button-group">
-      <button type="button" class="btn grey" (click)="onAnnul()">Indietro</button>
-      <button type="submit" class="btn blue" [disabled]="!createFormScarpa.valid">Crea</button>
+      <button type="button" class="btn grey" (click)="onAnnul()">
+        Indietro
+      </button>
+      <button
+        type="submit"
+        class="btn blue"
+        [disabled]="!createFormScarpa.valid"
+      >
+        Crea
+      </button>
     </div>
   </form>
 </div>

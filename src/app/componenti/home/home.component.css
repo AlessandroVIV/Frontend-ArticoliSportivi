@@ -257,7 +257,7 @@ swiper-slide {
 
 .banner-fullwidth-footer img {
   width: 100%;
-  aspect-ratio: 16 / 6; /* più largo e meno alto */
+  aspect-ratio: 16 / 6;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -396,9 +396,6 @@ swiper-slide {
   text-decoration: underline;
 }
 
-/* ------------------- */
-/* SEZIONE ARENA NUOTO */
-/* ------------------- */
 .slider-wrapper.arena {
   background: #fff;
   border-top: 2px solid #eee;
@@ -456,7 +453,6 @@ swiper-slide {
   color: #0077cc;
 }
 
-/* Banner footer già presente */
 .banner-fullwidth-footer img {
   width: 100%;
   aspect-ratio: 16 / 6;
@@ -465,7 +461,6 @@ swiper-slide {
   display: block;
 }
 
-/* ===== Overlay sopra l'immagine ===== */
 .banner-fullwidth-footer {
   position: relative;
   overflow: hidden;
@@ -473,10 +468,10 @@ swiper-slide {
 
 .footer-hero {
   position: absolute;
-  inset: 0; /* top/right/bottom/left: 0 */
+  inset: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* testo a sinistra */
+  justify-content: flex-start;
   padding-left: clamp(16px, 6vw, 96px);
   padding-right: clamp(16px, 4vw, 64px);
   color: #fff;
@@ -492,7 +487,7 @@ swiper-slide {
     rgba(0, 0, 0, 0.15) 50%,
     rgba(0, 0, 0, 0) 80%
   );
-  z-index: -1; /* va dietro al testo ma sopra l'immagine */
+  z-index: -1;
 }
 
 .footer-hero h1 {

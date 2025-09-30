@@ -52,7 +52,6 @@ export class AuthService {
     localStorage.removeItem("utente");
   }
 
-  // 👇 i tuoi metodi esistenti
   isAutentificated() {
     return this.isLogged;
   }

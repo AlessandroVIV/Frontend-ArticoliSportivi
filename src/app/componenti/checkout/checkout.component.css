@@ -74,14 +74,12 @@
   border-radius: 12px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-
-  /* Nasconde la scrollbar */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE e Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .checkout-carrello::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 
 .checkout-carrello h3 {
@@ -112,7 +110,7 @@
 }
 
 .checkout-item-card img {
-  width: 160px; /* ingrandita rispetto a prima */
+  width: 160px;
   height: auto;
   object-fit: cover;
   border-radius: 6px;
@@ -132,18 +130,17 @@
 }
 
 .checkout-form button:disabled {
-  background: #cccccc; /* colore grigio */
-  cursor: not-allowed; /* blocca il cursore */
-  opacity: 0.7; /* effetto visivo */
+  background: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
-/* Totale ben visibile sotto i prodotti */
 .totale-checkout {
   margin-top: 25px;
   padding: 15px 20px;
   background-color: #ff4d4d;
   color: white;
-  font-size: 1.8em; /* più grande */
+  font-size: 1.8em;
   font-weight: bold;
   text-align: center;
   border-radius: 8px;
@@ -155,8 +152,8 @@
 .errore {
   margin-top: 6px;
   font-size: 0.95rem;
-  color: #d9534f; /* rosso elegante */
-  background: rgba(217, 83, 79, 0.1); /* sfondo rosso chiaro */
+  color: #d9534f;
+  background: rgba(217, 83, 79, 0.1);
   border: 1px solid #d9534f;
   border-radius: 6px;
   padding: 8px 12px;

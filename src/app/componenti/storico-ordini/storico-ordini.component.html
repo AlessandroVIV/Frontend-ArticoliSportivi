@@ -13,7 +13,6 @@
 </ng-container>
 
 <div *ngFor="let ordine of ordini" class="ordine-card">
-  <!-- Header ordine -->
   <div class="ordine-header">
     <h3>Ordine #{{ ordine.id }}</h3>
     <span class="data-ordine">{{
@@ -28,7 +27,6 @@
     </p>
   </div>
 
-  <!-- Lista articoli -->
   <div class="articoli-container">
     <div *ngFor="let item of ordine.items" class="articolo-item">
       <img
