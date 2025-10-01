@@ -31,6 +31,8 @@
             'basket',
             'nuoto'
           ].includes(articolo?.categoria?.nome?.toLowerCase()?.trim())
+          && articolo?.tagliaScarpe !== null &&
+          articolo?.tagliaScarpe !== undefined
         "
       >
         <label for="tagliaScarpe">Taglia Scarpa</label>
